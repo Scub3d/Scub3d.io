@@ -1,0 +1,40 @@
+{% block css %}
+<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/index.css"  media="screen,projection"/>
+{% end %}
+
+{% block title %}
+About me
+{% end %}
+
+{% block navbarTitle %}
+<span class="englishText">About me</span><span class="japaneseText">私について</span><span class="displayText"></span>
+{% end %}
+
+{% block content %}
+<header>
+	<div class="spenser">
+		<canvas class="avatar hide-on-small-only" id="myCanvas" width="250px" height="250px"></canvas>
+		<img class="avatar hide-on-med-and-up show-on-small" src="//static.scub3d.io/www/img/index/me.jpg">
+
+		<h2>
+			<div id="name" class="text"><span class="englishText">Spenser Solys</span><span class="japaneseText">スペンサー ソリス</span><span class="displayText"></span></div>
+			<div id="title" class="text"><span class="englishText">Game? Dev</span><span class="japaneseText">ゲーム? 開発者</span><span class="displayText"></span></div>
+		</h2>
+		<div class="socials">
+			<a class="twitter" href="https://twitter.com/scub3d" target="_blank">Twitter</a>
+			<a class="linkedin" href="https://linkedin.com/in/scub3d" target="_blank">LinkedIn</a>
+			<a class="github" href="https://github.com/scub3d" target="_blank">GitHub</a>
+			<a class="devpost" href="https://devpost.com/scub3d" target="_blank">Devpost</a>
+			<a class="sketchfab" href="https://sketchfab.com/scub3d" target="_blank">SketchFab</a>
+		</div>
+	
+		<h2>
+			<div id="title" class="text"><span class="englishText">Hi. I'm a recent graduate looking for a job. I'm skilled in working with Unity, Blender, and other game development engines. I specialize in virtual and augmented reality prototyping. I'm capable of working in large teams in both English and Japanese.</span><span class="japaneseText">こんにちは。私は仕事を探している最近の卒業生です。 Unity、Blender、その他のゲーム開発エンジンでの作業に精通しています。仮想現実および拡張現実のプロトタイピングを専門としています。英語と日本語の両方で大規模なチームで働くことができます。</span><span class="displayText"></span></div>
+		</h2>
+	</div>
+</header>
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="//static.scub3d.io/www/js/glitched-img.js"></script>
+{% end %}

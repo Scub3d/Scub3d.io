@@ -1,0 +1,72 @@
+steps:
+
+# rsync the static files into the static bucket
+- name: gcr.io/cloud-builders/gsutil
+  args: ["-m", "rsync", "-r", "-c", "-d", "./static", "gs://static.scub3d.io"]
+
+
+# apply the template to the html files
+- name: ubuntu
+  args: ['bash', './apply_template.sh', './views/www/']
+
+# rsync website html files into the bucket
+- name: gcr.io/cloud-builders/gsutil
+  args: ["-m", "rsync", "-c", "-d", "./views/www", "gs://scub3d.io"]
+
+# copy the files to files that don't have .html extensions and ensure they're treated as html files by the bucket. Then rm the old files
+# I don't believe setting the headers this way works with mv
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/error.html", "gs://scub3d.io/error"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/error.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/experience.html", "gs://scub3d.io/experience"]
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/experience.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/hackathons.html", "gs://scub3d.io/hackathons"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/hackathons.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/index.html", "gs://scub3d.io/index"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/index.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/league-ar.html", "gs://scub3d.io/league-ar"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/league-ar.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://scub3d.io/projects.html", "gs://scub3d.io/projects"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://scub3d.io/projects.html"] 
+
+
+# apply the template to the html files
+- name: ubuntu
+  args: ['bash', './apply_template.sh', './views/minesweeper/']
+
+# rsync minesweeper subdomain html files into the minesweper bucket
+- name: gcr.io/cloud-builders/gsutil
+  args: ["-m", "rsync", "-c", "-d", "./views/minesweeper", "gs://minesweeper.scub3d.io"]
+
+# copy the files to files that don't have .html extensions and ensure they're treated as html files by the bucket. Then rm the old files
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/error.html", "gs://minesweeper.scub3d.io/error"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://minesweeper.scub3d.io/error.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/presskit.html", "gs://minesweeper.scub3d.io/presskit"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://minesweeper.scub3d.io/presskit.html"] 
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/privacy-policy.html", "gs://minesweeper.scub3d.io/privacy-policy"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://minesweeper.scub3d.io/privacy-policy.html"] 
+

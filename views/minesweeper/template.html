@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="//static.scub3d.io/www/css/icon_contents.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/materialize.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/base.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/preloader.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/glitched-text.css"  media="screen,projection"/>
+		{% block css %} {% end %}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>{% block title %} {% end %}</title>
+	</head>
+	<body>
+		<div class="navbar-fixed">
+			<nav class="bar">
+				<div class="nav-wrapper">
+					<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="menu"></i></a>
+					<a href="#" id="navTitle" class="brand-logo center text truncate">{% block navbarTitle %} {% end %}</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="/presskit" id="presskit_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color presskit"></i></a></li>
+						<li><a href="/privacy-policy" id="privacy-policy_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color privacy_policy"></i></a></li>
+						<li><a href="#translate" class="_translate" id="translation_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i id="translate_icon" class="material-icon-color translate_japanese"></i></a></li>
+						<li><a href="https://scub3d.io" id="scub3d.io_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color home"></i></a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<ul id="slide-out" class="sidenav card-color">
+			<li><a href="/presskit" class="text"><i class="material-icons material-icon-color presskit"></i><span class="englishText">Presskit</span><span class="japaneseText">プレスキット</span><span class="displayText"></span></a></li>
+			<li><a href="/privacy-policy" class="text"><i class="material-icons material-icon-color privacy_policy"></i><span class="englishText">Privacy Policy</span><span class="japaneseText">個人情報保護方針</span><span class="displayText"></span></a></li>
+			<li><a href="#translate" class="_translate exception text"><i id="translate_icon_side" class="material-icon-color translate_japanese"></i><span class="englishText">日本語</span><span class="japaneseText">English</span><span class="displayText"></span></a></li>
+			<li><div class="divider"></div></li>
+			<li><a href="https://scub3d.io" class="text"><i class="material-icons material-icon-color home"></i><span class="englishText">Back to website</span><span class="japaneseText">ウェブサイトに戻る</span><span class="displayText"></span></a></li>
+		</ul>
+
+		<main>
+			<div id="preloader" class="m-loader">
+				<div class="m-loader__wrapper">
+					<div class="m-loader__line">
+						<div></div>
+					</div> 
+				</div>
+			</div>
+
+			<div id="content">
+				{% block content %} {% end %}
+			</div>
+		</main>
+		
+		<script type="text/javascript" src="//static.scub3d.io/www/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/materialize.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/base.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/glitched-text.js"></script>
+		{% block js %} {% end %}
+	</body>
+</html>
+

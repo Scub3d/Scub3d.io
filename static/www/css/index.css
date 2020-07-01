@@ -1,0 +1,100 @@
+header {
+	height: 100%;
+	top: 0;
+	width: 100%;
+	margin: auto;
+}
+
+.text {
+	font-weight: 100;
+	font-size: 28px;
+	color: #fafafa;
+}
+
+header .spenser {
+	padding-top: 150px;
+}
+
+header .avatar {
+	display: block;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+img {
+	border: 0;
+	padding: 0;
+}
+
+header h2 {
+	text-align: center;
+	display: block;
+	font-size: 3em;
+	line-height: 1em;
+	padding-top: 20px;
+}
+
+header h2 #title span.displayText {
+	display: block;
+	font-size: .6em;
+	padding-top: 15px;
+	font-weight: normal;
+	color: rgba(255, 255, 255, 0.6);
+	letter-spacing: .1em;
+}
+
+header .socials {
+	text-align: center;
+	padding-top: 0;
+}
+
+header .socials a {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	text-indent: -999em;
+	transform: scale(0.5, 0.5);
+	background-position: center center;
+	background-repeat: no-repeat;
+	text-align: center;
+	border: 0;
+	transition: all .2s ease-in-out;
+}
+
+header .socials a.twitter {
+	background-image: url(//static.scub3d.io/www/img/index/twitter.png);
+}
+
+header .socials a.linkedin {
+	background-image: url(//static.scub3d.io/www/img/index/linkedin.png);
+}
+
+header .socials a.github {
+	background-image: url(//static.scub3d.io/www/img/index/github.png);
+}
+
+header .socials a.devpost {
+	background-image: url(//static.scub3d.io/www/img/index/devpost.png);
+}
+
+header .socials a.sketchfab {
+	background-image: url(//static.scub3d.io/www/img/index/sketchfab.png);
+}
+
+@media only screen and (max-width : 320px) {
+	header .spenser {
+		padding-top: 50px;
+	}
+}
+
+.addBottomMargin {
+	margin-bottom: 4rem;
+}
+
+header h2 #title span.displayText {
+	width: 80% !important;
+	margin: auto;
+	display: block;
+}

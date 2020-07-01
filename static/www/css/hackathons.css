@@ -1,0 +1,102 @@
+.inner {
+	border: 1px solid #eaeaea;
+	-webkit-border-radius: 3px;
+	background-color: #fff;
+	background-position: center;
+	-webkit-background-clip: padding-box;
+	box-shadow: 0px 0px 8px rgba(0;0;0;0.3);
+	text-align: center;
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.splashWrap {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	height: 215px;
+	overflow: hidden;
+}
+
+.splash {
+	width: 100%;
+	vertical-align: middle;
+	border: 0;
+}
+
+.logoWrap {
+	border-radius: 3px;
+	background-color: #fff;
+	background-clip: padding-box;
+	height: 60px;
+	left: 50%;
+	margin-top: -46px;
+	margin-left: -30px;
+	position: absolute;
+	text-align: center;
+	width: 60px;
+}
+
+.logo {
+	width: 52px;
+	height: 52px;
+	margin-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+	border: 0;
+}
+
+.name {
+	margin: 22px auto 3px !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 240px;
+	color: #333;
+	font-size: 1.6rem;
+}
+
+.date {
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+	margin: 0;
+	/*text-transform: uppercase;*/
+}
+
+.location {
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.78571429;
+	color: #385f7b;
+}
+
+.root {
+	flex-grow: 1;
+	margin: 2rem 1rem 0 1rem;
+}
+
+ .eventWrapper {
+	color: #333;
+	margin: 0 auto;
+	max-width: 240px;
+	min-height: 360px;
+	display: table;
+	text-decoration: none;
+}
+
+@keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+.hackathon-card {
+	opacity: 0;
+	animation: fade 1.5s ease-in forwards;
+}
+
+.hackathon-card:nth-child(odd) {
+	animation-delay: .1s;
+}
+
+.hackathon-card:nth-child(even) {
+	animation-delay: .2s;
+}

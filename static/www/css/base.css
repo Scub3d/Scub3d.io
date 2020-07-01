@@ -1,0 +1,135 @@
+@media only screen and (max-width : 992px) {
+	#navTitle {
+		font-size: 1.8rem;
+	}
+}
+
+@media only screen and (max-width : 320px) {
+	#navTitle {
+		font-size: 1.4rem;
+	}
+}
+
+@font-face {
+	font-family: "Noto";
+	src: url("//static.scub3d.io/www/font/noto/NotoSansCJKjp-Light.woff");
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("//static.scub3d.io/www/font/roboto/Roboto-Light.woff");
+}
+
+.english {
+	font-family: Roboto;
+	/*text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.9);*/
+}
+
+.japanese {
+	font-family: Noto;
+	/*text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.9);*/
+}
+
+.englishText, .japaneseText {
+	display: none;
+}
+
+.bar {
+	background-color: #000000 !important;
+}
+
+.button-color {
+	background-color: #00adb5 !important;
+}
+
+body {
+	background-color: #212121 !important;
+	color: #eeeeee !important; /* Try color: f0f0f0 */
+}
+
+.material-icon-color {
+	color: rgba(238, 238, 238, .54) !important;
+}
+
+.sidenav li > a:hover {
+	background-color: rgba(238, 238, 238, 0.05) !important;
+	color: rgb(40, 175, 176) !important;
+}
+
+.sidenav li > a {
+	color: #eeeeee;
+	font-size: 1.1rem;
+}
+
+.sidenav {
+	background-color: #303030 !important;
+}
+
+#content {
+	display: none;
+}
+
+.s5ths,
+.m5ths,
+.l5ths,
+.xl5ths {
+	margin-left: auto;
+	left: auto;
+	right: auto;
+}
+
+.row .col.s5ths {
+	width: 20%;
+}
+
+@media only screen and (min-width: 601px) {
+	.row .col.m5ths {
+		width: 20%;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+	.row .col.l5ths {
+		width: 20%;
+	}
+}
+
+@media only screen and (min-width: 1201px) {
+	.row .col.xl5ths {
+		width: 20%;
+	}
+}
+
+html {
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+		width: 0px;  /* remove scrollbar space */
+		background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+@font-face {
+	font-family: 'Material-Icons';
+	font-style: normal;
+	font-weight: normal;
+	src: url("//static.scub3d.io/www/font/icons/Material-Icons.woff?mmqzbz") format('woff');
+}
+
+i {
+	font-family: 'Material-Icons' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.material-tooltip {
+	min-height: unset !important;
+}

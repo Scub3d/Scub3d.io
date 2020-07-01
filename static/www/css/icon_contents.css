@@ -1,0 +1,197 @@
+.projects:before {
+  content: "\e940";
+}
+.project:before {
+  content: "\e934";
+}
+.translate_japanese:before {
+  content: "\e935";
+}
+.game_boy:before {
+  content: "\e936";
+}
+.business_card:before {
+  content: "\e937";
+  color: #626262;
+}
+.project_alt:before {
+  content: "\e938";
+  color: #626262;
+}
+.aws:before {
+  content: "\e93d";
+}
+.artstation:before {
+  content: "\e93e";
+}
+.settings:before {
+  content: "\e93f";
+}
+.timeline:before {
+  content: "\e93c";
+}
+.calendar:before {
+  content: "\e92c";
+}
+.octagram:before {
+  content: "\e939";
+}
+.circle:before {
+  content: "\e93a";
+}
+.certificate:before {
+  content: "\e93b";
+}
+.menu:before {
+  content: "\e927";
+}
+.education:before {
+  content: "\e900";
+}
+.playstation:before {
+  content: "\e901";
+}
+.youtube:before {
+  content: "\e902";
+}
+.xbox:before {
+  content: "\e903";
+}
+.watch:before {
+  content: "\e904";
+}
+.google_play:before {
+  content: "\e905";
+}
+.google_chrome:before {
+  content: "\e906";
+}
+.android_head:before {
+  content: "\e907";
+}
+.account_circle:before {
+  content: "\e908";
+}
+.google_assistant:before {
+  content: "\e909";
+}
+.resume_alt:before {
+  content: "\e90a";
+}
+.android_studio:before {
+  content: "\e90b";
+}
+.postgresql:before {
+  content: "\e90c";
+}
+.swift:before {
+  content: "\e90d";
+}
+.css3:before {
+  content: "\e90e";
+}
+.html5:before {
+  content: "\e90f";
+}
+.c:before {
+  content: "\e910";
+}
+.unreal:before {
+  content: "\e911";
+}
+.database:before {
+  content: "\e912";
+}
+.java:before {
+  content: "\e913";
+}
+.javascript:before {
+  content: "\e914";
+}
+.firebase:before {
+  content: "\e915";
+}
+.cpp:before {
+  content: "\e916";
+}
+.python:before {
+  content: "\e917";
+}
+.csharp:before {
+  content: "\e918";
+}
+.linkedin:before {
+  content: "\e919";
+}
+.github:before {
+  content: "\e91a";
+}
+.cardboard:before {
+  content: "\e91b";
+}
+.augmented_reality:before {
+  content: "\e91c";
+}
+.augmented_reality_alt:before {
+  content: "\e91d";
+}
+.mixed_reality:before {
+  content: "\e91e";
+}
+.virtual_reality:before {
+  content: "\e91f";
+}
+.blender:before {
+  content: "\e920";
+}
+.unity:before {
+  content: "\e921";
+}
+.twitter:before {
+  content: "\e922";
+}
+.twitch:before {
+  content: "\e923";
+}
+.patreon:before {
+  content: "\e924";
+}
+.resume:before {
+  content: "\e925";
+}
+.translate_english:before {
+  content: "\e926";
+}
+.work:before {
+  content: "\e928";
+}
+.home:before {
+  content: "\e929";
+}
+.projects_alt:before {
+  content: "\e92a";
+}
+.hackathons:before {
+  content: "\e92b";
+}
+.ios:before {
+  content: "\e92d";
+}
+.android:before {
+  content: "\e92e";
+}
+.steam:before {
+  content: "\e92f";
+}
+.switch:before {
+  content: "\e930";
+}
+.presskit:before {
+  content: "\e931";
+}
+.privacy_policy:before {
+  content: "\e932";
+}
+.minesweepxr:before {
+  content: "\e933";
+}

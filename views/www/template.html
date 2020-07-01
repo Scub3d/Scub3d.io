@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="//static.scub3d.io/www/css/icon_contents.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/materialize.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/base.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/preloader.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/glitched-text.css"  media="screen,projection"/>
+		{% block css %} {% end %}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>{% block title %} {% end %}</title>
+	</head>
+	<body>
+		<div class="navbar-fixed">
+			<nav class="bar">
+				<div class="nav-wrapper">
+					<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="menu"></i></a>
+					<a href="#" id="navTitle" class="brand-logo center text truncate">{% block navbarTitle %} {% end %}</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="/" id="about_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color home"></i></a></li>
+						<li><a href="/experience" id="experience_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color timeline"></i></a></li>
+						<li><a href="/hackathons" id="hackathons_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color hackathons"></i></a></li>
+						<li><a href="/projects" id="projects_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color projects"></i></a></li>
+						<li><a href="#translate" id="translation_navbar_icon" class="_translate tooltipped" data-position="bottom" data-tooltip=""><i id="translate_icon" class="material-icon-color translate_japanese"></i></a></li>
+						<li><a href="//static.scub3d.io/www/downloads/resume.pdf" target="_blank" id="resume_navbar_icon" class="tooltipped" data-position="bottom" data-tooltip=""><i class="material-icon-color resume"></i></a></li> 	
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<ul id="slide-out" class="sidenav card-color"> <!-- sidenav-fixed -->
+			<li><a href="/" class="text"><i class="material-icons material-icon-color home"></i><span class="englishText">Home</span><span class="japaneseText">ホーム</span><span class="displayText"></span></a></li>
+			<li><a href="/experience" class="text"><i class="material-icons material-icon-color timeline"></i><span class="englishText">Experience</span><span class="japaneseText">職歴</span><span class="displayText"></span></a></li>
+			<li><a href="/hackathons" class="text"><i class="material-icons material-icon-color hackathons"></i><span class="englishText">Hackathons</span><span class="japaneseText">ハッカソン</span><span class="displayText"></span></a></li>
+			<li><a href="/projects" class="text"><i class="material-icons material-icon-color projects"></i><span class="englishText">Projects</span><span class="japaneseText">プロジェクト</span><span class="displayText"></span></a></li>
+			<li><a href="#translate" class="_translate exception text"><i id="translate_icon_side" class="material-icon-color translate_japanese"></i><span class="englishText">日本語</span><span class="japaneseText">English</span><span class="displayText"></span></a></li>
+			<li><div class="divider"></div></li>
+			<li><a href="//static.scub3d.io/www/downloads/resume.pdf" target="_blank" class="text"><i class="material-icons material-icon-color resume"></i><span class="englishText">Resumé</span><span class="japaneseText">履歴書</span><span class="displayText"></span></a></li> 	
+		</ul>
+
+		<main>
+			<div id="preloader" class="m-loader">
+				<div class="m-loader__wrapper">
+					<div class="m-loader__line">
+						<div></div>
+					</div> 
+				</div>
+			</div>
+
+			<div id="content">
+				{% block content %} {% end %}
+			</div>
+		</main>
+		
+		<script type="text/javascript" src="//static.scub3d.io/www/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/materialize.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/base.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/www/js/glitched-text.js"></script>
+		{% block js %} {% end %}
+	</body>
+</html>

@@ -1,0 +1,72 @@
+h2 {
+	text-align: center;
+	display: block;
+	font-size: 1.8em;
+	line-height: 1em;
+	/*padding-top: 1em;*/
+	padding-left: 1rem;
+}
+
+h4 {
+	text-align: center;
+	display: block;
+	font-size: 1.3em;
+	line-height: 1.1em;
+	padding-top: 1em;
+	padding-left: 1em;
+	margin-bottom: 2em;
+}
+
+h5 {
+	text-align: center;
+	display: block;
+	font-size: 1.1em;
+	line-height: 1.1em;
+	padding-top: 1em;
+	padding-left: 1rem;
+}
+
+.text {
+	padding-top: 5px;
+}
+
+.leftAdjust {
+	text-align: left;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.horizontal-line {
+	width: calc(100% - 5em);
+	position: relative;
+	margin: 15px;
+	border-bottom: 1px solid #757575;
+}
+
+.video-container {
+	margin: 1em;
+	margin-bottom: 3em;
+}
+
+.screenshot {
+	margin: 1em;
+}
+
+.gyfcat {
+	position:relative; 
+	padding-bottom: calc(205.58% + 44px);
+	margin: 1em;
+}
+
+.no-top-margin {
+	margin-top: 0;
+}
+
+/*When on small, make the leftAdjust text centered*/
+/* When on small, make the horizontal line's width be 100% */
+
+
+
+
