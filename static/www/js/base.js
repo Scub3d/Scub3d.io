@@ -34,7 +34,7 @@ $(document).ready(function(){
 		$('.fixed-action-btn').floatingActionButton();
 	});
 
-	// Not my best work ngl
+	// TODO: Make this cleaner
 	$("._translate").on("click", function() {
 		if ($.cookie("language") !== "japanese") {
 			$.cookie("language", "japanese");
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
 		$("#translation_navbar_icon").attr('data-tooltip', '日本語');
 
-		// Fast way of determining subdomain
+		// TODO: Make this cleaner
 		if(window.location.hostname.split('.')[0] == "scub3d") {
 			$("#about_navbar_icon").attr('data-tooltip', 'Home');
 			$("#experience_navbar_icon").attr('data-tooltip', 'Experience');
@@ -116,9 +116,7 @@ $(document).ready(function(){
 
 		$("#translation_navbar_icon").attr('data-tooltip', 'English');
 
-		console.log("heeeee")
-
-		// Fast way of determining subdomain
+		// TODO: Make this cleaner
 		if(window.location.hostname.split('.')[0] == "scub3d") {
 			$("#about_navbar_icon").attr('data-tooltip', 'ホーム');
 			$("#experience_navbar_icon").attr('data-tooltip', '職歴');
@@ -134,66 +132,56 @@ $(document).ready(function(){
 });
 
 (function($) {    
-  if ($.fn.style) {
-    return;
-  }
+	if ($.fn.style) {
+		return;
+	}
 
-  // Escape regex chars with \
-  var escape = function(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  };
+	var escape = function(text) {
+		return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+	};
 
-  // For those who need them (< IE 9), add support for CSS functions
-  var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
-  if (!isStyleFuncSupported) {
-    CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
-      return this.getAttribute(a);
-    };
-    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
-      this.setAttribute(styleName, value);
-      var priority = typeof priority != 'undefined' ? priority : '';
-      if (priority != '') {
-        // Add priority manually
-        var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
-            '(\\s*;)?', 'gmi');
-        this.cssText =
-            this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
-      }
-    };
-    CSSStyleDeclaration.prototype.removeProperty = function(a) {
-      return this.removeAttribute(a);
-    };
-    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
-      var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
-          'gmi');
-      return rule.test(this.cssText) ? 'important' : '';
-    }
-  }
+	var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+	if (!isStyleFuncSupported) {
+		CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+			return this.getAttribute(a);
+		};
+		CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+			this.setAttribute(styleName, value);
+			var priority = typeof priority != 'undefined' ? priority : '';
+			if (priority != '') {
+				var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+						'(\\s*;)?', 'gmi');
+				this.cssText =
+						this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+			}
+		};
+		CSSStyleDeclaration.prototype.removeProperty = function(a) {
+			return this.removeAttribute(a);
+		};
+		CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+			var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+					'gmi');
+			return rule.test(this.cssText) ? 'important' : '';
+		}
+	}
 
-  // The style function
-  $.fn.style = function(styleName, value, priority) {
-    // DOM node
-    var node = this.get(0);
-    // Ensure we have a DOM node
-    if (typeof node == 'undefined') {
-      return this;
-    }
-    // CSSStyleDeclaration
-    var style = this.get(0).style;
-    // Getter/Setter
-    if (typeof styleName != 'undefined') {
-      if (typeof value != 'undefined') {
-        // Set style property
-        priority = typeof priority != 'undefined' ? priority : '';
-        style.setProperty(styleName, value, priority);
-        return this;
-      } else {
-        // Get style property
-        return style.getPropertyValue(styleName);
-      }
-    } else {
-      // Get CSSStyleDeclaration
-      return style;
-    }
-  };
+	$.fn.style = function(styleName, value, priority) {
+		var node = this.get(0);
+		if (typeof node == 'undefined') {
+			return this;
+		}
+
+		var style = this.get(0).style;
+		if (typeof styleName != 'undefined') {
+			if (typeof value != 'undefined') {
+				priority = typeof priority != 'undefined' ? priority : '';
+				style.setProperty(styleName, value, priority);
+				return this;
+			} else {
+				return style.getPropertyValue(styleName);
+			}
+		} else {
+			return style;
+		}
+	};
 })(jQuery);

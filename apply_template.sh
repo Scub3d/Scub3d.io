@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # I was having issues using sed to grab the first occurence of a block using {% block .* %} {% %}. 
-# While this method adds a couple lines of code, it also allows for  
+# While this method adds a couple lines of code, it also allows for  ... I forget what was supposed to go here ...
 declare -a blockTitles=("css" "title" "navbarTitle" "content" "js")
 
 # Iterate over all files in the supplied directory

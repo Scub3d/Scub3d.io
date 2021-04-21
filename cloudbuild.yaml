@@ -69,4 +69,3 @@ steps:
   args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/privacy-policy.html", "gs://minesweeper.scub3d.io/privacy-policy"] 
 - name: "gcr.io/cloud-builders/gsutil"
   args: ["rm", "gs://minesweeper.scub3d.io/privacy-policy.html"] 
-

@@ -5,7 +5,7 @@ $(document).ready(function(){
 		fixColumns($( window ).width());
 	});
 
-	// Lmao
+	// TODO: Something better
 	function fixColumns(width)  {
 		$(".hackathon-card").each(function() {
 			$(this).removeClass();
