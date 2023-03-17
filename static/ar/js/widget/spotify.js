@@ -141,14 +141,14 @@ class SpotifyWidget extends BaseWidget {
 				material: "opacity: 0; depthWrite: false"
 			}).appendTo('#' + this.dataDocumentID + 'Widget');
 
-		$('#' + this.dataDocumentID + 'WidgetProfileInfoColliderPlane').attr('position', '0 0 0.01');
-		$('#' + this.dataDocumentID + 'WidgetProfileInfoColliderPlane').attr('check-events', 'url: https://open.spotify.com/user/' + this.data.userID);
+			$('#' + this.dataDocumentID + 'WidgetProfileInfoColliderPlane').attr('position', '0 0 0.01');
+			$('#' + this.dataDocumentID + 'WidgetProfileInfoColliderPlane').attr('check-events', 'url: https://open.spotify.com/user/' + this.data.userID);
 
 			$('<a-image/>', {
 				id: this.dataDocumentID + 'WidgetAvatarImage',
 				rotation: '0 0 0',
 				scale: '0.25 1 1',
-				src: profileImageBucketPath
+				src: profileImageURL
 			}).appendTo('#' + this.dataDocumentID + 'Widget');
 
 			$('#' + this.dataDocumentID + 'WidgetAvatarImage').attr('position', '-0.375 0 0.001');
