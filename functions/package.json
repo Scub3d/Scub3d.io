@@ -1,0 +1,47 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "dependencies": {
+    "@antiadmin/anticaptchaofficial": "^1.0.24",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@google-cloud/storage": "^5.8.3",
+    "canvas": "^2.11.0",
+    "color-thief-node": "^1.0.3",
+    "cors": "^2.8.5",
+    "eslint-config-google": "^0.14.0",
+    "ffbinaries": "^1.1.4",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.1",
+    "ffprobe": "^1.1.2",
+    "ffprobe-static": "^3.1.0",
+    "firebase-admin": "^11.1.0",
+    "firebase-functions": "^3.24.1",
+    "firebase-tools": "^11.2.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "node-stream-zip": "^1.13.3",
+    "path": "^0.12.7",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2",
+    "rgb-hex": "^3.0.0",
+    "sharp": "^0.31.1",
+    "stream": "^0.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}

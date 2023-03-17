@@ -69,3 +69,13 @@ steps:
   args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/privacy-policy.html", "gs://minesweeper.scub3d.io/privacy-policy"] 
 - name: "gcr.io/cloud-builders/gsutil"
   args: ["rm", "gs://minesweeper.scub3d.io/privacy-policy.html"] 
+  
+
+# skip appying tempalte and just rsync website html files into the bucket
+- name: gcr.io/cloud-builders/gsutil
+  args: ["-m", "rsync", "-c", "-d", "./views/ar", "gs://ar.scub3d.io"]
+
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["-h", "Content-Type:text/html", "cp", "gs://ar.scub3d.io/card.html", "gs://ar.scub3d.io/card"] 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["rm", "gs://ar.scub3d.io/card.html"] 

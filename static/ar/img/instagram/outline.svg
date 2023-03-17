@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="522" height="138" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<linearGradient id="blue">
+			<stop offset="0" stop-color="#3771c8" />
+			<stop stop-color="#3771c8" offset=".128" />
+			<stop offset="1" stop-color="#60f" stop-opacity="0" />
+		</linearGradient>
+		<linearGradient id="orange_plus_background">
+			<stop offset="0.1" stop-color="#fd5" />
+			<stop offset=".1" stop-color="#fd5" />
+			<stop offset=".5" stop-color="#ff543e" />
+			<stop offset="1" stop-color="#c837ab" />
+		</linearGradient>
+		<linearGradient id="orange">
+			<stop offset="0.1" stop-color="#fd5" />
+			<stop offset=".1" stop-color="#fd5" />
+			<stop offset=".5" stop-color="#ff543e" />
+			<stop offset="1" stop-color="#c837ab" stop-opacity="0" />
+		</linearGradient>
+		
+		<radialGradient id="a" cx="158.429" cy="578.088" r="65" xlink:href="#orange_plus_background" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -1.98198 1.8439 0 -1031.402 454.004)" fx="158.429" fy="578.088" />
+		<radialGradient id="b" cx="147.694" cy="473.455" r="65" xlink:href="#blue" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.17394 .86872 -3.5818 .71718 2048.348 -468.493)" fx="147.694" fy="473.455" />
+		<radialGradient id="c" cx="147.694" cy="473.455" r="65" xlink:href="#blue" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.17394 .86872 -3.5818 .71718 1648.348 -458.493)" fx="147.694" fy="473.455" />
+		<radialGradient id="d" cx="128.429" cy="578.088" r="65" xlink:href="#orange" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -1.98198 1.8439 0 -901.402 304.004)" fx="158.429" fy="572.088" />
+		<radialGradient id="e" cx="147.694" cy="473.455" r="65" xlink:href="#blue" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.17394 .86872 -3.5818 .71718 1848.348 -308.493)" fx="147.694" fy="473.455" />
+		<radialGradient id="f" cx="128.429" cy="578.088" r="65" xlink:href="#orange" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -1.98198 1.8439 0 -521.402 374.004)" fx="158.429" fy="572.088" />
+	</defs>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:#fff;stroke:url(#a);stroke-width:8"/>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:none;stroke:url(#b);stroke-width:8"/>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:none;stroke:url(#c);stroke-width:8"/>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:none;stroke:url(#d);stroke-width:8"/>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:none;stroke:url(#e);stroke-width:8"/>
+	<rect x="5" y="5" rx="24" ry="24" width="512" height="128" style="fill:none;stroke:url(#f);stroke-width:8"/>
+</svg>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<script type="text/javascript" src="//static.scub3d.io/ar/js/aframe/aframe.min.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/ar/js/aframe/aframe-ar.js"></script>
+		<script type="text/javascript" src="//static.scub3d.io/ar/js/aframe/aframe-chromakey-material.js"></script>
+
+		<style>
+			#Ignore {
+				position: absolute;
+				height: 128px;
+				width: 512px;
+				top: 0px;
+				left: 528px;
+				font-weight: 300;
+			}
+
+			#aframeInspector #scenegraph {
+				width:  400px !important;
+			}
+
+			#aframeInspector #scenegraph .outliner {
+				width:  400px !important;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<canvas id="Ignore" width="512" height="128"></canvas>
+		<video style="opacity: 0; display : none; visibility: hidden;" id="steamProfileAvatarFrameVideoTest" crossorigin='anonymous' loop autoplay muted playsinline webkitplaysinline></video>
+
+		<a-scene id='scene' class='not-ready' embedded arjs='sourceType: webcam; patternRatio: 0.9; trackingMethod: best; detectionMode: mono;' renderer='antialias: true; alpha: true; precision: medium; logarithmicDepthBuffer: true;' vr-mode-ui="enabled: false">		
+			<a-assets>
+				<a-asset-item id='loading-asset' src='//static.scub3d.io/ar/models/common/business_card_loading_test.glb'></a-asset-item>
+    			<a-asset-item id="mask-obj" src="//static.scub3d.io/ar/models/common/cornerMask.obj"></a-asset-item>
+    			<a-asset-item id="mask-mtl" src="//static.scub3d.io/ar/models/common/cornerMask.mtl"></a-asset-item>
+    		</a-assets>
+
+    		<a-entity id='loading' gltf-model="#loading-asset" loading-component position="20 20 20" scale=".25 .25 .25"></a-entity>
+    		<a-entity id="businessCardMarker" position="20 20 20"></a-entity>
+
+	   		<a-image id="businessCardTouch" class="clickable" start-on-touch position="20 20 20" rotation="-90 0 0" scale="1.1750 1.1750 1.1750" src="//static.scub3d.io/ar/img/businesscard/ar_card_face.png" material="transparent: true; depthWrite: false; depthTest: false; alphaTest: 0.5;"></a-image>
+
+			<a-marker-camera mtest id="markerCamera" type='pattern' url='//static.scub3d.io/ar/pattern/pattern.patt' preset="custom" smooth=true smoothCount=3 smoothTolerance=0.0001 size=0.0508></a-marker-camera>
+
+			<a-entity cursor="rayOrigin:mouse;" raycaster="objects: .clickable; autoRefresh: false; interval: 10"></a-entity>
+		</a-scene>
+
+		<script src="//static.scub3d.io/ar/js/misc/jquery.min.js"></script>
+		<script src="//static.scub3d.io/ar/js/firebase/firebase-app.js"></script>
+		<script src="//static.scub3d.io/ar/js/firebase/firebase-firestore.js"></script>
+		<script src="//static.scub3d.io/ar/js/firebase/firebase-storage.js"></script>
+		<script src="//static.scub3d.io/ar/js/misc/base64.min.js"></script>
+		<script src="//static.scub3d.io/ar/js/misc/zip-full.min.js"></script>
+
+		<script src="//static.scub3d.io/ar/js/misc/common.js"></script>
+		<script src="//static.scub3d.io/ar/js/misc/components.js"></script>
+		<script src="//static.scub3d.io/ar/js/misc/cursor.js" defer></script>
+		<script src="//static.scub3d.io/ar/js/misc/shaders.js"></script>
+
+		<script src="//static.scub3d.io/ar/js/widget/base.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/disneyplus.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/github.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/hulu.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/instagram.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/league.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/mapbox.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/netflix.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/sketchfab.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/spotify.js"></script>
+		<script src="//static.scub3d.io/ar/js/widget/steam.js"></script>
+
+		<script src="//static.scub3d.io/ar/js/data/base.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/disneyplus.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/github.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/hulu.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/instagram.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/league.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/mapbox.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/netflix.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/sketchfab.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/spotify.js"></script>
+		<script src="//static.scub3d.io/ar/js/data/steam.js"></script>
+
+		<script>			
+			$( document ).ready(async function() {
+				var firebaseConfig = {
+					apiKey: "AIzaSyBuoVYFuO-X1WI0fOyJx-2sZwHmguuhTsE",
+					authDomain: "scub3d.firebaseapp.com",
+					projectId: "scub3d",
+					storageBucket: 'gs://dynamic.scub3d.io'
+				};
+
+				firebase.initializeApp(firebaseConfig);
+
+				await loadFonts();
+
+				var db = firebase.firestore();
+				var storage = firebase.app().storage('dynamic.scub3d.io');
+				
+				var disneyplusWidget = new DisneyplusWidget(db, storage);
+				disneyplusWidget.registerForOnFinishedLoading();
+				disneyplusWidget.setListener();
+				disneyplusWidget.setupUpdates();
+
+				var githubWidget = new GitHubWidget(db, storage);
+				githubWidget.registerForOnFinishedLoading();
+				githubWidget.setListener();
+				githubWidget.setupUpdates();
+
+				var huluWidget = new HuluWidget(db, storage);
+				huluWidget.registerForOnFinishedLoading();
+				huluWidget.setListener();
+				huluWidget.setupUpdates();
+
+				var instagramWidget = new InstagramWidget(db, storage);
+				instagramWidget.registerForOnFinishedLoading();
+				instagramWidget.setListener();
+				instagramWidget.setupUpdates();
+
+				var leagueWidget = new LeagueWidget(db, storage);
+				leagueWidget.registerForOnFinishedLoading();
+				leagueWidget.setListener();
+				leagueWidget.setupUpdates();
+
+				var mapboxWidget = new MapboxWidget(db, storage);
+				mapboxWidget.registerForOnFinishedLoading();
+				mapboxWidget.setListener();
+				mapboxWidget.setupUpdates();
+
+				var netflixWidget = new NetflixWidget(db, storage);
+				netflixWidget.registerForOnFinishedLoading();
+				netflixWidget.setListener();
+				netflixWidget.setupUpdates();
+
+				var sketchfabWidget = new SketchfabWidget(db, storage);
+				sketchfabWidget.registerForOnFinishedLoading();
+				sketchfabWidget.setListener();
+				sketchfabWidget.setupUpdates();
+
+				var spotifyWidget = new SpotifyWidget(db, storage);
+				spotifyWidget.registerForOnFinishedLoading();
+				spotifyWidget.setListener();
+				spotifyWidget.setupUpdates();
+
+				var steamWidget = new SteamWidget(db, storage);
+				steamWidget.registerForOnFinishedLoading();
+				steamWidget.setListener();
+				steamWidget.setupUpdates();
+			});
+		</script>
+	</body>
+</html>
