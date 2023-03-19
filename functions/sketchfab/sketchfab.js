@@ -147,15 +147,17 @@ async function parseProfileJSON(json) {
 }
 
 function parseDownloadableModelsJSON(json) {
+	const modelIndex = json['results'].length - 1
+
 	return {
-		modelID: json['results'][0]['uid'],
-		modelName: json['results'][0]['name'],
-		modelPublishedDate: json['results'][0]['publishedAt'],
-		modelViewCount: json['results'][0]['viewCount'],
-		modelLikeCount: json['results'][0]['likeCount'],
-		modelVertexCount: json['results'][0]['vertexCount'],
-		modelFaceCount: json['results'][0]['faceCount'],
-		modelURL: json['results'][0]['viewerUrl']
+		modelID: json['results'][modelIndex]['uid'],
+		modelName: json['results'][modelIndex]['name'],
+		modelPublishedDate: json['results'][modelIndex]['publishedAt'],
+		modelViewCount: json['results'][modelIndex]['viewCount'],
+		modelLikeCount: json['results'][modelIndex]['likeCount'],
+		modelVertexCount: json['results'][modelIndex]['vertexCount'],
+		modelFaceCount: json['results'][modelIndex]['faceCount'],
+		modelURL: json['results'][modelIndex]['viewerUrl']
 		// isModelStaffPicked: json['results'][0]['staffpickedAt'] === null ? false : true
 	}
 }
