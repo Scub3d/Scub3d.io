@@ -91,10 +91,12 @@ html, body {
 .cd-timeline-content .timeline-content-info i {
 	margin-right: 5px;
 }
+
 .cd-timeline-content .timeline-content-info .timeline-content-info-title, .cd-timeline-content .timeline-content-info .timeline-content-info-date {
 	width: calc(50% - 2px);
 	display: inline-block;
 }
+
 @media (max-width: 500px) {
 	.cd-timeline-content .timeline-content-info .timeline-content-info-title, .cd-timeline-content .timeline-content-info .timeline-content-info-date {
 		display: block;
@@ -109,6 +111,7 @@ html, body {
 	flex-wrap: wrap;
 	justify-content: center;
 }
+
 .cd-timeline-content .content-skills li {
 	background: #424242;
 	border-radius: 2px;
@@ -153,20 +156,17 @@ html, body {
 	line-height: 1.6;
 }
 
-.cd-timeline-content::before {
-	content: '';
-	position: absolute;
-	top: 16px;
-	right: 100%;
-	height: 0;
-	width: 0;
-	border: 7px solid transparent;
-	border-right: 7px solid #303030;
-}
-
 .timeline-content-info-date, .calendar, .date, .work, .occupation {
 	display: inline-block !important;
 } 
+
+.project_bulletpoint {
+	font-size: 12px;
+}
+
+.project_title {
+	font-weight: bold;
+}
 
 @media only screen and (min-width: 768px) {
 	.cd-timeline-content h2 {

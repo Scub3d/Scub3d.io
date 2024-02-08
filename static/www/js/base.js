@@ -43,8 +43,9 @@ $(document).ready(function(){
 			$.cookie("language", "english");
 			setSiteToEnglish();
 		}
+
 		$(".text").each(function() {
-			scramble($(this));
+			glitchText($(this), $.cookie("language"));
 		});
 	});
 
@@ -57,7 +58,7 @@ $(document).ready(function(){
 
 	setTimeout(function() { 
 		$(".text").each(function() {
-			scramble($(this));
+			glitchText($(this), $.cookie("language"));
 		});
 	}, 1000);
 
