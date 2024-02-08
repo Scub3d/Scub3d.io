@@ -139,5 +139,5 @@ $(document).ready(function(){
 			transitionDuration: 0
 		});
 		_render(effects, grid, grid.querySelectorAll('.grid__item > .grid__video'));
-	}, 500);
+	}, 1500);
 });

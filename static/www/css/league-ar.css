@@ -11,19 +11,6 @@ h4 {
 	font-size: 1.5rem !important;
 }
 
-/*
-#insta, #insta {
-	max-height: 200px;
-}*/
-
-/*.logo_link {
-	transition: all .2s ease-in-out; 
-}
-
-.logo_link:hover {
-	transform: scale(1.1);
-}
-*/
 .hidden {
 	position: absolute;
 	overflow: hidden;
@@ -180,4 +167,9 @@ h4 {
 	.content--center {
 		max-width: 100vw;
 	}
+}
+
+#links {
+	margin-top: 2rem !important;
+	margin-bottom: 2rem !important;
 }
