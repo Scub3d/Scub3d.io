@@ -132,15 +132,12 @@ $(document).ready(function(){
 		};
 
 		var body = document.body, grid = document.getElementById("grid");
-		
-		imagesLoaded(body, function() {
-			var masonry = new Masonry(grid, {
-				itemSelector: '.grid__item',
-				columnWidth: '.grid__sizer',
-				percentPosition: true,
-				transitionDuration: 0
-			});
-			_render(effects, grid, grid.querySelectorAll('.grid__item > .grid__video'));
+		var masonry = new Masonry(grid, {
+			itemSelector: '.grid__item',
+			columnWidth: '.grid__sizer',
+			percentPosition: true,
+			transitionDuration: 0
 		});
+		_render(effects, grid, grid.querySelectorAll('.grid__item > .grid__video'));
 	}, 500);
 });
