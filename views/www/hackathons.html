@@ -1,307 +1,944 @@
-{% block css %}
-<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/hackathons.css"  media="screen,projection"/>
-{% end %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Hackathons
-{% end %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hackathons — Prototype</title>
 
-{% block navbarTitle %}
-<span class="englishText">Hackathon Awards</span><span class="japaneseText">ハッカソン賞</span><span class="displayText"></span>
-{% end %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
 
-{% block content %}
-<div class="row root">
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/rockalanche" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hackIllinois_2015_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hackIllinois_2015_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">HackIllinois</span><span class="japaneseText">HackIllinois</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Feb 27th - Mar 1st 2015</span><span class="japaneseText">2015年、2月27日 - 3月1日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Champaign-Urbana, IL</span><span class="japaneseText">イリノイ州シャンペーン</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+    <link rel="stylesheet" href="../../static/www/css/hackathons.css" />
+</head>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/pokemon-rift" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2015_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2015_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">SpartaHack</span><span class="japaneseText">SpartaHack</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Mar 27th - 29th 2015</span><span class="japaneseText">2015年、3月27日 - 3月29日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">East Lansing, MI</span><span class="japaneseText">ミシガン州イーストランシング</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+<body>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/project-pac-man" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/khe_2015_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/khe_2015_logo.jpg" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">Kent Hack Enough</span><span class="japaneseText">Kent Hack Enough</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Oct 9th - 11th 2015</span><span class="japaneseText">2015年、10月9日 - 10月11日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Kent, OH</span><span class="japaneseText">オハイオ州ケント</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                    class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+            <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                    class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+            <a href="hackathons.html" class="active text"><span class="englishText">HACKATHONS</span><span
+                    class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+            <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                    class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+            <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                    class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+            <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                    class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+            <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+        </div>
+        <button class="nav-toggle js-nav-toggle">[MENU]</button>
+    </nav>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/achieve-mobile-app" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hi_test_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hi_test.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">HackIllinois</span><span class="japaneseText">HackIllinois</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Feb 19th - 21st 2016</span><span class="japaneseText">2016年、2月19日 - 2月21日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Champaign-Urbana, IL</span><span class="japaneseText">イリノイ州シャンペーン</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+        <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/we-ll-come-back-to-this-later" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2016_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2016_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">SpartaHack</span><span class="japaneseText">SpartaHack</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Feb 26th - 28th 2016</span><span class="japaneseText">2016年、2月26日 - 2月28日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">East Lansing, MI</span><span class="japaneseText">ミシガン州イーストランシング</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+    <script>
+        (function () {
+            var m = document.cookie.match(/language=(\w+)/);
+            var lang = (m && (m[1] === 'japanese' || m[1] === 'english')) ? m[1] : 'english';
+            var sel = 'span.' + lang + 'Text';
+            document.querySelectorAll('.site-nav .text, .nav-overlay .text').forEach(function (el) {
+                var src = el.querySelector(sel);
+                var dst = el.querySelector('span.displayText');
+                if (src && dst && !dst.textContent) {
+                    dst.textContent = src.textContent;
+                    el.classList.add(lang);
+                }
+            });
+        })();
+    </script>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/project-sluggers" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/mlh_prime_2016_logo.gif" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">MLH Prime</span><span class="japaneseText">MLH Prime</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Aug 5th - 7th 2016</span><span class="japaneseText">2016年、8月5日 - 8月7日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Bell Labs, NJ</span><span class="japaneseText">ニュージャージー州ベル研究所</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+    <main id="content" class="state-raw">
+        <span class="raw-tag">&lt;page::hackathons&gt;</span>
+        <div class="page-header">
+            <span class="bracket-label text"><span class="englishText">[HACKATHONS]</span><span
+                    class="japaneseText">[ハッカソン]</span><span class="displayText">[HACKATHONS]</span></span>
+            <span class="bracket-label text" id="hackCount"><span class="englishText">[-- EVENTS]</span><span
+                    class="japaneseText">[--イベント]</span><span class="displayText">[-- EVENTS]</span></span>
+        </div>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/project-open-heart" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/htn_2016_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/htn_2016_logo.jpg" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">Hack The North</span><span class="japaneseText">Hack The North</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Sep 16th - 18th 2016</span><span class="japaneseText">2016年、9月16日 - 9月18日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Waterloo, ON</span><span class="japaneseText">オンタリオ州ウォータールー</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+        <span class="raw-tag">&lt;grid::events&gt;</span>
+        <div class="hack-grid">
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/blendexa" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2017_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">SpartaHack</span><span class="japaneseText">SpartaHack</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Jan 20th - 22nd 2017</span><span class="japaneseText">2017年、1月20日 - 1月22日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">East Lansing, MI</span><span class="japaneseText">ミシガン州イーストランシング</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="https://boilermake.devpost.com/" class="hack-card" data-hack-key="boilermake_2014" data-lat="40.42"
+                data-lng="-86.92" data-external target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/boilermake_2014/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/boilermake_2014/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">BoilerMake</span><span
+                                class="japaneseText">BoilerMake</span><span class="displayText">BoilerMake</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Oct 2014</span><span
+                                class="japaneseText">2014年10月</span><span class="displayText">Oct 2014</span></div>
+                        <div class="hack-card-location text"><span class="englishText">West Lafayette, IN</span><span
+                                class="japaneseText">インディアナ州ウェストラファイエット</span><span class="displayText">West Lafayette, IN</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/project-air" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/mhacks9_2017_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/mhacks9_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">MHacks 9</span><span class="japaneseText">MHacks 9</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Mar 24th - 26th 2017</span><span class="japaneseText">2017年、3月24日 - 3月26日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Ann Arbor, MI</span><span class="japaneseText">ミシガン州アナーバー</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="wildhacks_2014" data-lat="42.06" data-lng="-87.68"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/wildhacks_2014/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/wildhacks_2014/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">WildHacks</span><span
+                                class="japaneseText">WildHacks</span><span class="displayText">WildHacks</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Nov 2014</span><span
+                                class="japaneseText">2014年11月</span><span class="displayText">Nov 2014</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Evanston, IL</span><span
+                                class="japaneseText">イリノイ州エバンストン</span><span class="displayText">Evanston, IL</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/project-vendio" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/junction-tokyo_2017_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/junction-tokyo_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">Junction Tokyo</span><span class="japaneseText">Junction Tokyo</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">APR 28th - 30th 2017</span><span class="japaneseText">2017年、4月28日 - 4月30日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Tokyo, JP</span><span class="japaneseText">東京、日本</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="https://devpost.com/software/rockalanche" class="hack-card" data-hack-key="hackIllinois_2015"
+                data-lat="40.12" data-lng="-88.24" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/hackIllinois_2015/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/hackIllinois_2015/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">HackIllinois</span><span
+                                class="japaneseText">HackIllinois</span><span class="displayText">HackIllinois</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Feb 2015</span><span
+                                class="japaneseText">2015年2月</span><span class="displayText">Feb 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Champaign-Urbana, IL</span><span
+                                class="japaneseText">イリノイ州シャンペーン</span><span class="displayText">Champaign-Urbana, IL</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/unwearable" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hack-cincy_2017_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hack-cincy_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">Hack Cincy</span><span class="japaneseText">Hack Cincy</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Aug 19th - 20th 2017</span><span class="japaneseText">2017年、8月18日 - 8月20日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Cincinnati, OH</span><span class="japaneseText">オハイオ州シンシナティ</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="https://devpost.com/software/pokemon-rift" class="hack-card" data-hack-key="spartahack_2015"
+                data-lat="42.74" data-lng="-84.48" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/spartahack_2015/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/spartahack_2015/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">SpartaHack</span><span
+                                class="japaneseText">SpartaHack</span><span class="displayText">SpartaHack</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Mar 2015</span><span
+                                class="japaneseText">2015年3月</span><span class="displayText">Mar 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">East Lansing, MI</span><span
+                                class="japaneseText">ミシガン州イーストランシング</span><span class="displayText">East Lansing, MI</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/deep-reality" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/htn_2016_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hackthenorth_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">Hack The North</span><span class="japaneseText">Hack The North</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">SEP 15th - 17th 2017</span><span class="japaneseText">2017年、9月15日 - 9月17日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Waterloo, ON</span><span class="japaneseText">オンタリオ州ウォータールー</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="revolutionuc_2015" data-lat="39.13" data-lng="-84.52"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/revolutionuc_2015/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/revolutionuc_2015/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">RevolutionUC</span><span
+                                class="japaneseText">RevolutionUC</span><span class="displayText">RevolutionUC</span></div>
+                        <div class="hack-card-date text"><span class="englishText">May 2015</span><span
+                                class="japaneseText">2015年5月</span><span class="displayText">May 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Cincinnati, OH</span><span
+                                class="japaneseText">オハイオ州シンシナティ</span><span class="displayText">Cincinnati, OH</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/swagoverflow" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/mhacksx_2017_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/mhacksx_2017_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">MHacks X</span><span class="japaneseText">MHacks X</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Sep 22nd - 24th 2017</span><span class="japaneseText">2017年、9月22日 - 9月24日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Ann Arbor, MI</span><span class="japaneseText">ミシガン州アナーバー</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="https://devpost.com/software/project-pac-man" class="hack-card" data-hack-key="khe_2015"
+                data-lat="41.15" data-lng="-81.36" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/khe_2015/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/khe_2015/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Kent Hack Enough</span><span
+                                class="japaneseText">Kent Hack Enough</span><span class="displayText">Kent Hack Enough</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Oct 2015</span><span
+                                class="japaneseText">2015年10月</span><span class="displayText">Oct 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Kent, OH</span><span
+                                class="japaneseText">オハイオ州ケント</span><span class="displayText">Kent, OH</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/vr-barista-trainer" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2018_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_2018_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">SpartaHack IV</span><span class="japaneseText">SpartaHack IV</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Jan 19th - 21st 2018</span><span class="japaneseText">2018年、1月19日 - 1月21日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">East Lansing, MI</span><span class="japaneseText">ミシガン州イーストランシング</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="boilermake_2015" data-lat="40.42" data-lng="-86.92"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/boilermake_2015/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/boilermake_2015/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">BoilerMake</span><span
+                                class="japaneseText">BoilerMake</span><span class="displayText">BoilerMake</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Oct 2015</span><span
+                                class="japaneseText">2015年10月</span><span class="displayText">Oct 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">West Lafayette, IN</span><span
+                                class="japaneseText">インディアナ州ウェストラファイエット</span><span class="displayText">West Lafayette, IN</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/vr-gloves" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hackcwru_2018_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/hackcwru_2018_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">HackCWRU V</span><span class="japaneseText">HackCWRU V</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Feb 16th - 18th 2018</span><span class="japaneseText">2018年、2月16日 - 2月18日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Cleveland, OH</span><span class="japaneseText">オハイオ州クリーブランド</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="junction_2015" data-lat="60.17" data-lng="24.94"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/junction_2015/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/junction_2015/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Junction</span><span
+                                class="japaneseText">Junction</span><span class="displayText">Junction</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Nov 2015</span><span
+                                class="japaneseText">2015年11月</span><span class="displayText">Nov 2015</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Helsinki, FI</span><span
+                                class="japaneseText">ヘルシンキ、フィンランド</span><span class="displayText">Helsinki, FI</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/vr-piano" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/m11_splash.jpg" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/m11_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">MHacks 11</span><span class="japaneseText">MHacks 11</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Oct 12th - 14th 2018</span><span class="japaneseText">2018年、10月12日 - 10月14日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Ann Arbor, MI</span><span class="japaneseText">ミシガン州アナーバー</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="fashion-tech-hacks" data-lat="41.15" data-lng="-81.36"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/fashion-tech-hacks/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/fashion-tech-hacks/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Fashion / Tech Hack</span><span
+                                class="japaneseText">Fashion / Tech Hack</span><span class="displayText">Fashion / Tech Hack</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Jan 2016</span><span
+                                class="japaneseText">2016年1月</span><span class="displayText">Jan 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Kent, OH</span><span
+                                class="japaneseText">オハイオ州ケント</span><span class="displayText">Kent, OH</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/d-d-xr" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_v_2019_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/spartahack_v_2019_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">SpartaHack V</span><span class="japaneseText">SpartaHack V</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Jan 18th - 20th 2019</span><span class="japaneseText">2019年、2月18日 - 2月20日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">East Lansing, MI</span><span class="japaneseText">ミシガン州イーストランシング</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
+            <a href="#" class="hack-card" data-hack-key="intel_security_research" data-lat="32.72" data-lng="-117.16"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/intel_security_research/splash.png"
+                        class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <div class="hack-card-name text"><span class="englishText">Intel Security Research
+                                Workshop</span><span class="japaneseText">インテルセキュリティ研究</span><span
+                                class="displayText"></span></div>
+                        <div class="hack-card-date text"><span class="englishText">Jan 2016</span><span
+                                class="japaneseText">2016年1月</span><span class="displayText">Jan 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">San Diego, CA</span><span
+                                class="japaneseText">カリフォルニア州サンディエゴ</span><span class="displayText">San Diego, CA</span></div>
+                    </div>
+                </div>
+            </a>
 
-	<div class="hackathon-card col s12 m6 l2">
-		<a href="https://devpost.com/software/babel-ar" class="eventWrapper">
-			<div class="inner">
-				<div class="splashWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/brickhack_v_2019_splash.png" class="splash"/>
-				</div>
-				<div class="logoWrap">
-					<img src="//static.scub3d.io/www/img/hackathons/brickhack_v_2019_logo.png" class="logo" />
-				</div>
-				<h3 class="name text"><span class="englishText">BrickHack V</span><span class="japaneseText">BrickHack V</span><span class="displayText"></span></h3>
-				<p class="date text"><span class="englishText">Feb 16th - 17th 2019</span><span class="japaneseText">2019年、2月16日 - 2月17日</span><span class="displayText"></span></p>
-				<span class="location text"><span class="englishText">Rochester, NY</span><span class="japaneseText">ニューヨーク州ロチェスター</span><span class="displayText"></span></span>
-			</div>
-		</a>
-	</div>
-</div>
-{% end %}
+            <a href="https://devpost.com/software/achieve-mobile-app" class="hack-card"
+                data-hack-key="hackIllinois_2016" data-lat="40.12" data-lng="-88.24" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/hackIllinois_2016/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/hackIllinois_2016/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">HackIllinois</span><span
+                                class="japaneseText">HackIllinois</span><span class="displayText">HackIllinois</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Feb 2016</span><span
+                                class="japaneseText">2016年2月</span><span class="displayText">Feb 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Champaign-Urbana, IL</span><span
+                                class="japaneseText">イリノイ州シャンペーン</span><span class="displayText">Champaign-Urbana, IL</span></div>
+                    </div>
+                </div>
+            </a>
 
-{% block js %}
-<script type="text/javascript" src="//static.scub3d.io/www/js/hackathons.js"></script>
-{% end %}
+            <a href="https://devpost.com/software/we-ll-come-back-to-this-later" class="hack-card"
+                data-hack-key="spartahack_2016" data-lat="42.74" data-lng="-84.48" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/spartahack_2016/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/spartahack_2016/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">SpartaHack</span><span
+                                class="japaneseText">SpartaHack</span><span class="displayText">SpartaHack</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Feb 2016</span><span
+                                class="japaneseText">2016年2月</span><span class="displayText">Feb 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">East Lansing, MI</span><span
+                                class="japaneseText">ミシガン州イーストランシング</span><span class="displayText">East Lansing, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="grizzhacks_2016" data-lat="42.67" data-lng="-83.22"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/grizzhacks_2016/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/grizzhacks_2016/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">GrizzHacks</span><span
+                                class="japaneseText">GrizzHacks</span><span class="displayText">GrizzHacks</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Mar 2016</span><span
+                                class="japaneseText">2016年3月</span><span class="displayText">Mar 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Rochester, MI</span><span
+                                class="japaneseText">ミシガン州ロチェスター</span><span class="displayText">Rochester, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="global-archiact-jam" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/global-archiact-jam/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/global-archiact-jam/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Global Archiact Jam</span><span
+                                class="japaneseText">Global Archiact Jam</span><span class="displayText">Global Archiact Jam</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Apr 2016</span><span
+                                class="japaneseText">2016年4月</span><span class="displayText">Apr 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Online</span><span
+                                class="japaneseText">オンライン</span><span class="displayText">Online</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="makers-against-drought" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/makers-against-drought/splash.png"
+                        class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/makers-against-drought/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Makers Against Drought</span><span
+                                class="japaneseText">Makers Against Drought</span><span class="displayText">Makers Against Drought</span>
+                        </div>
+                        <div class="hack-card-date text"><span class="englishText">May 2016</span><span
+                                class="japaneseText">2016年5月</span><span class="displayText">May 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Online</span><span
+                                class="japaneseText">オンライン</span><span class="displayText">Online</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="junction-asia_2016" data-lat="35.61" data-lng="139.73"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/junction-asia_2016/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/junction-asia_2016/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Junction Asia</span><span
+                                class="japaneseText">Junction Asia</span><span class="displayText">Junction Asia</span></div>
+                        <div class="hack-card-date text"><span class="englishText">May 2016</span><span
+                                class="japaneseText">2016年5月</span><span class="displayText">May 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Shinagawa-ku, JP</span><span
+                                class="japaneseText">品川区、日本</span><span class="displayText">Shinagawa-ku, JP</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/project-sluggers" class="hack-card" data-hack-key="mlh_prime_2016"
+                data-lat="40.68" data-lng="-74.40" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/mlh_prime_2016/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/mlh_prime_2016/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">MLH Prime</span><span
+                                class="japaneseText">MLH Prime</span><span class="displayText">MLH Prime</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Aug 2016</span><span
+                                class="japaneseText">2016年8月</span><span class="displayText">Aug 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Bell Labs, NJ</span><span
+                                class="japaneseText">ニュージャージー州ベル研究所</span><span class="displayText">Bell Labs, NJ</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/project-open-heart" class="hack-card" data-hack-key="htn_2016"
+                data-lat="43.46" data-lng="-80.52" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/htn_2016/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/htn_2016/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Hack The North</span><span
+                                class="japaneseText">Hack The North</span><span class="displayText">Hack The North</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sep 2016</span><span
+                                class="japaneseText">2016年9月</span><span class="displayText">Sep 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Waterloo, ON</span><span
+                                class="japaneseText">オンタリオ州ウォータールー</span><span class="displayText">Waterloo, ON</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="mhacks8_2016" data-lat="42.33" data-lng="-83.05"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/mhacks8_2016/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/mhacks8_2016/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">MHacks 8</span><span
+                                class="japaneseText">MHacks 8</span><span class="displayText">MHacks 8</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Oct 2016</span><span
+                                class="japaneseText">2016年10月</span><span class="displayText">Oct 2016</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Detroit, MI</span><span
+                                class="japaneseText">ミシガン州デトロイト</span><span class="displayText">Detroit, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/blendexa" class="hack-card" data-hack-key="spartahack_2017"
+                data-lat="42.74" data-lng="-84.48" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/spartahack_2017/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/spartahack_2017/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">SpartaHack</span><span
+                                class="japaneseText">SpartaHack</span><span class="displayText">SpartaHack</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Jan 2017</span><span
+                                class="japaneseText">2017年1月</span><span class="displayText">Jan 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">East Lansing, MI</span><span
+                                class="japaneseText">ミシガン州イーストランシング</span><span class="displayText">East Lansing, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/project-air" class="hack-card" data-hack-key="mhacks9_2017"
+                data-lat="42.28" data-lng="-83.74" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/mhacks9_2017/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/mhacks9_2017/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">MHacks 9</span><span
+                                class="japaneseText">MHacks 9</span><span class="displayText">MHacks 9</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Mar 2017</span><span
+                                class="japaneseText">2017年3月</span><span class="displayText">Mar 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Ann Arbor, MI</span><span
+                                class="japaneseText">ミシガン州アナーバー</span><span class="displayText">Ann Arbor, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/project-vendio" class="hack-card" data-hack-key="junction-tokyo_2017"
+                data-lat="35.68" data-lng="139.65" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/junction-tokyo_2017/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/junction-tokyo_2017/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Junction Tokyo</span><span
+                                class="japaneseText">Junction Tokyo</span><span class="displayText">Junction Tokyo</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Apr 2017</span><span
+                                class="japaneseText">2017年4月</span><span class="displayText">Apr 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Tokyo, JP</span><span
+                                class="japaneseText">東京、日本</span><span class="displayText">Tokyo, JP</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/unwearable" class="hack-card" data-hack-key="hack-cincy_2017"
+                data-lat="39.10" data-lng="-84.51" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/hack-cincy_2017/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/hack-cincy_2017/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Hack Cincy</span><span
+                                class="japaneseText">Hack Cincy</span><span class="displayText">Hack Cincy</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Aug 2017</span><span
+                                class="japaneseText">2017年8月</span><span class="displayText">Aug 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Cincinnati, OH</span><span
+                                class="japaneseText">オハイオ州シンシナティ</span><span class="displayText">Cincinnati, OH</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/deep-reality" class="hack-card" data-hack-key="htn_2017"
+                data-lat="43.46" data-lng="-80.52" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/htn_2017/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/htn_2017/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Hack The North</span><span
+                                class="japaneseText">Hack The North</span><span class="displayText">Hack The North</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sep 2017</span><span
+                                class="japaneseText">2017年9月</span><span class="displayText">Sep 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Waterloo, ON</span><span
+                                class="japaneseText">オンタリオ州ウォータールー</span><span class="displayText">Waterloo, ON</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/swagoverflow" class="hack-card" data-hack-key="mhacksx_2017"
+                data-lat="42.28" data-lng="-83.74" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/mhacksx_2017/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/mhacksx_2017/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">MHacks X</span><span
+                                class="japaneseText">MHacks X</span><span class="displayText">MHacks X</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sep 2017</span><span
+                                class="japaneseText">2017年9月</span><span class="displayText">Sep 2017</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Ann Arbor, MI</span><span
+                                class="japaneseText">ミシガン州アナーバー</span><span class="displayText">Ann Arbor, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/vr-barista-trainer" class="hack-card" data-hack-key="spartahack_2018"
+                data-lat="42.74" data-lng="-84.48" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/spartahack_2018/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/spartahack_2018/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">SpartaHack IV</span><span
+                                class="japaneseText">SpartaHack IV</span><span class="displayText">SpartaHack IV</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Jan 2018</span><span
+                                class="japaneseText">2018年1月</span><span class="displayText">Jan 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">East Lansing, MI</span><span
+                                class="japaneseText">ミシガン州イーストランシング</span><span class="displayText">East Lansing, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/vr-gloves" class="hack-card" data-hack-key="hackcwru_2018"
+                data-lat="41.50" data-lng="-81.69" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/hackcwru_2018/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/hackcwru_2018/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">HackCWRU V</span><span
+                                class="japaneseText">HackCWRU V</span><span class="displayText">HackCWRU V</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Feb 2018</span><span
+                                class="japaneseText">2018年2月</span><span class="displayText">Feb 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Cleveland, OH</span><span
+                                class="japaneseText">オハイオ州クリーブランド</span><span class="displayText">Cleveland, OH</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="htn_2018" data-lat="43.46" data-lng="-80.52" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/htn_2018/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/htn_2018/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Hack The North</span><span
+                                class="japaneseText">Hack The North</span><span class="displayText">Hack The North</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sep 2018</span><span
+                                class="japaneseText">2018年9月</span><span class="displayText">Sep 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Waterloo, ON</span><span
+                                class="japaneseText">オンタリオ州ウォータールー</span><span class="displayText">Waterloo, ON</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://grizzhacks3.devpost.com/" class="hack-card" data-hack-key="grizzhacks-3" data-lat="42.67"
+                data-lng="-83.22" data-external target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/grizzhacks-3/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/grizzhacks-3/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">GrizzHacks 3</span><span
+                                class="japaneseText">GrizzHacks 3</span><span class="displayText">GrizzHacks 3</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sep 2018</span><span
+                                class="japaneseText">2018年9月</span><span class="displayText">Sep 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Rochester, MI</span><span
+                                class="japaneseText">ミシガン州ロチェスター</span><span class="displayText">Rochester, MI</span><span
+                                class="hack-card-role">[ORGANIZER]</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/vr-piano" class="hack-card" data-hack-key="mhacks11_2018"
+                data-lat="42.28" data-lng="-83.74" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/mhacks11_2018/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/mhacks11_2018/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">MHacks 11</span><span
+                                class="japaneseText">MHacks 11</span><span class="displayText">MHacks 11</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Oct 2018</span><span
+                                class="japaneseText">2018年10月</span><span class="displayText">Oct 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Ann Arbor, MI</span><span
+                                class="japaneseText">ミシガン州アナーバー</span><span class="displayText">Ann Arbor, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="riot_games_hackathon" data-lat="34.05" data-lng="-118.24"
+                target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/riot_games_hackathon/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/riot_games_hackathon/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Riot Games Hackathon</span><span
+                                class="japaneseText">ライアットゲームズ ハッカソン</span><span class="displayText">Riot Games Hackathon</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Nov 2018</span><span
+                                class="japaneseText">2018年11月</span><span class="displayText">Nov 2018</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Los Angeles, CA</span><span
+                                class="japaneseText">カリフォルニア州ロサンゼルス</span><span class="displayText">Los Angeles, CA</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/d-d-xr" class="hack-card" data-hack-key="spartahack_v_2019"
+                data-lat="42.74" data-lng="-84.48" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/spartahack_v_2019/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/spartahack_v_2019/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">SpartaHack V</span><span
+                                class="japaneseText">SpartaHack V</span><span class="displayText">SpartaHack V</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Jan 2019</span><span
+                                class="japaneseText">2019年1月</span><span class="displayText">Jan 2019</span></div>
+                        <div class="hack-card-location text"><span class="englishText">East Lansing, MI</span><span
+                                class="japaneseText">ミシガン州イーストランシング</span><span class="displayText">East Lansing, MI</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="hack-card" data-hack-key="riot_api_challenge_2019" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/riot_api_challenge_2019/splash.png"
+                        class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/riot_api_challenge_2019/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Riot API Challenge</span><span
+                                class="japaneseText">Riot APIチャレンジ</span><span class="displayText">Riot API Challenge</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Winter 2019</span><span
+                                class="japaneseText">2019年冬</span><span class="displayText">Winter 2019</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Online</span><span
+                                class="japaneseText">オンライン</span><span class="displayText">Online</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/software/babel-ar" class="hack-card" data-hack-key="brickhack_v_2019"
+                data-lat="43.16" data-lng="-77.61" target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/brickhack_v_2019/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/brickhack_v_2019/logo.png" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">BrickHack V</span><span
+                                class="japaneseText">BrickHack V</span><span class="displayText">BrickHack V</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Feb 2019</span><span
+                                class="japaneseText">2019年2月</span><span class="displayText">Feb 2019</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Rochester, NY</span><span
+                                class="japaneseText">ニューヨーク州ロチェスター</span><span class="displayText">Rochester, NY</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://grizzhacks4.devpost.com/" class="hack-card" data-hack-key="grizzhacks-4" data-lat="42.67"
+                data-lng="-83.22" data-external target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/grizzhacks-4/splash.jpg" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/grizzhacks-4/logo.jpg" class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">GrizzHacks 4</span><span
+                                class="japaneseText">GrizzHacks 4</span><span class="displayText">GrizzHacks 4</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Sept 2019</span><span
+                                class="japaneseText">2019年9月</span><span class="displayText">Sept 2019</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Rochester, MI</span><span
+                                class="japaneseText">ミシガン州ロチェスター</span><span class="displayText">Rochester, MI</span><span
+                                class="hack-card-role">[ORGANIZER]</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://hackquarantine.devpost.com/" class="hack-card" data-hack-key="hack-quarantine-2020"
+                data-external target="_blank">
+                <div class="hack-card-brackets">
+                    <span class="bracket-corner bracket-tl"></span>
+                    <span class="bracket-corner bracket-tr"></span>
+                    <span class="bracket-corner bracket-bl"></span>
+                    <span class="bracket-corner bracket-br"></span>
+                </div>
+                <div class="hack-card-inner">
+                    <img src="../../static/www/img/hackathons/hack-quarantine-2020/splash.png" class="hack-card-img" loading="lazy" />
+                    <div class="hack-card-overlay"></div>
+                    <div class="hack-card-info">
+                        <img src="../../static/www/img/hackathons/hack-quarantine-2020/logo.png"
+                            class="hack-card-logo" loading="lazy" />
+                        <div class="hack-card-name text"><span class="englishText">Hack Quarantine</span><span
+                                class="japaneseText">Hack Quarantine</span><span class="displayText">Hack Quarantine</span></div>
+                        <div class="hack-card-date text"><span class="englishText">Apr 2020</span><span
+                                class="japaneseText">2020年4月</span><span class="displayText">Apr 2020</span></div>
+                        <div class="hack-card-location text"><span class="englishText">Online</span><span
+                                class="japaneseText">オンライン</span><span class="displayText">Online</span><span
+                                class="hack-card-role">[JUDGE & MENTOR]</span></div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Full-screen globe behind content -->
+    <div id="globe-container"></div>
+    <div id="globe-label" class="globe-label"></div>
+
+
+    <script src="../../static/www/js/common.js" defer></script>
+    <script src="../../static/www/data/hackathons_data.js" defer></script>
+    <script src="../../static/www/js/hackathons.js" defer></script>
+    <script src="../../static/ar/js/three/three.min.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod0.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod1.js" defer></script>
+    <script src="../../static/www/data/globe/borders.js" defer></script>
+    <script src="../../static/www/data/globe/ocean.js" defer></script>
+    <script src="../../static/www/data/globe/mask.js" defer></script>
+    <script src="../../static/www/js/hackathons_globe.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/check-dev-services.ps1",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

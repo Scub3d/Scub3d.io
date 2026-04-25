@@ -1,5 +1,6 @@
 class DisneyplusWidget extends BaseWidget {
 	dataDocumentID = 'disneyplus';
+	updateIntervalMS = 60000; // 1 min — cap to keep fresh within typical session length
 	data;
 
 	logoImageURL = this.staticAssetBaseURL + 'ar/img/disneyplus/logo.svg';
@@ -14,9 +15,9 @@ class DisneyplusWidget extends BaseWidget {
 	}
 
 	async generateAFrameHTML() {
-		const profileImageURL = await this.storage.ref(this.profileImageBucketPath).getDownloadURL();
-		const programImageURL = await this.storage.ref(this.programImageBucketPath).getDownloadURL();
-		const programTitleLayerImageURL = await this.storage.ref(this.programTitleLayerImageBucketPath).getDownloadURL();
+		const profileImageURL = await this.getCachedDownloadURL(this.profileImageBucketPath);
+		const programImageURL = await this.getCachedDownloadURL(this.programImageBucketPath, this.data.showURL);
+		const programTitleLayerImageURL = await this.getCachedDownloadURL(this.programTitleLayerImageBucketPath, this.data.showURL);
 
 		$('<a-entity/>', {
 			id: this.dataDocumentID + 'Widget',
@@ -85,5 +86,31 @@ class DisneyplusWidget extends BaseWidget {
 		generateAFrameAlternatingEntities([this.dataDocumentID + 'WidgetBody', this.dataDocumentID + 'WidgetProgramTitleLayerHolder'], this.dataDocumentID + 'Widget');
 
 		generateAFrameAlternatingLogo(this.dataDocumentID + 'WidgetLogo', '#' + this.dataDocumentID + 'Widget', '0.40625 0 0.002', '0 0 0', '0.09375 0.375 1', this.logoImageURL, profileImageURL);
+	}
+
+	async applyUpdate(oldData, newData) {
+		// Different show → new program image + title-layer image + collider → full rebuild.
+		if(oldData.showURL !== newData.showURL) return false;
+		if(oldData.isMovie !== newData.isMovie) return false;
+
+		const bodyID = '#' + this.dataDocumentID + 'WidgetBody';
+
+		if(newData.isMovie) {
+			if(oldData.movieTitle !== newData.movieTitle) {
+				$('#' + this.dataDocumentID + 'WidgetMovieTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetMovieTitleText', bodyID, newData.movieTitle, 30, '#ffffff', 0, 'Montserrat', 300, 35, false, '#FF000000', 20, 0, 396, 512, 128, 1, true);
+			}
+		} else {
+			if(oldData.seriesTitle !== newData.seriesTitle) {
+				$('#' + this.dataDocumentID + 'WidgetSeriesTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetSeriesTitleText', bodyID, newData.seriesTitle, 24, '#ffffff', 0, 'Montserrat', 300, 29.4667, false, '#FF000000', 20, 12, 396, 512, 128, 1, true);
+			}
+			if(oldData.episodeTitle !== newData.episodeTitle) {
+				$('#' + this.dataDocumentID + 'WidgetEpisodeTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetEpisodeTitleText', bodyID, newData.episodeTitle, 14, '#ffffff', 0, 'Montserrat', 300, 16.9, false, '#00FF0000', 20, -12, 396, 512, 128, 1, true);
+			}
+		}
+
+		return true;
 	}
 }

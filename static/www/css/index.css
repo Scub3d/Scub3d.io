@@ -1,100 +1,789 @@
-header {
-	height: 100%;
-	top: 0;
-	width: 100%;
-	margin: auto;
+/* ============================================================
+   DESIGN SYSTEM — CSS Custom Properties
+   ============================================================ */
+:root {
+    /* Backgrounds */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a25;
+
+    /* Text */
+    --text-primary: #e8e8ed;
+    --text-secondary: #8888a0;
+    --text-tertiary: #505068;
+
+    /* Accent */
+    --accent-primary: #4a9eff;
+    --accent-glow: rgba(74, 158, 255, 0.15);
+
+    /* Structural */
+    --line-color: rgba(136, 136, 160, 0.2);
+    --line-active: rgba(136, 136, 160, 0.5);
+    --bracket-color: rgba(136, 136, 160, 0.4);
+
+    /* Typography */
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-jp: 'Noto Sans JP', sans-serif;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.9rem;
+    --text-base: 1rem;
+    --text-lg: 1.35rem;
+    --text-xl: 1.65rem;
+    --text-2xl: 2.05rem;
+    --text-3xl: 2.55rem;
+    --text-4xl: 3.052rem;
+
+    /* Spacing (8px base) */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    /* Nav */
+    --nav-height: 56px;
 }
 
-.text {
-	font-weight: 100;
-	font-size: 28px;
-	color: #fafafa;
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-header .spenser {
-	padding-top: 150px;
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
 }
 
-header .avatar {
-	display: block;
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	margin: 0 auto;
+body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
 }
 
 img {
-	border: 0;
-	padding: 0;
+    max-width: 100%;
+    display: block;
 }
 
-header h2 {
-	text-align: center;
-	display: block;
-	font-size: 3em;
-	line-height: 1em;
-	padding-top: 20px;
+
+/* ============================================================
+   PARTICLE CANVAS
+   ============================================================ */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
 }
 
-header h2 #title span.displayText {
-	display: block;
-	font-size: .6em;
-	padding-top: 15px;
-	font-weight: normal;
-	color: rgba(255, 255, 255, 0.6);
-	letter-spacing: .1em;
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-8);
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-color);
+    z-index: 100;
+    font-family: var(--font-mono);
 }
 
-header .socials {
-	text-align: center;
-	padding-top: 0;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
 }
 
-header .socials a {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	text-indent: -999em;
-	transform: scale(0.5, 0.5);
-	background-position: center center;
-	background-repeat: no-repeat;
-	text-align: center;
-	border: 0;
-	transition: all .2s ease-in-out;
+.nav-links a {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    position: relative;
+    transition: color 0.2s;
+    padding: var(--space-1) 0;
 }
 
-header .socials a.twitter {
-	background-image: url(//static.scub3d.io/www/img/index/twitter.png);
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-header .socials a.linkedin {
-	background-image: url(//static.scub3d.io/www/img/index/linkedin.png);
+.nav-links a:hover {
+    color: var(--text-primary);
 }
 
-header .socials a.github {
-	background-image: url(//static.scub3d.io/www/img/index/github.png);
+.nav-links a:hover::after {
+    transform: scaleX(1);
 }
 
-header .socials a.devpost {
-	background-image: url(//static.scub3d.io/www/img/index/devpost.png);
+.nav-links a.active {
+    color: var(--accent-primary);
 }
 
-header .socials a.sketchfab {
-	background-image: url(//static.scub3d.io/www/img/index/sketchfab.png);
+.nav-links a.active::after {
+    transform: scaleX(1);
 }
 
-@media only screen and (max-width : 320px) {
-	header .spenser {
-		padding-top: 50px;
-	}
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
 }
 
-.addBottomMargin {
-	margin-bottom: 4rem;
+.nav-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--line-active);
 }
 
-header h2 #title span.displayText {
-	width: 80% !important;
-	margin: auto;
-	display: block;
+/* ---- Shared nav: width-lock + EN/JP anchored right ---- */
+.site-nav {
+    -webkit-backdrop-filter: blur(12px);
+}
+.site-nav .nav-links a.text {
+    display: inline-grid;
+    grid-template-areas: "stack";
+    justify-items: center;
+}
+.site-nav .nav-links a.text > span {
+    grid-area: stack;
+    text-align: center;
+    white-space: nowrap;
+}
+.site-nav .nav-links a.text > .englishText,
+.site-nav .nav-links a.text > .japaneseText {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
+}
+.site-nav .nav-links .js-translate {
+    margin-left: var(--space-6);
+}
+
+/* Mobile nav overlay */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-overlay a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.nav-overlay a:hover {
+    color: var(--accent-primary);
+}
+
+.nav-overlay-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-8);
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-overlay-close:hover {
+    color: var(--text-primary);
+    border-color: var(--line-active);
+}
+
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+main {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--nav-height);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-16);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-8);
+    width: 100%;
+}
+
+
+/* ============================================================
+   BRACKET LABELS
+   ============================================================ */
+.bracket-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bracket-color);
+    display: inline-block;
+    margin-bottom: var(--space-6);
+}
+
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-name {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-1);
+    color: var(--text-primary);
+}
+
+.hero-name-prefix {
+    display: block;
+    font-weight: 300;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    margin-bottom: var(--space-2);
+}
+
+.hero-name-project {
+    display: block;
+    color: var(--accent-primary);
+    transition: opacity 0.3s;
+}
+
+.hero-age {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+    font-variant-numeric: tabular-nums;
+}
+
+.hero-role {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+
+/* Social links */
+.hero-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.hero-socials a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    position: relative;
+}
+
+.hero-socials a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-socials a:hover {
+    color: var(--accent-primary);
+}
+
+.hero-socials a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Project-name link: same accent color as the non-link version so it reads
+   as part of the headline. Hover reveals an underline + the cursor pointer,
+   so users who intuit it's clickable get feedback. */
+a.hero-name-project {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    width: fit-content;
+}
+
+a.hero-name-project::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.05em;
+    height: 1px;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a.hero-name-project:hover::after {
+    transform: scaleX(1);
+}
+
+/* Call-to-action button for the featured project. Sits just below the
+   headline and reuses the boxed ./command aesthetic the rest of the page
+   uses. Spacing mirrors .hero-age so the CTA slots cleanly into the hero
+   stack without an outsized gap above or below.  */
+.hero-cta {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.hero-cta a {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent-primary);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line-active);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.hero-cta a:hover {
+    border-color: var(--accent-primary);
+    background: var(--accent-glow);
+    transform: translateX(2px);
+}
+
+/* Divider */
+.divider {
+    border: none;
+    height: 1px;
+    background: var(--line-color);
+    margin: var(--space-16) var(--space-24);
+}
+
+/* Avatar area */
+.hero-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-avatar img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border: 1px solid var(--line-color);
+    filter: grayscale(20%);
+    transition: filter 0.4s, border-color 0.4s;
+}
+
+.hero-avatar img:hover {
+    filter: grayscale(0%);
+    border-color: var(--line-active);
+}
+
+
+/* ============================================================
+   RAW TAG ELEMENTS (visible in raw state, hidden in live state)
+   ============================================================ */
+.raw-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    display: block;
+    overflow: hidden;
+    max-height: 2em;
+    opacity: 1;
+    margin-bottom: var(--space-2);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        margin 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.raw-comment {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    display: block;
+    overflow: hidden;
+    max-height: 10em;
+    opacity: 1;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   RAW → LIVE STATE TRANSITIONS
+   ============================================================ */
+
+/* --- RAW STATE --- */
+.state-raw .hero-name,
+.state-raw .hero-name-prefix,
+.state-raw .hero-name-project,
+.state-raw .hero-age,
+.state-raw .hero-role,
+.state-raw .hero-socials a {
+    font-family: var(--font-mono);
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+
+.state-raw .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+}
+
+.state-raw .hero-avatar {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.state-raw .hero-avatar img {
+    border-color: transparent;
+}
+
+.state-raw .site-nav .nav-links a {
+    color: var(--text-tertiary);
+}
+
+.state-raw .site-nav {
+    border-bottom-color: transparent;
+}
+
+.state-raw .divider {
+    background: transparent;
+}
+
+/* --- LIVE STATE --- */
+.state-live .raw-tag {
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+}
+
+.state-live .raw-comment {
+    opacity: 0;
+    max-height: 0;
+}
+
+.state-live .hero-name {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.state-live .hero-role {
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.state-live .hero-age {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.state-live .hero-name-prefix {
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.state-live .hero-name-project {
+    color: var(--accent-primary);
+}
+
+.state-live .hero-socials a {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.state-live .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+}
+
+.state-live .hero-avatar {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.state-live .site-nav .nav-links a {
+    color: var(--text-secondary);
+}
+
+.state-live .site-nav .nav-links a.active {
+    color: var(--accent-primary);
+}
+
+.state-live .site-nav {
+    border-bottom-color: var(--line-color);
+}
+
+.state-live .divider {
+    background: var(--line-color);
+}
+
+/* Transition everything smoothly */
+.hero,
+.hero-name,
+.hero-age,
+.hero-role,
+.hero-name-prefix,
+.hero-name-project,
+.hero-socials a,
+.hero-avatar,
+.hero-avatar img,
+.bracket-label,
+.site-nav,
+.site-nav .nav-links a,
+.divider {
+    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   BLINKING CURSOR (raw state only)
+   ============================================================ */
+.raw-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background: var(--text-tertiary);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    transition: opacity 0.6s;
+}
+
+.state-live .raw-cursor {
+    /* display: none so the cursor doesn't just become invisible — it's also
+       removed from the line-box flow. Because .hero-name-project is
+       display:block, the cursor would otherwise occupy its own line and
+       that line's height would be ~1.2em of the h1's font-size, leaving
+       a phantom blank line between the headline and whatever follows. */
+    display: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-8);
+    border-top: 1px solid var(--line-color);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-coordinates {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .hero,
+    .state-live .hero {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        text-align: center;
+        padding: var(--space-8) var(--space-6);
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-socials {
+        justify-content: center;
+    }
+
+    .hero-avatar {
+        order: -1;
+    }
+
+    /* text-align:center on .hero centers the prefix's inline text, but the
+       project link is display:block + width:fit-content — block-level
+       elements need margin:auto to center. */
+    a.hero-name-project {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --text-3xl: 1.8rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+    }
+
+    .hero-avatar img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .site-nav {
+        padding: 0 var(--space-4);
+    }
+
+    .divider {
+        margin: var(--space-8) var(--space-4);
+    }
+}
+
+
+/* ============================================================
+   GLITCH TEXT ANIMATION
+   ============================================================ */
+.dud {
+    color: var(--text-tertiary);
+    opacity: 0.6;
+}
+
+/* Language-specific display */
+.text .englishText,
+.text .japaneseText {
+    display: none;
+}
+
+/* Japanese font override */
+.japanese .displayText {
+    font-family: var(--font-jp);
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }

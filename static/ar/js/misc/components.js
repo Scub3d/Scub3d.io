@@ -1,3 +1,63 @@
+function setMatOpacity(selector, value) {
+	const el = document.querySelector(selector);
+	if (el && el.setAttribute) el.setAttribute('material', 'opacity', value);
+}
+
+function setVisible(selector, value) {
+	const el = document.querySelector(selector);
+	if (el && el.setAttribute) el.setAttribute('visible', value);
+}
+
+// Drives the xPercent uniform on the progress-bar shader so the bar marches
+// forward in real time between data polls. creationTime is stamped at init,
+// then each tick we derive the current progress from startProgressMS + real
+// elapsed. Component dies with its entity (widget rebuild on track change),
+// which naturally resets the clock.
+AFRAME.registerComponent('progress-bar-animator', {
+	schema: {
+		startProgressMS: { type: 'number', default: 0 },
+		durationMS: { type: 'number', default: 1 }
+	},
+	init: function() {
+		this.creationTime = Date.now();
+		// Throttle to 10Hz. Progress bars move pixel-fractions per frame at
+		// 60Hz — wasteful. 100ms updates are indistinguishable to the eye
+		// on a bar of this size.
+		this.tick = AFRAME.utils.throttleTick(this.tick, 100, this);
+	},
+	update: function() {
+		// If a caller updates the schema values (e.g. on trackProgressMS
+		// resync from a poll), reset the clock so the new baseline is honored.
+		this.creationTime = Date.now();
+	},
+	tick: function() {
+		const mesh = this.el.getObject3D('mesh');
+		if (!mesh || !mesh.material || !mesh.material.uniforms) return;
+		const uniform = mesh.material.uniforms.xPercent;
+		if (!uniform) return;
+		const elapsed = Date.now() - this.creationTime;
+		const currentMs = this.data.startProgressMS + elapsed;
+		const duration = this.data.durationMS || 1;
+		uniform.value = Math.min(1, Math.max(0, currentMs / duration));
+	}
+});
+
+// Pushes a monotonically-increasing `time` uniform onto the mesh's shader
+// material every frame. Used by any shader that wants time-based motion
+// (e.g. the instagram-animated-border gradient sweep).
+AFRAME.registerComponent('shader-time-ticker', {
+	init: function() {
+		this.startTime = performance.now();
+	},
+	tick: function() {
+		const mesh = this.el.getObject3D('mesh');
+		if (!mesh || !mesh.material || !mesh.material.uniforms) return;
+		const uniform = mesh.material.uniforms.time;
+		if (!uniform) return;
+		uniform.value = (performance.now() - this.startTime) / 1000;
+	}
+});
+
 AFRAME.registerComponent('mask', {
 	init: function() {
 	// make sure the model is loaded first
@@ -14,6 +74,75 @@ AFRAME.registerComponent('mask', {
 	}
 });
 
+AFRAME.registerComponent('model-color', {
+	schema: { type: 'color', default: '#ffffff' },
+	init: function() {
+		this.el.addEventListener('model-loaded', () => {
+			const mesh = this.el.getObject3D('mesh');
+			if (!mesh) return;
+
+			const color = new THREE.Color(this.data);
+			mesh.traverse(node => {
+				if (!node.isMesh || !node.material) return;
+				const mats = Array.isArray(node.material) ? node.material : [node.material];
+				mats.forEach(m => {
+					if (m.color) m.color.copy(color);
+					m.needsUpdate = true;
+				});
+			});
+		});
+	}
+});
+
+AFRAME.registerComponent('text-background', {
+	schema: {
+		color: { type: 'color', default: '#000000' },
+		opacity: { type: 'number', default: 0.65 },
+		paddingX: { type: 'number', default: 0.25 },
+		paddingY: { type: 'number', default: 0.2 },
+		zOffset: { type: 'number', default: 0.001 }
+	},
+	init: function() {
+		this.bg = document.createElement('a-plane');
+		this.bg.setAttribute('material', {
+			color: this.data.color,
+			opacity: this.data.opacity,
+			transparent: true,
+			side: 'double',
+			depthWrite: false
+		});
+		this.el.appendChild(this.bg);
+
+		this.el.addEventListener('textfontset', () => this.resize());
+	},
+	resize: function() {
+		const textMesh = this.el.getObject3D('text');
+		if (!textMesh || !textMesh.geometry) return;
+		textMesh.geometry.computeBoundingBox();
+		if (!textMesh.geometry.boundingBox) return;
+
+		// Transform the geometry-local bounding box into entity-local coords
+		// via the mesh's full matrix (scale + anchor/baseline offset). Doing
+		// this by hand drops the anchor offset and lands the bg at a corner
+		// instead of the center.
+		const box = textMesh.geometry.boundingBox.clone();
+		textMesh.updateMatrix();
+		box.applyMatrix4(textMesh.matrix);
+
+		const size = new THREE.Vector3();
+		const center = new THREE.Vector3();
+		box.getSize(size);
+		box.getCenter(center);
+
+		const padX = size.y * this.data.paddingX;
+		const padY = size.y * this.data.paddingY;
+
+		this.bg.setAttribute('width', size.x + padX * 2);
+		this.bg.setAttribute('height', size.y + padY * 2);
+		this.bg.setAttribute('position', center.x + ' ' + center.y + ' ' + (center.z + this.data.zOffset));
+	}
+});
+
 AFRAME.registerComponent('anti-tear', { // I forgot what this does but it breaks if I remove it
 	init: function(){
 		let el = this.el;
@@ -23,22 +152,6 @@ AFRAME.registerComponent('anti-tear', { // I forgot what this does but it breaks
 			setTimeout(function () {
 				el.sceneEl.renderer.sortObjects = true;
 				el.object3D.renderOrder = 100;
-				el.components.material.material.depthTest = false;
-			}, 200);
-		});
-	},
-});
-
-
-AFRAME.registerComponent('anti-tear2', { // I forgot what this does but it breaks if I remove it
-	init: function(){
-		let el = this.el;
-		let self = this;
-
-		el.addEventListener('materialtextureloaded', function(ev) {
-			setTimeout(function () {
-				el.sceneEl.renderer.sortObjects = true;
-				el.object3D.renderOrder = -1;
 				el.components.material.material.depthTest = false;
 			}, 200);
 		});
@@ -60,21 +173,24 @@ AFRAME.registerComponent('slide-text', {
 
 		this.xOffset = this.data.xOffset;
 		this.direction = this.data.direction;
-
-		this.el.addEventListener('materialtextureloaded', e => {
-			this.material = this.el.getObject3D('mesh').material;
-			this.material.uniforms.percent = { "value": this.data.percent };
-			this.material.uniforms.xOffset = { "value": this.xOffset };
-		});
-
 		this.speed = (1 - this.data.percent) / 4000;
-
+	},
+	_tryBindMaterial: function() {
+		const mesh = this.el.getObject3D('mesh');
+		if (!mesh || !mesh.material || !mesh.material.uniforms || !mesh.material.uniforms.percent) return false;
+		this.material = mesh.material;
+		this.material.uniforms.percent.value = this.data.percent;
+		this.material.uniforms.xOffset.value = this.xOffset;
+		return true;
 	},
 	tick: function() {
-		if(this.material === undefined || this.xOffset === undefined) return;
+		if (this.material === undefined) {
+			if (!this._tryBindMaterial()) return;
+		}
+		if (this.xOffset === undefined) return;
 
 		if(this.xOffset > this.stopOffset) {
-			this.material.uniforms.xOffset = { "value": 0 };
+			this.material.uniforms.xOffset.value = 0;
 			this.xOffset = 0;
 			this.lock = true;
 			this.lockStartTime = Date.now();
@@ -82,16 +198,15 @@ AFRAME.registerComponent('slide-text', {
 
 		if(!this.lock) {
 			this.xOffset += (this.speed * this.direction);
-
-			this.material.uniforms.xOffset = { "value": this.xOffset };
+			this.material.uniforms.xOffset.value = this.xOffset;
 		} else {
 			if(Date.now() - this.lockStartTime > 10000) {
-				this.material.uniforms.xOffset = { "value": 0 };
+				this.material.uniforms.xOffset.value = 0;
 				this.xOffset = 0;
 				this.lock = false;
 			}
 		}
-	}, 
+	},
 });
 
 AFRAME.registerComponent('alternator', {
@@ -118,8 +233,8 @@ AFRAME.registerComponent('alternator', {
 			this.el.setAttribute("material", "src", this.images[this.imageIndex]);
 			this.imageIndex = this.imageIndex === 1 ? 0 : 1;
 			this.el.emit(this.fadeInSignal);
-		});			
-		
+		});
+
 		this.lock = true;
 		this.lockStartTime = Date.now();
 	},
@@ -130,7 +245,7 @@ AFRAME.registerComponent('alternator', {
 				this.el.emit(this.fadeOutSignal);
 			}
 		}
-	}, 
+	},
 });
 
 AFRAME.registerComponent('instagram-image-switcher', {
@@ -174,13 +289,15 @@ AFRAME.registerComponent('instagram-alternate-entities', {
 			
 			if(this.entityIndex === entityIDIndex) continue;
 
-			$(this.data.entityIDs[entityIDIndex]).attr('material', 'opacity: 0; visible: false');
+			setMatOpacity(this.data.entityIDs[entityIDIndex], 0);
+			setVisible(this.data.entityIDs[entityIDIndex], false);
 
 			if(this.childList[entityIDIndex] === undefined) continue;
 
 			this.childList[entityIDIndex].forEach((childID) => {
-				$('#' + childID).attr('material', 'opacity: 0; visible: false');
-			});			
+				setMatOpacity('#' + childID, 0);
+				setVisible('#' + childID, false);
+			});
 		}
 
 		this.cycleStartTime = Date.now();
@@ -194,60 +311,59 @@ AFRAME.registerComponent('instagram-alternate-entities', {
 			var hasRevealedEntity = false;
 			var hasUnhiddenEntity = false;
 
+			const currentID = this.data.entityIDs[this.entityIndex];
+			const nextID = this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities];
+			const currentChildren = this.childList[this.entityIndex];
+			const nextChildren = this.childList[(this.entityIndex + 1) % this.data.numberOfEntities];
+
 			if(timeElapsed <= 1000) {
-				$(this.data.entityIDs[this.entityIndex]).attr('material', 'opacity: ' + (1 - timeElapsed / 1000));
+				const fadeOut = 1 - timeElapsed / 1000;
+				setMatOpacity(currentID, fadeOut);
 
-				if(this.childList[this.entityIndex] === undefined) return;
+				if(currentChildren === undefined) return;
 
-				this.childList[this.entityIndex].forEach((childID) => {
-					$('#' + childID).attr('material', 'opacity: ' + (1 - timeElapsed / 1000));
-				});
+				currentChildren.forEach((childID) => setMatOpacity('#' + childID, fadeOut));
 			} else if(timeElapsed <= 2000) {
 				if(!hasHiddenEntity) {
-					$(this.data.entityIDs[this.entityIndex]).attr('material', 'opacity: 0; visible: false');
+					setMatOpacity(currentID, 0);
+					setVisible(currentID, false);
 
-					if(this.childList[this.entityIndex] === undefined) return;
+					if(currentChildren === undefined) return;
 
-					this.childList[this.entityIndex].forEach((childID) => {
-						$('#' + childID).attr('material', 'opacity: 0; visible: false');
+					currentChildren.forEach((childID) => {
+						setMatOpacity('#' + childID, 0);
+						setVisible('#' + childID, false);
 					});
 
 					hasHiddenEntity = true;
 				}
 
 				if(!hasUnhiddenEntity) {
-					$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'visible: true');
+					setVisible(nextID, true);
 
-					this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-						$('#' + childID).attr('material', 'visible: true');
-					});
+					nextChildren.forEach((childID) => setVisible('#' + childID, true));
 
 					hasUnhiddenEntity = true;
 				}
 
-				$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'opacity: ' + ((timeElapsed - 1000) / 1000));
+				const fadeIn = (timeElapsed - 1000) / 1000;
+				setMatOpacity(nextID, fadeIn);
 
-				if(this.childList[(this.entityIndex + 1) % this.data.numberOfEntities] === undefined) return;
-				
-				this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-					$('#' + childID).attr('material', 'opacity: ' + ((timeElapsed - 1000) / 1000));
-				});
+				if(nextChildren === undefined) return;
+
+				nextChildren.forEach((childID) => setMatOpacity('#' + childID, fadeIn));
 			} else if(timeElapsed > 2000) {
 				if(!hasRevealedEntity) {
-					$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'opacity: 1');
+					setMatOpacity(nextID, 1);
 
-					if(this.childList[(this.entityIndex + 1) % this.data.numberOfEntities] === undefined) return;
-					
-					this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-						$('#' + childID).attr('material', 'opacity: 1');
+					if(nextChildren === undefined) return;
 
-					});
+					nextChildren.forEach((childID) => setMatOpacity('#' + childID, 1));
 
 					if(this.entityIndex === 1) {
-						this.childList[this.entityIndex].forEach((childID) => {
+						currentChildren.forEach((childID) => {
 							$('#' + childID).trigger(this.switchImageSignal);
 						});
-						
 					}
 
 					hasRevealedEntity = true;
@@ -258,10 +374,10 @@ AFRAME.registerComponent('instagram-alternate-entities', {
 				this.entityIndex = (this.entityIndex + 1) % this.data.numberOfEntities;
 			}
 		} else if(Date.now() - this.cycleStartTime > 10000){
-			this.transitioning = true;			
+			this.transitioning = true;
 			this.transitionStartTime = Date.now();
-		}	
-	}, 
+		}
+	},
 });
 
 AFRAME.registerComponent('alternate-entities', {
@@ -303,13 +419,20 @@ AFRAME.registerComponent('alternate-entities', {
 			
 			if(this.entityIndex === entityIDIndex) continue;
 
-			$(this.data.entityIDs[entityIDIndex]).attr('material', 'opacity: 0');
+			// setVisible in addition to opacity — three.js meshes added via
+			// object3D.add (e.g. terrain meshes on mapbox/alltrails widgets)
+			// don't respond to the A-Frame `material.opacity` attribute, so
+			// they'd flash visible on first paint before the first tick-driven
+			// transition called setVisible(false) for us.
+			setMatOpacity(this.data.entityIDs[entityIDIndex], 0);
+			setVisible(this.data.entityIDs[entityIDIndex], false);
 
 			if(this.childList[entityIDIndex] === undefined) continue;
 
 			this.childList[entityIDIndex].forEach((childID) => {
-				$('#' + childID).attr('material', 'opacity: 0');
-			});			
+				setMatOpacity('#' + childID, 0);
+				setVisible('#' + childID, false);
+			});
 		}
 
 		this.cycleStartTime = Date.now();
@@ -323,29 +446,34 @@ AFRAME.registerComponent('alternate-entities', {
 	tick: function() {
 		if(this.transitioning) {
 			const timeElapsed = Date.now() - this.transitionStartTime;
+			const currentID = this.data.entityIDs[this.entityIndex];
+			const nextID = this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities];
+			const currentChildren = this.childList[this.entityIndex];
+			const nextChildren = this.childList[(this.entityIndex + 1) % this.data.numberOfEntities];
+			const currentColliders = this.childColliderPlanes[this.entityIndex];
+			const nextColliders = this.childColliderPlanes[(this.entityIndex + 1) % this.data.numberOfEntities];
 
 			if(timeElapsed <= 1000) {
-				$(this.data.entityIDs[this.entityIndex]).attr('material', 'opacity: ' + (1 - timeElapsed / 1000));
+				const fadeOut = 1 - timeElapsed / 1000;
+				setMatOpacity(currentID, fadeOut);
 
-				if(this.childList[this.entityIndex] !== undefined) {
-					this.childList[this.entityIndex].forEach((childID) => {
-						$('#' + childID).attr('material', 'opacity: ' + (1 - timeElapsed / 1000));
-					});
+				if(currentChildren !== undefined) {
+					currentChildren.forEach((childID) => setMatOpacity('#' + childID, fadeOut));
 				}
 			} else if(timeElapsed <= 2000) {
 				if(!this.hasHiddenEntity) {
-					$(this.data.entityIDs[this.entityIndex]).attr('material', 'opacity: 0');
-					$(this.data.entityIDs[this.entityIndex]).attr('visible', false);
+					setMatOpacity(currentID, 0);
+					setVisible(currentID, false);
 
-					if(this.childList[this.entityIndex] !== undefined) {
-						this.childList[this.entityIndex].forEach((childID) => {
-							$('#' + childID).attr('material', 'opacity: 0');
-							$('#' + childID).attr('visible', false);
+					if(currentChildren !== undefined) {
+						currentChildren.forEach((childID) => {
+							setMatOpacity('#' + childID, 0);
+							setVisible('#' + childID, false);
 						});
 					}
 
-					if(this.childColliderPlanes[this.entityIndex] !== undefined) {
-						this.childColliderPlanes[this.entityIndex].forEach((childID) => {
+					if(currentColliders !== undefined) {
+						currentColliders.forEach((childID) => {
 							$('#' + childID).removeClass('clickable');
 							var raycasterEl = AFRAME.scenes[0].querySelector('[raycaster]');
 							raycasterEl.components.raycaster.refreshObjects();
@@ -356,38 +484,35 @@ AFRAME.registerComponent('alternate-entities', {
 				}
 
 				if(!this.hasUnhiddenEntity) {
-					$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('visible', true);
-					$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'opacity: 0');
+					setVisible(nextID, true);
+					setMatOpacity(nextID, 0);
 
-					if(this.childList[(this.entityIndex + 1) % this.data.numberOfEntities] !== undefined) {
-						this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-							$('#' + childID).attr('visible', true);
-							$('#' + childID).attr('material', 'opacity: 0');
+					if(nextChildren !== undefined) {
+						nextChildren.forEach((childID) => {
+							setVisible('#' + childID, true);
+							setMatOpacity('#' + childID, 0);
 						});
 					}
 
 					this.hasUnhiddenEntity = true;
 				}
 
-				$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'opacity: ' + ((timeElapsed - 1000) / 1000));
+				const fadeIn = (timeElapsed - 1000) / 1000;
+				setMatOpacity(nextID, fadeIn);
 
-				if(this.childList[(this.entityIndex + 1) % this.data.numberOfEntities] !== undefined) {
-					this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-						$('#' + childID).attr('material', 'opacity: ' + ((timeElapsed - 1000) / 1000));
-					});					
+				if(nextChildren !== undefined) {
+					nextChildren.forEach((childID) => setMatOpacity('#' + childID, fadeIn));
 				}
 			} else if(timeElapsed > 2000) {
 				if(this.hasFinishedRevealingEntity === false) {
-					$(this.data.entityIDs[(this.entityIndex + 1) % this.data.numberOfEntities]).attr('material', 'opacity: 1');
+					setMatOpacity(nextID, 1);
 
-					if(this.childList[(this.entityIndex + 1) % this.data.numberOfEntities] !== undefined) {
-						this.childList[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
-							$('#' + childID).attr('material', 'opacity: 1');
-						});
+					if(nextChildren !== undefined) {
+						nextChildren.forEach((childID) => setMatOpacity('#' + childID, 1));
 					}
 
-					if(this.childColliderPlanes[(this.entityIndex + 1) % this.data.numberOfEntities] !== undefined) {
-						this.childColliderPlanes[(this.entityIndex + 1) % this.data.numberOfEntities].forEach((childID) => {
+					if(nextColliders !== undefined) {
+						nextColliders.forEach((childID) => {
 							$('#' + childID).addClass('clickable');
 							var raycasterEl = AFRAME.scenes[0].querySelector('[raycaster]');
 							raycasterEl.components.raycaster.refreshObjects();
@@ -408,8 +533,8 @@ AFRAME.registerComponent('alternate-entities', {
 			this.transitioning = true;
 			this.waitForDuration = false;
 			this.transitionStartTime = Date.now();
-		}	
-	}, 
+		}
+	},
 });
 
 AFRAME.registerComponent('slide-image-vertical', {
@@ -478,8 +603,8 @@ AFRAME.registerComponent('start-on-touch', {
 			}
 
 			$('#businessCardMarker').attr('position', '0 0 0');
-			document.querySelector('#steamWidgetProfileBackgroundVideo').play();
-			document.querySelector('#steamProfileAvatarFrameVideoTest').play();
+			document.querySelector('#steamWidgetProfileBackgroundVideo')?.play();
+			document.querySelector('#steamProfileAvatarFrameVideoTest')?.play();
 			$('#businessCardTouch').remove();
 		});
 	}

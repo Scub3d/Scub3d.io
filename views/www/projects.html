@@ -1,139 +1,379 @@
-{% block css %}
-<link rel="stylesheet" type="text/css" href="//static.scub3d.io/www/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="//static.scub3d.io/www/css/projects.css" />
-{% end %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Projects
-{% end %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../static/www/css/projects.css" />
+</head>
 
-{% block navbarTitle %}
-<span class="englishText">Projects</span><span class="japaneseText">プロジェクト</span><span class="displayText"></span>
-{% end %}
+<body>
 
-{% block content %}
-<div id="main">
-	<div class="content content--center">
-		<div id="grid" class="grid grid--type-c">
-			
-			<div class="grid__sizer"></div>
-			
-			<div class="grid__item">
-				<a class="grid__link" href="https://minesweeper.scub3d.io/presskit">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/minesweeper.gif"/>
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">3D Minesweeper</span><span class="japaneseText">3Dマインスイーパ</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                    class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+            <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                    class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+            <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                    class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+            <a href="projects.html" class="active text"><span class="englishText">PROJECTS</span><span
+                    class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+            <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                    class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+            <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                    class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+            <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+        </div>
+        <button class="nav-toggle js-nav-toggle">[MENU]</button>
+    </nav>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://github.com/supergrecko/LeagueVoice" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/league_voice.png" alt="" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">League Voice</span><span class="japaneseText">リーグボイス</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+        <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://devpost.com/software/project-saoui" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/saoui.gif" alt="VR SAO UI" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">VR SAO UI</span><span class="japaneseText">VR SAO UI</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="grid__item">
-				<a class="grid__link" href="https://devpost.com/software/swagoverflow" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/gallery.jpg" alt="Stickers!" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">stickeroverflow.io</span><span class="japaneseText">stickeroverflow.io</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+    <script>
+        (function () {
+            var m = document.cookie.match(/language=(\w+)/);
+            var lang = (m && (m[1] === 'japanese' || m[1] === 'english')) ? m[1] : 'english';
+            var sel = 'span.' + lang + 'Text';
+            document.querySelectorAll('.site-nav .text, .nav-overlay .text').forEach(function (el) {
+                var src = el.querySelector(sel);
+                var dst = el.querySelector('span.displayText');
+                if (src && dst && !dst.textContent) {
+                    dst.textContent = src.textContent;
+                    el.classList.add(lang);
+                }
+            });
+        })();
+    </script>
 
-			<div class="grid__item">
-				<a class="grid__link" href="/league-ar">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/league-ar.gif" alt="" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">League AR</span><span class="japaneseText">League AR</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div> 
+    <main id="content" class="state-raw">
+        <span class="raw-tag">&lt;page::projects&gt;</span>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://github.com/Scub3d/Jhinxz" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/jhinxz.jpg" alt="" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">Jhinxz</span><span class="japaneseText">Jhinxz</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+        <div class="term-path">~/scub3d/<span>projects</span>/</div>
+        <div class="term-prompt">$ <span class="cmd">ls -la</span><span class="cursor"></span></div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="//static.scub3d.io/www/downloads/automotive-security-research-workshops-summary.pdf" target="_blank">	 <!-- If the link ever goes dead. -->
-				<!-- <a class="grid__link" href="https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/automotive-security-research-workshops-summary.pdf" target="_blank"> --> <!-- The link is dead rip -->
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/intel_auto.png" alt="Intel Automotive" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">Intel Automotive Security</span><span class="japaneseText">Intel Automotive Security</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
-			 				
-			<div class="grid__item">
-				<a class="grid__link" href="https://github.com/Scub3d/Scub3d.io" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/scub3d.io.gif" alt="scub3d.io" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">Scub3d.io</span><span class="japaneseText">Scub3d.io</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div> 
+        <div class="term-header">
+            <span class="text"><span class="englishText">perms</span><span class="japaneseText">権限</span><span
+                    class="displayText"></span></span>
+            <span>#</span>
+            <span class="text"><span class="englishText">name</span><span class="japaneseText">名前</span><span
+                    class="displayText"></span></span>
+            <span class="text"><span class="englishText">type</span><span class="japaneseText">タイプ</span><span
+                    class="displayText"></span></span>
+        </div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://github.com/Scub3d/pysat-2" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/pysat-2.gif" alt="pysat-2" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">pysat-2</span><span class="japaneseText">pysat-2</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+        <!-- 01 3D Minesweeper -->
+        <div class="proj-row" data-idx="0">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">01</span>
+            <span class="proj-name text"><span class="englishText">3d-minesweeper<span
+                        class="slash">/</span></span><span class="japaneseText">3Dマインスイーパー<span
+                        class="slash">/</span></span><span class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[GAME]</span><span
+                    class="japaneseText">[ゲーム]</span><span class="displayText">[GAME]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="0">$ cat <span>3d-minesweeper/README.md</span></div>
+        <div class="proj-detail" data-idx="0">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[01::GAME]</span><span
+                            class="japaneseText">[01::ゲーム]</span><span class="displayText">[01::GAME]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">3D Minesweeper</span><span
+                            class="japaneseText">3Dマインスイーパー</span><span class="displayText">3D Minesweeper</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">A three-dimensional take on the classic
+                            puzzle game, built with Unity and C#. Features multiple polyhedra shapes as game
+                            boards.</span><span class="japaneseText">Unity と C#
+                            で構築されたクラシックパズルゲームの3次元版。ゲームボードとして複数の多面体形状を特徴とします。</span><span class="displayText">A three-dimensional take on the classic
+                            puzzle game, built with Unity and C#. Features multiple polyhedra shapes as game
+                            boards.</span>
+                    </div>
+                    <div class="proj-detail-tech">Unity | C# | DOTS</div>
+                    <div class="proj-detail-links">
+                        <a href="https://minesweeper.scub3d.io/" target="_blank"><span class="text"><span
+                                    class="englishText">[PLAY] --&gt;</span><span class="japaneseText">[プレイ]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://devpost.com/software/project-splatter" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/splatter.gif" alt="pysat-2" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">Project Spatter</span><span class="japaneseText">プロジェクトスプラッター</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+        <!-- 02 AR Business Card -->
+        <div class="proj-row" data-idx="1">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">02</span>
+            <span class="proj-name text"><span class="englishText">ar-business-card<span
+                        class="slash">/</span></span><span class="japaneseText">AR名刺<span
+                        class="slash">/</span></span><span class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[AR]</span><span class="japaneseText">[AR]</span><span
+                    class="displayText"></span></span>
+        </div>
+        <div class="proj-cd" data-idx="1">$ cat <span>ar-business-card/README.md</span></div>
+        <div class="proj-detail" data-idx="1">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[02::AR]</span><span
+                            class="japaneseText">[02::AR]</span><span class="displayText">[02::AR]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">AR Business Card</span><span
+                            class="japaneseText">AR名刺</span><span class="displayText">AR Business Card</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">WebXR business card with live data from
+                            GitHub, Spotify, and social APIs. Built with A-Frame, Three.js, and custom WebGL
+                            shaders.</span><span
+                            class="japaneseText">GitHub、Spotify、ソーシャルAPIからのライブデータを表示するWebXR名刺。A-Frame、Three.js、カスタムWebGLシェーダーで構築。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">A-Frame | Three.js | WebGL | Firebase</div>
+                    <div class="proj-detail-links">
+                        <a href="https://ar.scub3d.io/card" target="_blank"><span class="text"><span
+                                    class="englishText">[LIVE DEMO] --&gt;</span><span class="japaneseText">[ライブデモ]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://github.com/Scub3d/Binging-with-Babish" target="_blank"> 
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/binging_with_babish.gif" alt="Binging with Babish" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">Binging with Babish</span><span class="japaneseText">バビッシュといっしょうにビンギング</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div>
+        <!-- 03 VR SAO UI -->
+        <div class="proj-row" data-idx="2">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">03</span>
+            <span class="proj-name text"><span class="englishText">vr-sao-ui<span class="slash">/</span></span><span
+                    class="japaneseText">VR SAO UI<span class="slash">/</span></span><span
+                    class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[VR]</span><span class="japaneseText">[VR]</span><span
+                    class="displayText"></span></span>
+        </div>
+        <div class="proj-cd" data-idx="2">$ cat <span>vr-sao-ui/README.md</span></div>
+        <div class="proj-detail" data-idx="2">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[03::VR]</span><span
+                            class="japaneseText">[03::VR]</span><span class="displayText">[03::VR]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">VR SAO UI</span><span
+                            class="japaneseText">VR SAO UI</span><span class="displayText">VR SAO UI</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">Recreation of the Sword Art Online user
+                            interface in virtual reality. Hand-tracked gesture-based menu system.</span><span
+                            class="japaneseText">バーチャルリアリティでのソードアート・オンラインユーザーインターフェースの再現。ハンドトラッキングによるジェスチャーベースのメニューシステム。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">Unity | C# | VR</div>
+                    <div class="proj-detail-links">
+                        <a href="https://devpost.com/software/project-saoui" target="_blank"><span class="text"><span
+                                    class="englishText">[DEVPOST] --&gt;</span><span class="japaneseText">[Devpost]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<div class="grid__item">
-				<a class="grid__link" href="https://ar.scub3d.io/card" target="_blank">
-					<img class="grid__img" src="//static.scub3d.io/www/img/projects/business_card.gif" alt="AR Business Card" />
-					<div class="grid__img__desc_layer">
-						<p class="grid__img__desc text"><span class="englishText">My AR business card</span><span class="japaneseText">僕のAR名刺</span><span class="displayText"></span></p>
-					</div>
-				</a>
-			</div> 	
-		</div>
-	</div>
-</div>
-{% end %}
+        <!-- 04 Jhinxz -->
+        <div class="proj-row" data-idx="3">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">04</span>
+            <span class="proj-name text"><span class="englishText">jhinxz<span class="slash">/</span></span><span
+                    class="japaneseText">Jhinxz<span class="slash">/</span></span><span
+                    class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[TOOL]</span><span
+                    class="japaneseText">[ツール]</span><span class="displayText">[TOOL]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="3">$ cat <span>jhinxz/README.md</span></div>
+        <div class="proj-detail" data-idx="3">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[04::TOOL]</span><span
+                            class="japaneseText">[04::ツール]</span><span class="displayText">[04::TOOL]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">Jhinxz</span><span
+                            class="japaneseText">Jhinxz</span><span class="displayText">Jhinxz</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">League of Legends Discord bot for
+                            checking player stats, match history, and live game data.</span><span
+                            class="japaneseText">プレイヤー統計、試合履歴、ライブゲームデータを確認するためのリーグ・オブ・レジェンドのDiscordボット。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">Java | Riot API | Discord</div>
+                    <div class="proj-detail-links">
+                        <a href="https://github.com/Scub3d/Jhinxz" target="_blank"><span class="text"><span
+                                    class="englishText">[GITHUB] --&gt;</span><span class="japaneseText">[GitHub]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% block js %}
-<script type="text/javascript" src="//static.scub3d.io/www/js/imagesloaded.pkgd.min.js"></script>
-<script type="text/javascript" src="//static.scub3d.io/www/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="//static.scub3d.io/www/js/anime.min.js"></script>
-<script type="text/javascript" src="//static.scub3d.io/www/js/projects.js"></script>
-{% end %}
+        <!-- 05 Scub3d.io -->
+        <div class="proj-row" data-idx="4">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">05</span>
+            <span class="proj-name text"><span class="englishText">scub3d-io<span class="slash">/</span></span><span
+                    class="japaneseText">scub3d-io<span class="slash">/</span></span><span
+                    class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[WEB]</span><span
+                    class="japaneseText">[ウェブ]</span><span class="displayText">[WEB]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="4">$ cat <span>scub3d-io/README.md</span></div>
+        <div class="proj-detail" data-idx="4">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[05::WEB]</span><span
+                            class="japaneseText">[05::ウェブ]</span><span class="displayText">[05::WEB]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">Scub3d.io</span><span
+                            class="japaneseText">Scub3d.io</span><span class="displayText">Scub3d.io</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">This portfolio website. Static HTML on
+                            Google Cloud Storage, Firebase Cloud Functions backend, Cloudflare CDN. Costs
+                            $0.02/month.</span><span class="japaneseText">このポートフォリオウェブサイト。Google Cloud
+                            Storage上の静的HTML、Firebase Cloud Functionsバックエンド、Cloudflare CDN。月額$0.02。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">HTML | CSS | JS | Firebase | GCS</div>
+                    <div class="proj-detail-links">
+                        <a href="https://github.com/Scub3d/Scub3d.io" target="_blank"><span class="text"><span
+                                    class="englishText">[GITHUB] --&gt;</span><span class="japaneseText">[GitHub]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 PySat-2 -->
+        <div class="proj-row" data-idx="5">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">06</span>
+            <span class="proj-name text"><span class="englishText">pysat-2<span class="slash">/</span></span><span
+                    class="japaneseText">pysat-2<span class="slash">/</span></span><span
+                    class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[TOOL]</span><span
+                    class="japaneseText">[ツール]</span><span class="displayText">[TOOL]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="5">$ cat <span>pysat-2/README.md</span></div>
+        <div class="proj-detail" data-idx="5">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[06::TOOL]</span><span
+                            class="japaneseText">[06::ツール]</span><span class="displayText">[06::TOOL]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">PySat-2</span><span
+                            class="japaneseText">PySat-2</span><span class="displayText">PySat-2</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">Python-based satellite data processing
+                            toolkit for CubeSat mission planning and reflectance data conversion.</span><span
+                            class="japaneseText">CubeSatミッション計画と反射率データ変換のためのPythonベースの衛星データ処理ツールキット。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">Python | NASA</div>
+                    <div class="proj-detail-links">
+                        <a href="https://github.com/Scub3d/pysat-2" target="_blank"><span class="text"><span
+                                    class="englishText">[GITHUB] --&gt;</span><span class="japaneseText">[GitHub]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 07 Project Spatter -->
+        <div class="proj-row" data-idx="6">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">07</span>
+            <span class="proj-name text"><span class="englishText">project-spatter<span
+                        class="slash">/</span></span><span class="japaneseText">プロジェクトスパッター<span
+                        class="slash">/</span></span><span class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[GAME]</span><span
+                    class="japaneseText">[ゲーム]</span><span class="displayText">[GAME]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="6">$ cat <span>project-spatter/README.md</span></div>
+        <div class="proj-detail" data-idx="6">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[07::GAME]</span><span
+                            class="japaneseText">[07::ゲーム]</span><span class="displayText">[07::GAME]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">Project Spatter</span><span
+                            class="japaneseText">プロジェクトスパッター</span><span class="displayText">Project Spatter</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">Splatoon-inspired multiplayer paint
+                            shooter built at a hackathon.</span><span
+                            class="japaneseText">ハッカソンで構築されたスプラトゥーンにインスパイアされたマルチプレイヤーペイントシューター。</span><span
+                            class="displayText"></span></div>
+                    <div class="proj-detail-tech">Unity | C# | Multiplayer</div>
+                    <div class="proj-detail-links">
+                        <a href="https://devpost.com/software/project-splatter" target="_blank"><span class="text"><span
+                                    class="englishText">[DEVPOST] --&gt;</span><span class="japaneseText">[Devpost]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 08 Binging with Babish -->
+        <div class="proj-row" data-idx="7">
+            <span class="proj-perms">drwxr</span>
+            <span class="proj-num">08</span>
+            <span class="proj-name text"><span class="englishText">binging-with-babish<span
+                        class="slash">/</span></span><span class="japaneseText">ビンジング・ウィズ・バビッシュ<span
+                        class="slash">/</span></span><span class="displayText"></span></span>
+            <span class="proj-tag text"><span class="englishText">[WEB]</span><span
+                    class="japaneseText">[ウェブ]</span><span class="displayText">[WEB]</span></span>
+        </div>
+        <div class="proj-cd" data-idx="7">$ cat <span>binging-with-babish/README.md</span></div>
+        <div class="proj-detail" data-idx="7">
+            <div class="proj-detail-inner">
+                <div class="proj-detail-media"><span class="loading text"><span
+                            class="englishText">loading...</span><span class="japaneseText">読み込み中...</span><span
+                            class="displayText"></span></span></div>
+                <div class="proj-detail-info">
+                    <div class="proj-detail-label text"><span class="englishText">[08::WEB]</span><span
+                            class="japaneseText">[08::ウェブ]</span><span class="displayText">[08::WEB]</span></div>
+                    <div class="proj-detail-title text"><span class="englishText">Binging with Babish</span><span
+                            class="japaneseText">ビンジング・ウィズ・バビッシュ</span><span class="displayText">Binging with Babish</span></div>
+                    <div class="proj-detail-desc text"><span class="englishText">Web scraper and recipe aggregator for
+                            the Binging with Babish YouTube series.</span><span class="japaneseText">Binging with Babish
+                            YouTubeシリーズのウェブスクレイパーとレシピアグリゲーター。</span><span class="displayText">Web scraper and recipe aggregator for
+                            the Binging with Babish YouTube series.</span></div>
+                    <div class="proj-detail-tech">Python | Web Scraping</div>
+                    <div class="proj-detail-links">
+                        <a href="https://github.com/Scub3d/Binging-with-Babish" target="_blank"><span class="text"><span
+                                    class="englishText">[GITHUB] --&gt;</span><span class="japaneseText">[GitHub]
+                                    --&gt;</span><span class="displayText"></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="../../static/www/js/common.js" defer></script>
+    <script src="../../static/www/js/projects.js" defer></script>
+
+</body>
+
+</html>

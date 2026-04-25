@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project Name — Prototype</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-primary:     #0a0a0f;
+    --bg-secondary:   #12121a;
+    --bg-tertiary:    #1a1a25;
+    --text-primary:   #e8e8ed;
+    --text-secondary: #8888a0;
+    --text-tertiary:  #505068;
+    --accent-primary: #4a9eff;
+    --accent-glow:    rgba(74, 158, 255, 0.15);
+    --line-color:     rgba(136, 136, 160, 0.2);
+    --line-active:    rgba(136, 136, 160, 0.5);
+    --bracket-color:  rgba(136, 136, 160, 0.4);
+    --font-mono:   'Space Mono', monospace;
+    --font-sans:   'Inter', sans-serif;
+    --font-jp:     'Noto Sans JP', sans-serif;
+    --text-xs:    0.64rem;
+    --text-sm:    0.8rem;
+    --text-base:  1rem;
+    --text-lg:    1.25rem;
+    --text-xl:    1.563rem;
+    --space-1:  0.25rem;
+    --space-2:  0.5rem;
+    --space-3:  0.75rem;
+    --space-4:  1rem;
+    --space-6:  1.5rem;
+    --space-8:  2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --nav-height: 56px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; height: 100%; }
+body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar { display: none; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-8);
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-color);
+    z-index: 100;
+    font-family: var(--font-mono);
+}
+.nav-links { display: flex; align-items: center; gap: var(--space-6); }
+.nav-links a {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    position: relative;
+    transition: color 0.2s;
+}
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 100%; height: 1px;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--accent-primary); }
+.nav-links a.active::after { transform: scaleX(1); }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+.nav-toggle:hover { color: var(--text-primary); border-color: var(--line-active); }
+
+.nav-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--space-8);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.nav-overlay.open { opacity: 1; pointer-events: auto; }
+.nav-overlay a {
+    font-family: var(--font-mono); font-size: var(--text-lg);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-secondary); transition: color 0.2s;
+}
+.nav-overlay a:hover { color: var(--accent-primary); }
+.nav-overlay-close {
+    position: absolute; top: var(--space-4); right: var(--space-8);
+    background: none; border: 1px solid var(--line-color);
+    color: var(--text-secondary); font-family: var(--font-mono);
+    font-size: var(--text-xs); letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3); cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+.nav-overlay-close:hover { color: var(--text-primary); border-color: var(--line-active); }
+
+/* ============================================================
+   RAW TAGS & RAW-TO-LIVE TRANSITION
+   ============================================================ */
+.raw-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    display: block;
+    overflow: hidden;
+    max-height: 2em;
+    opacity: 1;
+    margin-bottom: var(--space-2);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                margin 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Raw state */
+.state-raw .site-nav .nav-links a { color: var(--text-tertiary); }
+.state-raw .site-nav { border-bottom-color: transparent; }
+.state-raw .page-header .bracket-label { color: var(--text-tertiary); }
+.state-raw .project-split { opacity: 0.3; }
+
+/* Live state */
+.state-live .raw-tag { opacity: 0; max-height: 0; margin-bottom: 0; }
+.state-live .site-nav .nav-links a { color: var(--text-secondary); }
+.state-live .site-nav .nav-links a.active { color: var(--accent-primary); }
+.state-live .site-nav { border-bottom-color: var(--line-color); }
+.state-live .page-header .bracket-label { color: var(--bracket-color); }
+.state-live .project-split { opacity: 1; }
+
+/* Smooth transitions */
+.site-nav, .site-nav .nav-links a, .page-header .bracket-label,
+.project-split {
+    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+main {
+    position: relative;
+    padding-top: calc(var(--nav-height) + var(--space-8));
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+    padding-bottom: var(--space-12);
+}
+
+/* Page header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-8);
+    padding-top: var(--space-8);
+}
+.page-header .bracket-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bracket-color);
+}
+.back-link {
+    transition: color 0.2s;
+}
+.back-link:hover {
+    color: var(--accent-primary) !important;
+}
+
+/* ============================================================
+   PROJECT SPLIT LAYOUT
+   ============================================================ */
+.project-split {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-8);
+    min-height: calc(100vh - var(--nav-height) - 200px);
+}
+
+/* Info panel (left) */
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-top: var(--space-4);
+}
+
+.project-section-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bracket-color);
+    margin-bottom: var(--space-2);
+}
+
+.project-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.project-tech {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+.project-tech-tag {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    transition: border-color 0.2s, color 0.2s;
+}
+.project-tech-tag:hover {
+    border-color: var(--line-active);
+    color: var(--text-primary);
+}
+
+.project-controls {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--text-tertiary);
+    line-height: 1.8;
+}
+.project-controls kbd {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    border: 1px solid var(--line-color);
+    padding: 1px var(--space-2);
+    margin: 0 2px;
+}
+
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+.project-links a {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+}
+.project-links a:hover {
+    color: var(--accent-primary);
+}
+
+/* Demo area (right) */
+.project-demo {
+    position: relative;
+    border: 1px solid var(--line-color);
+    background: var(--bg-secondary);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.project-demo canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.project-demo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Placeholder for template */
+.demo-placeholder {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   LANGUAGE
+   ============================================================ */
+.text .englishText,
+.text .japaneseText { display: none; }
+.japanese .displayText { font-family: var(--font-jp); }
+.dud { color: var(--text-tertiary); opacity: 0.6; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    main {
+        padding-left: var(--space-8);
+        padding-right: var(--space-8);
+    }
+    .project-split {
+        grid-template-columns: 1fr;
+    }
+    .project-demo {
+        order: -1;
+        min-height: 300px;
+    }
+}
+@media (max-width: 480px) {
+    main {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+    }
+    .project-demo {
+        min-height: 250px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="site-nav">
+    <div class="nav-links">
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span class="japaneseText">ホーム</span><span class="displayText"></span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span class="japaneseText">職歴</span><span class="displayText"></span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span class="japaneseText">ハッカソン</span><span class="displayText"></span></a>
+        <a href="projects.html" class="active text"><span class="englishText">PROJECTS</span><span class="japaneseText">プロジェクト</span><span class="displayText"></span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span class="japaneseText">ハイキング</span><span class="displayText"></span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span class="japaneseText">履歴書 &#8599;</span><span class="displayText"></span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
+    <button class="nav-toggle js-nav-toggle">[MENU]</button>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+    <a href="index.html" class="text"><span class="englishText">HOME</span><span class="japaneseText">ホーム</span><span class="displayText"></span></a>
+    <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span class="japaneseText">職歴</span><span class="displayText"></span></a>
+    <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span class="japaneseText">ハッカソン</span><span class="displayText"></span></a>
+    <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span class="japaneseText">プロジェクト</span><span class="displayText"></span></a>
+    <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span class="japaneseText">ハイキング</span><span class="displayText"></span></a>
+    <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span class="japaneseText">履歴書 &#8599;</span><span class="displayText"></span></a>
+    <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+</div>
+
+<main id="content" class="state-raw">
+    <span class="raw-tag">&lt;project::project_name&gt;</span>
+    <div class="page-header">
+        <span class="bracket-label text"><span class="englishText">[PROJECT NAME]</span><span class="japaneseText">[プロジェクト名]</span><span class="displayText"></span></span>
+        <a href="projects.html" class="bracket-label back-link text"><span class="englishText">[&#8592; PROJECTS]</span><span class="japaneseText">[&#8592; プロジェクト]</span><span class="displayText"></span></a>
+    </div>
+
+    <div class="project-split">
+        <!-- Info panel (left) -->
+        <div class="project-info">
+            <div class="project-section">
+                <div class="project-section-label">[ABOUT]</div>
+                <p class="project-desc text"><span class="englishText">A brief description of the project goes here. Explain what it does, why it was built, and what makes it interesting.</span><span class="japaneseText">プロジェクトの簡単な説明がここに入ります。何をするのか、なぜ作られたのか、何が面白いのかを説明します。</span><span class="displayText"></span></p>
+            </div>
+
+            <div class="project-section">
+                <div class="project-section-label">[TECH]</div>
+                <div class="project-tech">
+                    <span class="project-tech-tag">Unity</span>
+                    <span class="project-tech-tag">C#</span>
+                    <span class="project-tech-tag">Three.js</span>
+                    <span class="project-tech-tag">WebGL</span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <div class="project-section-label">[CONTROLS]</div>
+                <div class="project-controls text">
+                    <span class="englishText"><kbd>Drag</kbd> to rotate &middot; <kbd>Scroll</kbd> to zoom &middot; <kbd>R</kbd> to reset</span>
+                    <span class="japaneseText"><kbd>ドラッグ</kbd> 回転 &middot; <kbd>スクロール</kbd> ズーム &middot; <kbd>R</kbd> リセット</span>
+                    <span class="displayText"></span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <div class="project-section-label">[LINKS]</div>
+                <div class="project-links">
+                    <a href="#" target="_blank">&#8594; GitHub</a>
+                    <a href="#" target="_blank">&#8594; Live Demo</a>
+                    <a href="#" target="_blank">&#8594; Devpost</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo area (right) -->
+        <div class="project-demo">
+            <!-- Replace this placeholder with project-specific content -->
+            <!-- e.g. <canvas>, <video>, <iframe>, or custom WebGL -->
+            <span class="demo-placeholder">[ demo content here ]</span>
+        </div>
+    </div>
+</main>
+
+<script>
+/* Glitched text — same as other prototypes */
+class TextGlitch {
+    constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#abcdefghijklmnopqrstuvwxyz1234567890あえいうおかきくけこさしすせそ';
+        this.update = this.update.bind(this);
+        this.isException = this.el.classList.contains('exception');
+    }
+    setText(language) {
+        const display = this.el.querySelector('span.displayText');
+        const oldText = display.textContent;
+        let newText;
+        if (this.isException) {
+            newText = language !== 'japanese' ? this.el.querySelector('span.englishText').textContent : this.el.querySelector('span.japaneseText').textContent;
+        } else {
+            newText = this.el.querySelector('span.' + language + 'Text').textContent;
+        }
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '', to = newText[i] || '';
+            const start = Math.floor(Math.random() * 40);
+            this.queue.push({ from, to, start, end: start + Math.floor(Math.random() * 40) });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.currentLanguage = language;
+        this.update();
+        return promise;
+    }
+    update() {
+        let output = '', complete = 0;
+        const display = this.el.querySelector('span.displayText');
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+            let { from, to, start, end, char } = this.queue[i];
+            if (this.frame >= end) { complete++; output += to; }
+            else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+                output += '<span class="dud">' + char + '</span>';
+            } else { output += from; }
+        }
+        display.innerHTML = output;
+        this.el.classList.remove('english', 'japanese');
+        this.el.classList.add(this.isException ? (this.currentLanguage !== 'japanese' ? 'japanese' : 'english') : this.currentLanguage);
+        if (complete === this.queue.length) { this.resolve(); }
+        else { this.frameRequest = requestAnimationFrame(this.update); this.frame += 2; }
+    }
+}
+
+function getCookie(name) { const m = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)')); return m ? m[2] : null; }
+function setCookie(name, val) { const d = new Date(); d.setTime(d.getTime() + 365*24*60*60*1000); document.cookie = name + '=' + val + ';expires=' + d.toUTCString() + ';path=/'; }
+
+document.addEventListener('DOMContentLoaded', function() {
+    let language = getCookie('language') || 'english';
+    setCookie('language', language);
+
+    function updateLang() {
+        document.querySelectorAll('.nav-lang-label').forEach(function(el) { el.textContent = language === 'english' ? 'JP' : 'EN'; });
+    }
+    updateLang();
+
+    document.querySelectorAll('.js-translate').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            language = language === 'english' ? 'japanese' : 'english';
+            setCookie('language', language);
+            updateLang();
+            document.querySelectorAll('.text').forEach(function(el) { new TextGlitch(el).setText(language); });
+        });
+    });
+
+    // Mobile nav
+    var overlay = document.getElementById('navOverlay');
+    document.querySelectorAll('.js-nav-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() { overlay.classList.add('open'); });
+    });
+    document.querySelectorAll('.js-nav-close').forEach(function(btn) {
+        btn.addEventListener('click', function() { overlay.classList.remove('open'); });
+    });
+
+    // Raw → Live transition
+    var content = document.getElementById('content');
+
+    setTimeout(function() {
+        document.querySelectorAll('.text').forEach(function(el) { new TextGlitch(el).setText(language); });
+    }, 200);
+
+    setTimeout(function() {
+        content.classList.remove('state-raw');
+        content.classList.add('state-live');
+    }, 1200);
+});
+</script>
+
+</body>
+</html>

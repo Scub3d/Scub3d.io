@@ -1,4 +1,4 @@
-const { getExternalAPIData, getExternalAPICookie, getExternalAPIDataWithCookies, getJSONParsedExternalAPIData, uploadExternalFileToBucket, deleteFirestoreDataForPath, getExternalHTML, generateCookieForHeader, parseCookieData, downloadFileFromURL, roundImage, uploadLocalFileToBucket } = require('../misc/common');
+const { getJSONParsedExternalAPIData, downloadFileFromURL, roundImage, uploadLocalFileToBucket } = require('../misc/common');
 const { db, storage } = require('../misc/initFirebase');
 
 const { v4: uuidv4 } = require('uuid');
@@ -89,47 +89,6 @@ function generateRepoLanguagesRequestOptions(auth, repoName) {
 	}
 }
 
-function generateUserGistsRequestOptions(auth) {
-	return {
-		method: 'GET',
-		uri: BASE_URL + '/users/' + auth.username + '/gists',
-		headers: {
-			'User-Agent': USER_AGENT,
-			'X-GitHub-Api-Version': '2022-11-28'
-		},
-		auth: {
-			user: auth.username,
-			password: auth.accessToken
-		}
-	}
-}
-
-function generateGistsDetailsRequestOptions(auth, gistID) {
-	return {
-		method: 'GET',
-		uri: BASE_URL + '/gists/' + gistID,
-		headers: {
-			'User-Agent': USER_AGENT,
-			'X-GitHub-Api-Version': '2022-11-28'
-		},
-		auth: {
-			user: auth.username,
-			password: auth.accessToken
-		}
-	}
-}
-
-function generateGistHTMLRequestOptions(auth, gistID) {
-	return {
-		method: 'GET',
-		uri: 'https://gist.github.com/' + auth.username + '/' + gistID,
-		headers: {
-			'User-Agent': USER_AGENT,
-			'Accept': '*/*'
-		}
-	}
-}
-
 
 function generateCommitBranchRequestOptions(auth, repoName, commitSHA) {
 	return {
@@ -191,21 +150,6 @@ function generateUserStarCountRequestOptions(auth) {
 	}
 }
 
-function generateGistCommitsRequestOptions(auth, gistID) {
-	return {
-		method: 'GET',
-		uri: BASE_URL + '/gists/' + gistID + '/commits',
-		headers: {
-			'User-Agent': USER_AGENT,
-			'X-GitHub-Api-Version': '2022-11-28'
-		},
-		auth: {
-			user: auth.username,
-			password: auth.accessToken
-		}
-	}
-}
-
 function generateRepoDetailsRequestOptions(auth, repoName) {
 	return {
 		method: 'GET',
@@ -219,6 +163,40 @@ function generateRepoDetailsRequestOptions(auth, repoName) {
 			password: auth.accessToken
 		}
 	}
+}
+
+// GraphQL v4 — REST doesn't expose the contribution calendar; GraphQL does via
+// contributionsCollection. Classic PATs authorize GraphQL as `Bearer <token>`
+// (not Basic), so shape differs from the REST helpers above.
+function generateContributionsGraphQLRequestOptions(auth) {
+	const query = 'query($username: String!) { user(login: $username) { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }';
+	return {
+		method: 'POST',
+		uri: 'https://api.github.com/graphql',
+		headers: {
+			'User-Agent': USER_AGENT,
+			'Authorization': 'Bearer ' + auth.accessToken,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ query: query, variables: { username: auth.username } })
+	}
+}
+
+function parseContributionCalendarJSON(json) {
+	const calendar = json && json.data && json.data.user && json.data.user.contributionsCollection && json.data.user.contributionsCollection.contributionCalendar;
+	if(!calendar) {
+		return { contributionDays: [], totalContributions: 0 };
+	}
+
+	const days = [];
+	for(const week of (calendar.weeks || [])) {
+		for(const day of (week.contributionDays || [])) {
+			days.push({ date: day.date, count: day.contributionCount, color: day.color });
+		}
+	}
+	days.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
+
+	return { contributionDays: days, totalContributions: calendar.totalContributions || 0 };
 }
 
 
@@ -293,27 +271,23 @@ exports.github = functions.https.onRequest( async (req, res) => {
 		const repoPullRequestsData = await getJSONParsedExternalAPIData(repoPullRequestsRequestOptions);
 		const repoPullRequestsCount = repoPullRequestsData.length;
 
-		const userGistsRequestOptions = generateUserGistsRequestOptions(auth);
-		const userGistsData = await getJSONParsedExternalAPIData(userGistsRequestOptions);
-		const gistID = parseUserGistsJSON(userGistsData);
-
-		const gistDetailsRequestOptions = generateGistsDetailsRequestOptions(auth, gistID);
-		const gistDetailsData = await getJSONParsedExternalAPIData(gistDetailsRequestOptions);
-		const parsedGistDetailsJSON = parseGistDetailsJSON(gistDetailsData);
-
-		const gistHTMLRequestOptions = generateGistHTMLRequestOptions(auth, parsedGistDetailsJSON['gistID']);
-		const gistHTML = await getExternalHTML(gistHTMLRequestOptions);
-		const gistStarCount = parseGistStarCountHTML(gistHTML.a);
-
 		const userStarCountRequestOptions = generateUserStarCountRequestOptions(auth);
 		const userStarCountData = await getJSONParsedExternalAPIData(userStarCountRequestOptions);
 		const userStarCount = userStarCountData.length;
 
-		const gistCommitsRequestOptions = generateGistCommitsRequestOptions(auth, gistID);
-		const gistCommitsData = await getJSONParsedExternalAPIData(gistCommitsRequestOptions);
-		const gistCommitSHA = gistCommitsData[0]['version'];
+		// Contribution calendar drives the new histogram face. One GraphQL call
+		// returns ~53 weeks × 7 days. Fail soft if GraphQL errors — the widget
+		// renders an empty L0 grid rather than crashing.
+		const contributionsRequestOptions = generateContributionsGraphQLRequestOptions(auth);
+		let contributionsJSON = { contributionDays: [], totalContributions: 0 };
+		try {
+			const contributionsData = await getJSONParsedExternalAPIData(contributionsRequestOptions);
+			contributionsJSON = parseContributionCalendarJSON(contributionsData);
+		} catch (e) {
+			console.warn('[github] contributions GraphQL failed: ' + (e && e.message ? e.message : e));
+		}
 
-		const parsedJSON = Object.assign(userDetailsJSON, currentRepoJSON, parsedCommitJSON, { 'repoURL': repoURL }, { 'gistCommitSHA': gistCommitSHA }, { 'commitBranch': commitBranch }, parsedGistDetailsJSON, {'gistStarCount': gistStarCount}, { 'repoBranchCount': repoBranchCount }, { 'repoPullRequestsCount': repoPullRequestsCount }, { 'starCount': userStarCount });
+		const parsedJSON = Object.assign(userDetailsJSON, currentRepoJSON, parsedCommitJSON, { 'repoURL': repoURL }, { 'commitBranch': commitBranch }, { 'repoBranchCount': repoBranchCount }, { 'repoPullRequestsCount': repoPullRequestsCount }, { 'starCount': userStarCount }, contributionsJSON);
 
 		await db.collection('data').doc('github').set(parsedJSON);
 		return res.send(parsedJSON);
@@ -372,30 +346,6 @@ function parseCommitJSON(json) {
 		commitDate: json['commit']['author']['date']
 	}
 }
-
-function parseUserGistsJSON(json) {
-	return json[0]['id'];
-}
-
-function parseGistDetailsJSON(json) {
-	return {
-		gistID: json['id'],
-		gistURL: json['html_url'],
-		gistName: Object.keys(json['files'])[0],
-		gistDescription: json['description'],
-		gistFileCount: Object.keys(json['files']).length,
-		gistCommentCount: json['comments'],
-		gistForkCount: json['forks'].length,
-		gistRevisionCount: json['history'].length,
-		gistCreatedDate: json['created_at'],
-		gistUpdatedDate: json['updated_at']
-	}
-}
-
-function parseGistStarCountHTML(html) {
-	return parseInt(html.split('social-count')[1].split('>')[1].split('<')[0].trim())
-}
-
 
 
 

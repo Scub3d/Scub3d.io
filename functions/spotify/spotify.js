@@ -1,4 +1,4 @@
-const { getJSONParsedExternalAPIData, isEmptyObject, shuffle, uploadExternalFileToBucket, getColorPaletteForImage, getColorLuma, downloadFileFromURL, uploadLocalFileToBucket } = require('../misc/common');
+const { getJSONParsedExternalAPIData, isEmptyObject, shuffle, uploadExternalFileToBucket, getColorPaletteForImage, getColorLuma } = require('../misc/common');
 const { db } = require('../misc/initFirebase');
 const functions = require('firebase-functions');
 const cors = require('cors')({origin: true});

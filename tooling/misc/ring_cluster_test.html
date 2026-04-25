@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ring cluster quality gate</title>
+<style>
+	body { margin: 0; background: #111; color: #eee; font: 14px system-ui, sans-serif; }
+	.ref { padding: 16px; }
+	.ref h1 { margin: 0 0 8px; }
+	.ref p { margin: 0; color: #888; max-width: 720px; line-height: 1.5; }
+	.controls { padding: 16px; background: #0a0a0a; margin: 16px; border-radius: 8px; display: flex; gap: 24px; flex-wrap: wrap; }
+	.controls > div { display: flex; flex-direction: column; min-width: 180px; }
+	.controls label { color: #aaa; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+	.controls input { width: 100%; }
+	.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px; }
+	.slot { background: #000; border-radius: 12px; padding: 12px; }
+	.slot h2 { margin: 0 0 8px; font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+	.slot canvas { display: block; width: 100%; aspect-ratio: 1 / 1; }
+	.arlike { padding: 16px; margin: 0 16px 16px; background: #0a0a0a; border-radius: 12px; }
+	.arlike h2 { margin: 0 0 8px; color: #888; font-size: 14px; }
+	.arlike canvas { width: 100%; max-width: 1024px; aspect-ratio: 4 / 1; display: block; background: #000; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="ref">
+	<h1>Ring cluster quality gate</h1>
+	<p>Three concentric 3D torus rings per cluster (Move / Exercise / Stand
+	  analogs), staggered on Z for parallax depth. Top grid shows three
+	  clusters isolated at different progress levels; bottom shows the 4:1
+	  widget face mockup with three clusters side by side + a breadcrumb
+	  slot on the right.</p>
+</div>
+<div class="controls">
+	<div><label>Move progress (%)</label>
+		<input id="move" type="range" min="0" max="150" value="78"></div>
+	<div><label>Exercise progress (%)</label>
+		<input id="exercise" type="range" min="0" max="150" value="45"></div>
+	<div><label>Stand progress (%)</label>
+		<input id="stand" type="range" min="0" max="150" value="100"></div>
+	<div><label>Tilt (°)</label>
+		<input id="tilt" type="range" min="0" max="60" value="15"></div>
+	<div><label>Zoom</label>
+		<input id="zoom" type="range" min="50" max="200" value="100"></div>
+</div>
+<div class="grid" id="grid"></div>
+<div class="arlike">
+	<h2>4:1 widget face preview</h2>
+	<canvas id="widgetCanvas"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="/static/ar/js/misc/ringCluster.js"></script>
+<script>
+const SCENARIOS = [
+	{ name: 'today',   label: 'Daily',   tag: 'today' },
+	{ name: 'week',    label: 'Weekly',  tag: 'week'  },
+	{ name: 'month',   label: 'Monthly', tag: 'month' },
+];
+
+function makePanel(container, isWide) {
+	const canvas = document.createElement('canvas');
+	container.appendChild(canvas);
+	const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+	renderer.setPixelRatio(window.devicePixelRatio);
+	const scene = new THREE.Scene();
+	scene.background = new THREE.Color(0x000000);
+	const camera = new THREE.PerspectiveCamera(30, isWide ? 4 : 1, 0.1, 10);
+	camera.position.set(0, 0, 2.2);
+	camera.lookAt(0, 0, 0);
+	function resize() {
+		const r = canvas.getBoundingClientRect();
+		const dpr = window.devicePixelRatio || 1;
+		renderer.setSize(r.width * dpr, r.height * dpr, false);
+		canvas.style.width = r.width + 'px';
+		canvas.style.height = r.height + 'px';
+		camera.aspect = r.width / r.height;
+		camera.updateProjectionMatrix();
+	}
+	return { canvas, renderer, scene, camera, resize };
+}
+
+// Isolated cluster panels (one per scenario)
+const isoPanels = [];
+const grid = document.getElementById('grid');
+for (const sc of SCENARIOS) {
+	const slot = document.createElement('div');
+	slot.className = 'slot';
+	const title = document.createElement('h2');
+	title.textContent = sc.label;
+	slot.appendChild(title);
+	const panel = makePanel(slot, false);
+	const cluster = new RingCluster();
+	panel.scene.add(cluster.group);
+	grid.appendChild(slot);
+	isoPanels.push({ panel, cluster });
+	new ResizeObserver(panel.resize).observe(panel.canvas);
+}
+
+// Widget-face preview (4:1, three clusters + breadcrumb slot)
+const widgetPanel = makePanel(document.getElementById('widgetCanvas').parentElement.querySelector('canvas').parentElement, true);
+// actually simpler: rebuild using an existing canvas
+document.getElementById('widgetCanvas').remove();
+const wc = document.createElement('canvas');
+document.querySelector('.arlike').appendChild(wc);
+const widgetRenderer = new THREE.WebGLRenderer({ canvas: wc, antialias: true, alpha: false });
+widgetRenderer.setPixelRatio(window.devicePixelRatio);
+const widgetScene = new THREE.Scene();
+widgetScene.background = new THREE.Color(0x000000);
+const widgetCam = new THREE.PerspectiveCamera(25, 4, 0.1, 10);
+widgetCam.position.set(0, 0, 3.2);
+widgetCam.lookAt(0, 0, 0);
+const widgetClusters = [];
+for (let i = 0; i < 3; i++) {
+	const cluster = new RingCluster();
+	// Four zones across 4:1: rings at x = -1.5, -0.5, +0.5; breadcrumb slot at +1.5
+	cluster.group.position.x = -1.5 + i * 1.0;
+	cluster.group.scale.setScalar(0.9);
+	widgetScene.add(cluster.group);
+	widgetClusters.push(cluster);
+}
+function resizeWidget() {
+	const r = wc.getBoundingClientRect();
+	const dpr = window.devicePixelRatio || 1;
+	widgetRenderer.setSize(r.width * dpr, r.height * dpr, false);
+	wc.style.width = r.width + 'px';
+	wc.style.height = r.height + 'px';
+	widgetCam.aspect = r.width / r.height;
+	widgetCam.updateProjectionMatrix();
+}
+new ResizeObserver(resizeWidget).observe(wc);
+resizeWidget();
+
+function readCluster() {
+	const m = +document.getElementById('move').value / 100;
+	const e = +document.getElementById('exercise').value / 100;
+	const s = +document.getElementById('stand').value / 100;
+	return {
+		move:     { progress: m, goal: 1 },
+		exercise: { progress: e, goal: 1 },
+		stand:    { progress: s, goal: 1 },
+	};
+}
+
+// Progressively more-filled rings across daily/weekly/monthly to mimic
+// typical real data (monthly > weekly > daily).
+function clusterForTimescale(base, scaleFactor) {
+	return {
+		move:     { progress: base.move.progress * scaleFactor, goal: 1 },
+		exercise: { progress: base.exercise.progress * scaleFactor, goal: 1 },
+		stand:    { progress: base.stand.progress * scaleFactor, goal: 1 },
+	};
+}
+
+function render() {
+	const tilt = (+document.getElementById('tilt').value) * Math.PI / 180;
+	const zoom = +document.getElementById('zoom').value / 100;
+	const base = readCluster();
+
+	for (let i = 0; i < isoPanels.length; i++) {
+		const { panel, cluster } = isoPanels[i];
+		cluster.setProgress(base);
+		cluster.group.rotation.set(tilt, 0, 0);
+		panel.camera.position.set(0, 0, 2.2 / zoom);
+		panel.camera.lookAt(0, 0, 0);
+		panel.renderer.render(panel.scene, panel.camera);
+	}
+
+	// Widget-face: three timescales with scaled progress
+	const scales = [0.55, 0.85, 1.1];
+	for (let i = 0; i < widgetClusters.length; i++) {
+		widgetClusters[i].setProgress(clusterForTimescale(base, scales[i]));
+		widgetClusters[i].group.rotation.set(tilt, 0, 0);
+	}
+	widgetRenderer.render(widgetScene, widgetCam);
+
+	requestAnimationFrame(render);
+}
+
+// Set up inputs
+for (const id of ['move', 'exercise', 'stand', 'tilt', 'zoom']) {
+	document.getElementById(id).addEventListener('input', () => {});
+}
+for (const { panel } of isoPanels) panel.resize();
+render();
+</script>
+</body>
+</html>

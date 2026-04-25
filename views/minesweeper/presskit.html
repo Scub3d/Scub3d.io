@@ -1,215 +1,226 @@
-{% block css %}
-<link type="text/css" rel="stylesheet" href="//static.scub3d.io/minesweeper/css/presskit.css"  media="screen,projection"/>
-{% end %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Minesweeper in 3D!
-{% end %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presskit — 3D Minesweeper</title>
 
-{% block navbarTitle %}
-<span class="englishText">Presskit</span><span class="japaneseText">プレスキット</span><span class="displayText"></span>
-{% end %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;700&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
 
-{% block content %}
-<div class="row">
-	<div id="factsheet" class="col s12 m3 offset-m1 l2 offset-l2">
-		<div class="row subrow">
-			<div id="titleSubcolumn" class="col s12">
-				<h2>
-					<div class="leftAdjust title text"><span class="englishText">FACTSHEET</span><span class="japaneseText">ファクトシート</span><span class="displayText"></span></div>
-				</h2>
-			</div>
-			<div id="leftSubcolumn" class="col s6 m12">
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Publisher:</span><span class="japaneseText">出版社：</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Enemy Anemone</span><span class="japaneseText">Enemy Anemone</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Milwaukee, WI</span><span class="japaneseText">ウィスコンシン州ミルウォーキー</span><span class="displayText"></span></div>
-				</h5>
+    <link rel="stylesheet" href="../../static/minesweeper/css/minesweeper.css" />
+</head>
 
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Developer:</span><span class="japaneseText">開発者：</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Spenser Solys</span><span class="japaneseText">スペンサーソリス</span><span class="displayText"></span></div>
-				</h5>
+<body>
 
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Release Dates:</span><span class="japaneseText">リリース日：</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Google Play: TBD</span><span class="japaneseText">グーグルプレイ：未定</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">iOS: TBD</span><span class="japaneseText">iOS：未定</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Steam: TBD</span><span class="japaneseText">Steam：未定</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Nintendo Switch: TBD</span><span class="japaneseText">ニンテンドースイッチ：未定</span><span class="displayText"></span></div>
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="text"><span class="displayText">HOME</span></a>
+            <a href="presskit.html" class="active text"><span class="displayText">PRESSKIT</span></a>
+            <a href="privacy-policy.html" class="text"><span class="displayText">PRIVACY</span></a>
+            <a href="//scub3d.io" class="nav-back text"><span class="displayText">&#8617; SCUB3D.IO</span></a>
+        </div>
+    </nav>
 
-				</h5>
+    <main>
+        <div class="presskit-grid">
+            <!-- Sticky factsheet -->
+            <aside class="factsheet">
+                <h3>Game</h3>
+                <p>3D Minesweeper</p>
 
-				<h5>
-					<div class="leftAdjust bold text" target="_blank"><span class="englishText">Platforms:</span><span class="japaneseText">プラットフォーム：</span><span class="displayText"></span></div>
-					<a href="https://play.google.com/store" target="_blank"><div class="leftAdjust text"><span class="englishText">Google Play</span><span class="japaneseText">グーグルプレイ</span><span class="displayText"></span></div></a>
-					<a href="https://apps.apple.com/us/app/" target="_blank"><div class="leftAdjust text"><span class="englishText">iOS</span><span class="japaneseText">iOS</span><span class="displayText"></span></div></a>
-					<a href="https://store.steampowered.com/app/" target="_blank"><div class="leftAdjust text"><span class="englishText">Steam</span><span class="japaneseText">Steam</span><span class="displayText"></span></div></a>
-					<a href="https://www.nintendo.com/games/detail/" target="_blank"><div class="leftAdjust text"><span class="englishText">Nintendo Switch</span><span class="japaneseText">ニンテンドースイッチ</span><span class="displayText"></span></div></a>
-				</h5>			
-			</div>
-			<div id="rightSubcolumn" class="col s6 m12">
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Languages:</span><span class="japaneseText">言語：</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">English</span><span class="japaneseText">英語</span><span class="displayText"></span></div>
-					<div class="leftAdjust text"><span class="englishText">Japanese</span><span class="japaneseText">日本語</span><span class="displayText"></span></div>
-				</h5>
+                <h3>Developer / Publisher</h3>
+                <p>Spenser Solys (solo)<br>Seattle, WA</p>
 
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Website:</span><span class="japaneseText">ウェブサイト：</span><span class="displayText"></span></div>
-					<a href="https://minesweeper.scub3d.io/" target="_blank"><div class="leftAdjust text"><span class="englishText">minesweeper.scub3d.io</span><span class="japaneseText">minesweeper.scub3d.io</span><span class="displayText"></span></div></a>
-				</h5>
+                <h3>Status</h3>
+                <p style="color: var(--accent-safe);">In closed beta · iOS &amp; Android</p>
 
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Press / Business Contact:</span><span class="japaneseText">プレス/ビジネス連絡先：</span><span class="displayText"></span></div>
-					<a href="mailto:contact@scub3d.io"><div class="leftAdjust text"><span class="englishText">contact@scub3d.io</span><span class="japaneseText">contact.scub3d.io</span><span class="displayText"></span></div></a>
-				</h5>
+                <h3>Release</h3>
+                <p>2026 · TBD</p>
 
-				<h5>
-					<div class="leftAdjust bold text"><span class="englishText">Socials:</span><span class="japaneseText">ソーシャルメディア：</span><span class="displayText"></span></div>
-					<a href="https://twitter.com/" target="_blank"><div class="leftAdjust text"><span class="englishText">Twitter</span><span class="japaneseText">ツイッター</span><span class="displayText"></span></div></a>
-					<a href="https://facebook.com/" target="_blank"><div class="leftAdjust text"><span class="englishText">Facebook</span><span class="japaneseText">フェイスブック</span><span class="displayText"></span></div></a>
-					<a href="https://youtube.com/" target="_blank"><div class="leftAdjust text"><span class="englishText">YouTube</span><span class="japaneseText">YouTube</span><span class="displayText"></span></div></a>
-					<a href="https://reddit.com/" target="_blank"><div class="leftAdjust text"><span class="englishText">Reddit</span><span class="japaneseText">Reddit</span><span class="displayText"></span></div></a>
-					<a href="https://imgur.com/" target="_blank"><div class="leftAdjust text"><span class="englishText">Imgur</span><span class="japaneseText">Imgur</span><span class="displayText"></span></div></a>
-				</h5>
-			</div>
-		</div>
-	</div>
+                <h3>Platforms</h3>
+                <p>iOS · Android · Steam · Meta Quest</p>
 
-	<div id="mainChunk" class="col s11 m7 l7">
-		<h2>
-			<div class="leftAdjust title text"><span class="englishText">ENEMY ANEMONE</span><span class="japaneseText">ENEMY ANEMONE</span><span class="displayText"></span></div>
-		</h2>
+                <h3>Engine</h3>
+                <p>Unity · DOTS · C#</p>
 
-		<h4>
-			<div class="leftAdjust text"><span class="englishText">Under construction. Please check back later.</span><span class="japaneseText">Under construction. Please check back later.</span><span class="displayText"></span></div>
-		</h4>
+                <h3>Price</h3>
+                <p>iOS &amp; Android: Free forever<br>Steam &amp; Quest: paid (TBD)</p>
 
-		<div class="horizontal-line"></div>
+                <h3>Languages</h3>
+                <p>English · 日本語</p>
 
-<!-- 			<h2>
-			<div class="leftAdjust bold text"><span class="englishText">History</span><span class="japaneseText">歴史</span><span class="displayText"></span></div>
-		</h2>
+                <h3>Press contact</h3>
+                <p><a href="mailto:press@scub3d.io">press@scub3d.io</a></p>
 
-		<h4>
-			<div class="leftAdjust text"><span class="englishText">History Paragraph 1</span><span class="japaneseText"></span><span class="displayText"></span></div>
-		</h4>
+                <h3>Community</h3>
+                <p>
+                    <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener">Discord</a>
+                </p>
 
-		<div class="horizontal-line"></div>
--->
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">3D Minesweeper Description</span><span class="japaneseText">3Dマインスイーパの説明</span><span class="displayText"></span></div>
-		</h2>
+                <h3>Social</h3>
+                <p>
+                    <a href="https://instagram.com/scub3d" target="_blank">Instagram</a><br>
+                    <a href="https://github.com/scub3d" target="_blank">GitHub</a>
+                </p>
+            </aside>
 
-		<h4>
-			<div class="leftAdjust text"><span class="englishText">Description Paragraph 1</span><span class="japaneseText"></span><span class="displayText"></span></div>
-			<br>
-			<div class="leftAdjust text"><span class="englishText">Description Paragraph 2</span><span class="japaneseText"></span><span class="displayText"></span></div>
-		</h4>
+            <!-- Long-form body -->
+            <article class="presskit-body">
+                <div class="bracket-label">[ PRESSKIT ]</div>
+                <h2 style="font-size: var(--text-3xl); margin-top: var(--space-2);">3D Minesweeper</h2>
+                <p style="font-size: var(--text-lg); color: var(--text-primary);">
+                    Minesweeper, in true 3D. Cells fill a volumetric grid &mdash; mines hide
+                    above, below, in front, behind. Sweep <em>through</em>, not just across.
+                </p>
 
-		<div class="horizontal-line"></div>
+                <h2>Description</h2>
+                <p>
+                    Most "3D Minesweeper" games take the classic flat board and wrap it
+                    around a sphere or fold it onto the faces of a cube. 3D Minesweeper
+                    doesn't. The board <em>is</em> the volume: a 3 dimensional lattice of cells
+                </p>
+                <p>
+                    The cell shape changes the <em>number of faces</em> &mdash; and therefore the
+                    number of neighbors &mdash; which changes how mines hide and how
+                    the puzzle unwinds. The full release ships with 20+ cell shapes on
+                    Steam and Meta Quest; the mobile builds carry a curated subset.
+                </p>
+                <p>
+                    One important departure from classic Minesweeper: a cell's number
+                    only counts mines in cells that share a <strong>face</strong>. Edges
+                    and corners don't count. (A cube cell has six neighbors, not
+                    twenty-six.) This is deliberate &mdash; counting all 26 corner-and-edge
+                    neighbors makes 3D play overwhelming and too difficulty. Veterans of classic
+                    Minesweeper need a board or two to recalibrate.
+                </p>
 
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">Features</span><span class="japaneseText">特徴</span><span class="displayText"></span></div>
-		</h2>
+                <h2>Features</h2>
+                <ul>
+                    <li>True 3D play &mdash; cells fill a volume, not a surface.</li>
+                    <li>Face-only adjacency &mdash; numbers count mines in face-sharing cells, never corners or edges. A
+                        deliberate departure from classic Minesweeper.</li>
+                    <li>20+ cell shapes on Steam &amp; Quest; 5&ndash;10 on mobile.</li>
+                    <li>Multiple visual themes, including a color-blind palette.</li>
+                    <li>Three difficulties on mobile (5&sup3;, 7&sup3;, 9&sup3;); larger and custom sizes on Steam &amp;
+                        Quest.</li>
+                    <li>Local saves &mdash; no cloud account required.</li>
+                    <li>Built on Unity DOTS with performance in mind to hit target FPS on any device</li>
+                </ul>
 
-		<h4 class="no-top-margin">
-			<ul class="browser-default no-top-margin">
-				<li class="leftAdjust title text"><span class="englishText">Point one</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-				<li class="leftAdjust title text"><span class="englishText">Point two</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-				<li class="leftAdjust title text"><span class="englishText">Point three</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-				<li class="leftAdjust title text"><span class="englishText">Point four</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-				<li class="leftAdjust title text"><span class="englishText">Point seven</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-				<li class="leftAdjust title text"><span class="englishText">Point six</span><span class="japaneseText">Todo</span><span class="displayText"></span></li>
-			</ul>	
-		</h4>
+                <h2>Shape Catalog</h2>
+                <p>
+                    Each shape has its own neighbor topology, so adjacency-counting
+                    plays differently across the catalog. The full set ships on Steam
+                    &amp; Meta Quest; mobile carries a curated subset.
+                </p>
+                <div class="shape-chips" style="margin-top: var(--space-3);">
+                    <span class="shape-chip">Cube</span>
+                    <span class="shape-chip">Triangular Prism</span>
+                    <span class="shape-chip">Hexagonal Prism</span>
+                    <span class="shape-chip">Truncated Octahedron</span>
+                    <span class="shape-chip">Elongated Rhombic Dodecahedron</span>
+                    <span class="shape-chip">Prismatoid</span>
+                    <span class="shape-chip">Rectangular Cuboid</span>
+                    <span class="shape-chip">Trapezo Rhombic Dodecahedron</span>
+                    <span class="shape-chip">Gyrobifastigium</span>
+                    <span class="shape-chip">Convex Elongated Gyrobifastigium</span>
+                    <span class="shape-chip">Concave Elongated Gyrobifastigium</span>
+                    <span class="shape-chip">Triakis Truncated Tetrahedron</span>
+                    <span class="shape-chip">Octokaideca Plesiohedron</span>
+                    <span class="shape-chip">Ten of Diamonds Decahedron</span>
+                    <span class="shape-chip">Bisymmetric Hendecahedron</span>
+                    <span class="shape-chip">Elongated Square Bipyramid</span>
+                    <span class="shape-chip">Sphenoid Hendecahedron</span>
+                </div>
 
-		<div class="horizontal-line"></div>
+                <h2>Beta</h2>
+                <p>
+                    The mobile build is currently in closed beta on iOS (TestFlight)
+                    and Android (Google Play). Players, press, and reviewers can
+                    request access &mdash; or follow development and talk to the
+                    community &mdash; through the game's Discord:
+                    <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener" style="color: var(--accent-primary);">discord.gg/4nkgFJXdA</a>.
+                </p>
 
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">Videos</span><span class="japaneseText">ビデオ</span><span class="displayText"></span></div>
-		</h2>
+                <h2>Pricing &amp; Availability</h2>
+                <p>
+                    The mobile builds (iOS, Android) are free forever. There will never be Ads or in-app purchases.
+                    The trade-off is that mobile is capped at the three preset board sizes
+                    (5&sup3;, 7&sup3;, 9&sup3;) and ships with a curated subset of the
+                    cell shapes. Players who want larger or custom boards or the complete
+                    shape catalog can buy the game once on Steam or the Meta Quest store.
+                </p>
 
- 		<div class="video-container">
-			<iframe src="//www.youtube.com/embed/c1qPTujxxrM?wmode=opaque" frameborder="0" allowfullscreen></iframe>
-		</div>
+                <h2>Modes</h2>
+                <p>
+                    At launch, the game ships with one mode: solve the board, optionally
+                    against the clock. A daily-challenge mode (one shared seed per day,
+                    global leaderboard) is on the post-launch roadmap.
+                </p>
 
-		<div class="video-container">
-			<iframe src="//www.youtube.com/embed/c1qPTujxxrM?wmode=opaque" frameborder="0" allowfullscreen></iframe>
-		</div>
+                <h2>Screenshots</h2>
+                <div class="screenshots">
+                    <div class="screenshot"><img src="../../static/minesweeper/img/screenshot_1.png" alt="Screenshot 1"
+                            loading="lazy"></div>
+                    <div class="screenshot"><img src="../../static/minesweeper/img/screenshot_2.png" alt="Screenshot 2"
+                            loading="lazy"></div>
+                    <div class="screenshot"><img src="../../static/minesweeper/img/screenshot_3.png" alt="Screenshot 3"
+                            loading="lazy"></div>
+                </div>
 
-		<div class="video-container">
-			<iframe src="//www.youtube.com/embed/c1qPTujxxrM?wmode=opaque" frameborder="0" allowfullscreen></iframe>
-		</div>
+                <h2>Trailer</h2>
+                <div class="screenshot" style="aspect-ratio: 16/9;">
+                    <div
+                        style="display:flex; align-items:center; justify-content:center; height:100%; color:var(--text-tertiary); font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:0.2em;">
+                        [ TRAILER · COMING SOON ]
+                    </div>
+                </div>
 
+                <h2>Logo &amp; Icon</h2>
+                <p>High-resolution assets (PNG, SVG, transparent) — coming soon.</p>
+                <div class="download-row">
+                    <a href="#" class="cta cta-disabled">[ Logo Pack &#8595; ]</a>
+                    <a href="#" class="cta cta-disabled">[ Screenshot Pack &#8595; ]</a>
+                    <a href="#" class="cta cta-disabled">[ Full Press Bundle &#8595; ]</a>
+                </div>
 
-		<div class="horizontal-line"></div>
+                <h2>About the Developer</h2>
+                <p>
+                    Spenser Solys is an independent developer based in Seattle.
+                    His background is in real-time graphics and immersive software
+                    &mdash; enterprise AR on Apple Vision Pro at Walmart's Store
+                    N&deg;8, and the AR business-card framework at
+                    <a href="//scub3d.io" style="color: var(--accent-primary);">scub3d.io</a>.
+                    3D Minesweeper is his first self-published game, built solo
+                    over nights and weekends.
+                </p>
 
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">Screenshots</span><span class="japaneseText">スクリーンショット</span><span class="displayText"></span></div>
-		</h2>
+                <h2>Contact</h2>
+                <p>
+                    Press inquiries: <a href="mailto:press@scub3d.io"
+                        style="color: var(--accent-primary);">press@scub3d.io</a><br>
+                    General: <a href="mailto:hello@scub3d.io" style="color: var(--accent-primary);">hello@scub3d.io</a>
+                </p>
+            </article>
+        </div>
 
-		<div class="row">
-			<div class="col s3">
-				<a href="//static.scub3d.io/minesweeper/img/screenshot_1.png"><img class="screenshot responsive-img" src="//static.scub3d.io/minesweeper/img/screenshot_1.png"></a>
-			</div>
-			<div class="col s3">
-				<a href="//static.scub3d.io/minesweeper/img/screenshot_2.png"><img class="screenshot responsive-img" src="//static.scub3d.io/minesweeper/img/screenshot_2.png"></a>
-			</div>
+        <footer class="site-footer">
+            &#169; <span id="footerYear"></span> Spenser Solys &middot;
+            <a href="index.html">Home</a> &middot;
+            <a href="privacy-policy.html">Privacy</a> &middot;
+            <a href="//scub3d.io">scub3d.io</a>
+        </footer>
+    </main>
 
-			<div class="col s3">
-				<a href="//static.scub3d.io/minesweeper/img/screenshot_3.png"><img class="screenshot responsive-img" src="//static.scub3d.io/minesweeper/img/screenshot_3.png"></a>
-			</div>
-			<div class="col s3">
-				<a href="//static.scub3d.io/minesweeper/img/screenshot_1.png"><img class="screenshot responsive-img" src="//static.scub3d.io/minesweeper/img/screenshot_1.png"></a>
-			</div>
+    <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+    </script>
 
-		</div>
+</body>
 
-
-		<div class="horizontal-line"></div>
-
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">GIFS</span><span class="japaneseText">GIFS</span><span class="displayText"></span></div>
-		</h2>
-
-		<div class="row">
-			<div class="col s6 m6 l4">
-				<div class="gyfcat"><iframe src='https://gfycat.com/ifr/MilkyAcademicAfricanclawedfrog' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
-			</div>
-
-			<div class="col s6 m6 l4">
-				<div class="gyfcat"><iframe src='https://gfycat.com/ifr/MilkyAcademicAfricanclawedfrog' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
-			</div>
-
-			<div class="col s6 m6 l4">
-				<div class="gyfcat"><iframe src='https://gfycat.com/ifr/MilkyAcademicAfricanclawedfrog' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
-			</div>
-		</div>
-
-
-		<div class="horizontal-line"></div>
-
-		<h2>
-			<div class="leftAdjust bold text"><span class="englishText">Logos</span><span class="japaneseText">：</span><span class="displayText"></span></div>
-		</h2>
-
-		<div class="row">
-			<div class="col s6">
-				<a href=""><img class="screenshot responsive-img" src=""></a>
-				<a href=""><img class="screenshot responsive-img" src=""></a>
-			</div>
-			<div class="col s6">
-				<a href=""><img class="screenshot responsive-img" src=""></a>
-				<a href=""><img class="screenshot responsive-img" src=""></a>
-			</div>
-
-		</div>
-	</div>
-</div>
-{% end %}
-
-{% block js %}
-<!-- Ignore me? --> 
-{% end %}
+</html>

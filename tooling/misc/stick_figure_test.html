@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Workout figure quality gate (2D)</title>
+<style>
+	body { margin: 0; background: #111; color: #eee; font: 14px system-ui, sans-serif; }
+	.ref { padding: 16px; }
+	.ref h1 { margin: 0 0 8px; }
+	.ref p { margin: 0; color: #888; max-width: 720px; line-height: 1.4; }
+	.controls { padding: 16px; background: #0a0a0a; margin: 16px; border-radius: 8px; }
+	.controls label { margin-right: 16px; color: #aaa; }
+	.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px; }
+	.slot { background: #0a0a0a; border-radius: 12px; padding: 12px; }
+	.slot h2 { margin: 0 0 8px; font-size: 16px; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; }
+	.slot canvas { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 6px; background: #000; }
+</style>
+</head>
+<body>
+<div class="ref">
+	<h1>Workout figure quality gate — 2D canvas</h1>
+	<p>Each pose hand-composed from line/curve/circle primitives at
+	  Apple-green on black. If any read wrong (proportions, pose ambiguity,
+	  prop placement), the pose drawers are in
+	  <code>static/ar/js/misc/stickFigure.js</code> — tunable in a single
+	  dictionary.</p>
+</div>
+<div class="controls">
+	<label>Background: <input id="bg" type="color" value="#000000"></label>
+	<label>Figure color: <input id="fg" type="color" value="#34c759"></label>
+</div>
+<div class="grid" id="grid"></div>
+
+<script src="/static/ar/js/misc/stickFigure.js"></script>
+<script>
+const POSES_TO_PREVIEW = [
+	'default', 'walking', 'running',
+	'hiking', 'weightlifting', 'hiit',
+	'yoga', 'pilates', 'climbing',
+];
+
+const canvases = [];
+const grid = document.getElementById('grid');
+for (const poseName of POSES_TO_PREVIEW) {
+	const slot = document.createElement('div');
+	slot.className = 'slot';
+	const title = document.createElement('h2');
+	title.textContent = poseName;
+	slot.appendChild(title);
+	const canvas = document.createElement('canvas');
+	slot.appendChild(canvas);
+	grid.appendChild(slot);
+	canvases.push({ canvas, poseName });
+}
+
+function render() {
+	const bg = document.getElementById('bg').value;
+	const fg = document.getElementById('fg').value;
+	for (const { canvas, poseName } of canvases) {
+		// Size internal canvas to rendered size × devicePixelRatio for crisp
+		// strokes on HiDPI.
+		const r = canvas.getBoundingClientRect();
+		const dpr = window.devicePixelRatio || 1;
+		canvas.width = Math.round(r.width * dpr);
+		canvas.height = Math.round(r.height * dpr);
+		const ctx = canvas.getContext('2d');
+		drawWorkoutFigure(ctx, poseName, canvas.width, canvas.height, { color: fg, background: bg });
+	}
+}
+
+window.addEventListener('resize', render);
+document.getElementById('bg').addEventListener('input', render);
+document.getElementById('fg').addEventListener('input', render);
+render();
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const { getExternalAPIData, getExternalAPICookie, uploadExternalFileToBucketUsingCookies, getExternalAPIResponseStatus, getExternalAPIDataWithCookies, getJSONParsedExternalAPIData, uploadExternalFileToBucket, deleteFirestoreDataForPath, generateCookieForHeader, parseCookieData, getExternalHTML, roundImage, cropImage, downloadFileFromURL, uploadLocalFileToBucket, setFileMetadata  } = require('../misc/common');
+const { getJSONParsedExternalAPIData, uploadExternalFileToBucket, roundImage, downloadFileFromURL, uploadLocalFileToBucket } = require('../misc/common');
 const { db, storage, admin } = require('../misc/initFirebase');
 
 const { v4: uuidv4 } = require('uuid');
@@ -40,6 +40,32 @@ function generateSummonerInfoRequestOptions(auth) {
 	return {
 		method: 'GET',
 		uri: 'https://' + auth.region + '.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/' + auth.puuid,
+		headers: {
+			'Accept-Language': 'en-US,en;q=0.9',
+			'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
+			'X-Riot-Token': auth.apiToken
+		}
+	}
+}
+
+// The Account API lives on the regional (americas/asia/europe/sea) route,
+// NOT the platform route (na1, euw1, etc.) like summoner-v4 does. Riot
+// migrated display names to Riot IDs (GameName#TagLine) and deprecated the
+// `name` field on summoner-v4 responses, so the account endpoint is now the
+// only way to get the user-facing name.
+function platformRouteToRegionalRoute(region) {
+	const r = (region || '').toLowerCase();
+	if(['na1', 'br1', 'la1', 'la2', 'oc1'].includes(r)) return 'americas';
+	if(['kr', 'jp1'].includes(r)) return 'asia';
+	if(['euw1', 'eun1', 'tr1', 'ru'].includes(r)) return 'europe';
+	if(['ph2', 'sg2', 'th2', 'tw2', 'vn2'].includes(r)) return 'sea';
+	return 'americas';
+}
+
+function generateRiotAccountRequestOptions(auth) {
+	return {
+		method: 'GET',
+		uri: 'https://' + platformRouteToRegionalRoute(auth.region) + '.api.riotgames.com/riot/account/v1/accounts/by-puuid/' + auth.puuid,
 		headers: {
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -94,6 +120,12 @@ exports.league = functions.https.onRequest( async (req, res) => {
 		const summonerInfoRequestOptions = generateSummonerInfoRequestOptions(auth);
 		const summonerInfoData = await getJSONParsedExternalAPIData(summonerInfoRequestOptions);
 		const summonerInfoJSON = parseSummonerInfoJSON(summonerInfoData);
+
+		// summoner-v4 no longer returns display names — fetch from the Account API.
+		const accountRequestOptions = generateRiotAccountRequestOptions(auth);
+		const accountData = await getJSONParsedExternalAPIData(accountRequestOptions);
+		summonerInfoJSON['gameName'] = accountData['gameName'];
+		summonerInfoJSON['tagLine'] = accountData['tagLine'];
 
 		auth['encryptedSummonerID'] = summonerInfoJSON['encryptedSummonerID'];
 
@@ -182,7 +214,6 @@ function parseSummonerInfoJSON(json) {
 	return {
 		timestamp: Date.now(),
 		encryptedSummonerID: json['id'],
-		summonerName: json['name'],
 		summonerLevel: json['summonerLevel'],
 		profileImageID: json['profileIconId']
 	}

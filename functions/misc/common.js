@@ -2,7 +2,6 @@ const { db, admin, storage } = require('./initFirebase');
 
 const firebaseTools = require('firebase-tools');
 const request = require('request').defaults({ encoding: null });;
-const { getColorFromURL, getPaletteFromURL } = require('color-thief-node');
 const rgbHex = require('rgb-hex');
 const stream = require('stream');
 const fs = require('fs');
@@ -116,18 +115,30 @@ async function getExternalAPIDataWithCookies(options) {
 async function getJSONParsedExternalAPIData(options) {
 	return new Promise(function(resolve, reject) {
 		request(options, function(error, response, body) {
-			// console.log("\n\n")
-			// console.log(JSON.stringify(options));
-			// console.log(response.statusCode)
-			// console.log(JSON.parse(body));
-			// console.log(JSON.stringify(body));
-			// console.log("\n\n")
-			if(!error && (response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 302)) {
-				resolve(JSON.parse(body));
-			} else if(!error && (response.statusCode === 204 || response.statusCode === 400 || response.statusCode === 401 || response.statusCode === 404)) {
+			const uri = (options && (options.uri || options.url)) || '<unknown>';
+			if(error) {
+				console.error('[getJSONParsedExternalAPIData] network error for ' + uri + ':', error.message || error);
+				reject(error);
+				return;
+			}
+			if(response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 302) {
+				try {
+					resolve(JSON.parse(body));
+				} catch (parseErr) {
+					console.error('[getJSONParsedExternalAPIData] JSON parse error for ' + uri + ' (status ' + response.statusCode + '): ' + parseErr.message + '. Body preview: ' + String(body).slice(0, 200));
+					reject(parseErr);
+				}
+				return;
+			}
+			// Non-2xx — log loudly before deciding whether to resolve empty or reject.
+			// Callers currently rely on {} for these codes, so we keep that behavior
+			// but surface the actual response so upstream problems don't look like
+			// "undefined field" errors later.
+			console.warn('[getJSONParsedExternalAPIData] non-success status ' + response.statusCode + ' for ' + uri + '. Body preview: ' + String(body).slice(0, 300));
+			if(response.statusCode === 204 || response.statusCode === 400 || response.statusCode === 401 || response.statusCode === 404) {
 				resolve({});
 			} else {
-				reject(error);
+				reject(new Error('HTTP ' + response.statusCode + ' from ' + uri));
 			}
 		});
 	});
@@ -322,6 +333,7 @@ async function uploadFile(buffer, destinationPath, contentType) {
 // }
 
 async function getColorPaletteForImage(url) {
+	const { getPaletteFromURL } = require('color-thief-node');
 	colorPalette = await getPaletteFromURL(url);
 	
 	colors = []

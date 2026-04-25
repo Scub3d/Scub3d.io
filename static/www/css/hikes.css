@@ -1,0 +1,568 @@
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a25;
+    --text-primary: #e8e8ed;
+    --text-secondary: #8888a0;
+    --text-tertiary: #505068;
+    --accent-primary: #4a9eff;
+    --accent-glow: rgba(74, 158, 255, 0.4);
+    --accent-hike: #2ecc71;
+    --line-color: rgba(136, 136, 160, 0.2);
+    --line-active: rgba(136, 136, 160, 0.5);
+    --bracket-color: rgba(136, 136, 160, 0.4);
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-jp: 'Noto Sans JP', sans-serif;
+    --text-xs: 0.75rem;
+    --text-sm: 0.9rem;
+    --text-base: 1.1rem;
+    --text-lg: 1.35rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --nav-height: 56px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-8);
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-color);
+    z-index: 100;
+    font-family: var(--font-mono);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.nav-links a {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    position: relative;
+    transition: color 0.2s;
+    padding: var(--space-1) 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-links a.active {
+    color: var(--accent-primary);
+}
+
+.nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--line-active);
+}
+
+/* ---- Shared nav: width-lock + EN/JP anchored right ---- */
+.site-nav .nav-links a.text {
+    display: inline-grid;
+    grid-template-areas: "stack";
+    justify-items: center;
+}
+.site-nav .nav-links a.text > span {
+    grid-area: stack;
+    text-align: center;
+    white-space: nowrap;
+}
+.site-nav .nav-links a.text > .englishText,
+.site-nav .nav-links a.text > .japaneseText {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
+}
+.site-nav .nav-links .js-translate {
+    margin-left: var(--space-6);
+}
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-overlay a {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.nav-overlay a:hover {
+    color: var(--accent-primary);
+}
+
+.nav-overlay-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-8);
+    background: none;
+    border: 1px solid var(--line-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-overlay-close:hover {
+    color: var(--text-primary);
+    border-color: var(--line-active);
+}
+
+/* ============================================================
+   MAIN LAYOUT — split screen
+   ============================================================ */
+main {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: 55%;
+    height: calc(100vh - var(--nav-height));
+    z-index: 1;
+}
+
+/* ============================================================
+   TERRAIN PANEL
+   ============================================================ */
+.terrain-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--space-6) var(--space-6) var(--space-6);
+    gap: var(--space-4);
+}
+
+.terrain-header {
+    display: flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    border-bottom: 1px solid var(--line-color);
+    flex-shrink: 0;
+    gap: var(--space-4);
+    background: var(--bg-primary);
+    z-index: 2;
+}
+
+.terrain-title {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+}
+
+.bracket-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+#hikeCount {
+    margin-left: auto;
+}
+
+/* Hike details (below map) */
+.hike-details {
+    flex-shrink: 0;
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--line-color);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hike-details.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hike-detail-name {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+}
+
+.hike-detail-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-1) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-3);
+}
+
+.hike-detail-label {
+    color: var(--text-tertiary);
+}
+
+.hike-detail-value {
+    color: var(--text-secondary);
+}
+
+.hike-detail-links {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.hike-detail-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    border: 1px solid var(--line-color);
+    padding: 2px 8px;
+    letter-spacing: 0.1em;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.hike-detail-link:hover {
+    color: var(--accent-hike);
+    border-color: var(--accent-hike);
+}
+
+/* Hike list */
+.hike-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2) 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-tertiary) transparent;
+}
+.hike-list::-webkit-scrollbar {
+    width: 4px;
+}
+.hike-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.hike-list::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 2px;
+}
+.hike-list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.hike-list-state {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: var(--space-3) var(--space-2) var(--space-1);
+    opacity: 0.6;
+}
+
+.hike-list-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    border-left: 2px solid transparent;
+}
+
+.hike-list-item:hover {
+    color: var(--text-secondary);
+    background: rgba(136, 136, 160, 0.05);
+}
+
+.hike-list-item.active {
+    color: var(--text-primary);
+    border-left-color: var(--accent-hike);
+}
+
+.hike-list-item-name {
+    flex: 1;
+}
+
+.hike-list-item-dist {
+    color: var(--text-tertiary);
+    white-space: nowrap;
+}
+
+/* Mapbox terrain viewport */
+.terrain-viewport {
+    height: 55%;
+    flex-shrink: 0;
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--line-color);
+}
+
+.terrain-viewport::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 0 40px rgba(10, 10, 15, 0.6);
+}
+
+.terrain-viewport .mapboxgl-canvas {
+    outline: none;
+}
+
+/* Override Mapbox attribution to match theme */
+.terrain-viewport .mapboxgl-ctrl-attrib {
+    background: rgba(10, 10, 15, 0.6) !important;
+    font-size: 0.55rem !important;
+}
+
+.terrain-viewport .mapboxgl-ctrl-attrib a {
+    color: var(--text-tertiary) !important;
+}
+
+/* Placeholder when no map loaded */
+.terrain-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.terrain-placeholder.hidden {
+    opacity: 0;
+}
+
+/* ============================================================
+   GLOBE (right side)
+   ============================================================ */
+#globe-container {
+    position: fixed;
+    top: var(--nav-height);
+    right: 0;
+    width: 45%;
+    height: calc(100vh - var(--nav-height));
+    z-index: 0;
+    pointer-events: auto;
+    border-left: 1px solid var(--line-color);
+}
+
+#globe-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.globe-label {
+    position: fixed;
+    right: var(--space-8);
+    bottom: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    text-align: right;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-height: 1.5em;
+    transition: opacity 0.3s;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* ============================================================
+   RAW / LIVE STATE TRANSITIONS
+   ============================================================ */
+.raw-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    opacity: 0.5;
+    margin-bottom: var(--space-2);
+    padding-left: var(--space-6);
+    transition: opacity 0.6s ease, max-height 0.6s ease;
+    max-height: 2em;
+    overflow: hidden;
+}
+
+.state-live .raw-tag {
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+}
+
+.state-raw .terrain-panel {
+    opacity: 0.3;
+}
+
+.state-raw #globe-container {
+    opacity: 0;
+}
+
+.state-live .terrain-panel {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.state-live #globe-container {
+    opacity: 1;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   BILINGUAL
+   ============================================================ */
+.text .englishText,
+.text .japaneseText {
+    display: none;
+}
+
+.japanese .displayText {
+    font-family: var(--font-jp);
+}
+
+.dud {
+    color: var(--text-tertiary);
+    opacity: 0.6;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    main {
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+    }
+
+    #globe-container,
+    .globe-label {
+        display: none;
+    }
+
+    .terrain-viewport {
+        height: 50%;
+    }
+}

@@ -1,5 +1,5 @@
 const functions = require('firebase-functions');
-const cors = require('cors')({origin: true});
+const cors = require('cors')({ origin: true });
 const { uploadLocalFileToBucket, downloadFileFromURL, getJSONParsedExternalAPIData, uploadExternalFileToBucket, deleteFirestoreDataForPath, deleteStorageDataWithPrefix, cropMP4File } = require('../misc/common');
 const { db, storage } = require('../misc/initFirebase');
 const fs = require('fs').promises;
@@ -53,25 +53,25 @@ function generateMiniProfileRequestOptions(auth) {
 
 function generateRecentlyPlayedGamesRequestOptions(auth) {
 	return {
-		url: 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&count=50'
+		url: 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&count=50'
 	}
 }
 
 function generateOwnedGamesRequestOptions(auth, appID) {
 	return {
-		url: 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&include_appinfo=true'
+		url: 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&include_appinfo=true'
 	}
 }
 
 function generatePlayerAchievementsForGameRequestOptions(auth, appID) {
 	return {
-		url: 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&appid=' + appID
+		url: 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&appid=' + appID
 	}
 }
 
 function generateUserStatsForGameRequestOptions(auth, appID) {
 	return {
-		url: 'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&appid=' + appID
+		url: 'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?key=' + auth.apiKey + '&steamid=' + auth.steamID + '&appid=' + appID
 	}
 }
 
@@ -87,12 +87,12 @@ function generateAppDetailsRequestOptions(appID, language) {
 	}
 }
 
-exports.steam = functions.https.onRequest( async (req, res) => {	
+exports.steam = functions.https.onRequest(async (req, res) => {
 	await cors(req, res, async () => {
 		const authDocument = await db.collection('auth').doc('steam').get();
 
-		if(!authDocument.exists) {
-			return res.send({'error': 'something went wrong, try again later'});
+		if (!authDocument.exists) {
+			return res.send({ 'error': 'something went wrong, try again later' });
 		}
 
 		const auth = authDocument.data();
@@ -101,13 +101,13 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 
 		var previousAppID = undefined;
 
-		if(steamDocument.exists) {
-			if(Date.now() - steamDocument.data().timestamp <= SERVER_SIDE_DATA_REFRESH_INTERVAL) { 
+		if (steamDocument.exists) {
+			if (Date.now() - steamDocument.data().timestamp <= SERVER_SIDE_DATA_REFRESH_INTERVAL) {
 				return res.send(steamDocument.data());
-			} 
+			}
 
 			previousAppID = steamDocument.data().appID;
-		} 
+		}
 
 		const playerSummaryAPIRequestOptions = generatePlayerSummaryRequestOptions(auth);
 		const playerSummaryJSON = await getJSONParsedExternalAPIData(playerSummaryAPIRequestOptions);
@@ -117,7 +117,7 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 		const miniProfileJSON = await getJSONParsedExternalAPIData(miniProfileRequestOptions);
 		const parsedMiniProfileJSON = await parseMiniProfileJSON(miniProfileJSON, steamDocument.data());
 
-		if(parsedPlayerSummaryJSON['appID'] === undefined) {
+		if (parsedPlayerSummaryJSON['appID'] === undefined) {
 			// Delete all documents currently in the achievements and stats subcollecitons
 			// await deleteFirestoreDataForPath('data/steam/achievements');	
 			// await deleteFirestoreDataForPath('data/steam/stats');
@@ -127,9 +127,9 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 			await db.collection('data').doc('steam').set(parsedJSON);
 			return res.send(parsedJSON);
 		}
-			
+
 		parsedPlayerSummaryJSON['isPlaying'] = true; // wasn't getting set below
-			
+
 		const currentAppID = parseInt(parsedPlayerSummaryJSON['appID']);
 
 		const ownedGamesAPIRequestOptions = generateOwnedGamesRequestOptions(auth);
@@ -140,7 +140,7 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 		// const recentlyPlayedGamesJSON = await getJSONParsedExternalAPIData(recentlyPlayedGamesAPIRequestOptions);
 		// const parsedRecentlyPlayedGamesJSON = await parseRecentlyPlayedGamesJSON(recentlyPlayedGamesJSON, currentAppID);
 
-		if(previousAppID === currentAppID) {
+		if (previousAppID === currentAppID) {
 			const parsedJSON = Object.assign(parsedPlayerSummaryJSON, parsedOwnedGamesJSON);//, parsedRecentlyPlayedGamesJSON);
 
 			await db.collection('data').doc('steam').update(parsedJSON);
@@ -157,12 +157,12 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 
 		var parsedSchemasForGameJSON = {};
 
-		for(var languageIndex = 0; languageIndex < LANGUAGE_URL_PARAM_VALUES.length; languageIndex++) {
+		for (var languageIndex = 0; languageIndex < LANGUAGE_URL_PARAM_VALUES.length; languageIndex++) {
 			const schemaForGameAPIRequestOptions = generateSchemaForGameRequestOptions(auth, currentAppID, LANGUAGE_URL_PARAM_VALUES[languageIndex]);
 			const schemaForGameInLanguageJSON = await getJSONParsedExternalAPIData(schemaForGameAPIRequestOptions);
 			const parsedSchemaForGameInLanguageJSON = await parseSchemaForGameForLanguageJSON(schemaForGameInLanguageJSON);
 
-			parsedSchemasForGameJSON[LANGUAGE_URL_PARAM_VALUES[languageIndex]] = parsedSchemaForGameInLanguageJSON;	
+			parsedSchemasForGameJSON[LANGUAGE_URL_PARAM_VALUES[languageIndex]] = parsedSchemaForGameInLanguageJSON;
 		}
 
 		// Delete all documents currently in the achievements and stats subcollecitons
@@ -170,7 +170,7 @@ exports.steam = functions.https.onRequest( async (req, res) => {
 		// await deleteFirestoreDataForPath('data/steam/stats');	
 
 		const parsedSchemaForGameJSON = await parseSchemaForGameJSON(parsedSchemasForGameJSON, parsedGetUserStatsForGameJSON, parsedPlayerAchievementsJSON);
-		
+
 		// await deleteStorageDataWithPrefix(SCREENSHOT_BUCKET_PATH_PREFIX);
 
 		const appDetailsRequestOptions = generateAppDetailsRequestOptions(currentAppID, ENGLISH_LANGUAGE_URL_PARAM_VALUE);
@@ -193,7 +193,8 @@ function sanitizeGameName(gameName) {
 }
 
 function generateAppLibraryImageURL(appID) {
-	return 'https://media.steampowered.com/steam/apps/' + appID + '/library_600x900.jpg';
+	// return 'https://media.steampowered.com/steam/apps/' + appID + '/library_600x900.jpg';
+	return 'https://steamcdn-a.akamaihd.net/steam/apps/' + appID + '/library_600x900_2x.jpg';
 }
 
 function generateGameAppImageURL(appID, imageID) {
@@ -215,9 +216,9 @@ async function parsePlayerSummaryJSON(json) {
 }
 
 function promisifyCommand(command) {
-  return new Promise((resolve, reject) => {
-	command.on('end', resolve).on('error', reject).run();
-  });
+	return new Promise((resolve, reject) => {
+		command.on('end', resolve).on('error', reject).run();
+	});
 }
 
 async function parseMiniProfileJSON(json, steamDocument) {
@@ -227,9 +228,9 @@ async function parseMiniProfileJSON(json, steamDocument) {
 
 	jsonToReturn['profileBackgroundVideoID'] = steamDocument.profileBackgroundVideoID;
 
-	if(steamDocument.profileBackgroundVideoID !== currentProfileBackgroundVideoID) {
+	if (steamDocument.profileBackgroundVideoID !== currentProfileBackgroundVideoID) {
 		const croppedLocalFilePath = await cropMP4File(json['profile_background']['video/mp4'], 'profileBackgroundVideo', 384, 128);
-		await uploadLocalFileToBucket(croppedLocalFilePath, MINI_PROFILE_BACKGROUND_VIDEO_BUCKET_PATH,'video/mp4');
+		await uploadLocalFileToBucket(croppedLocalFilePath, MINI_PROFILE_BACKGROUND_VIDEO_BUCKET_PATH, 'video/mp4');
 
 		// await uploadExternalFileToBucket(json['profile_background']['video/mp4'], MINI_PROFILE_BACKGROUND_VIDEO_BUCKET_PATH, 'video/mp4');
 		jsonToReturn['profileBackgroundVideoID'] = currentProfileBackgroundVideoID;
@@ -239,9 +240,9 @@ async function parseMiniProfileJSON(json, steamDocument) {
 
 	jsonToReturn['avatarFrameID'] = steamDocument.avatarFrameID;
 
-	if(steamDocument.avatarFrameID !== currentAvatarFrameID) {
-	// 	const localDir = path.dirname(localFilepath);
-	// const croppedLocalFilepath = localFilepath.replace(localFilename, 'cropped_' + localFilename);
+	if (steamDocument.avatarFrameID !== currentAvatarFrameID) {
+		// 	const localDir = path.dirname(localFilepath);
+		// const croppedLocalFilepath = localFilepath.replace(localFilename, 'cropped_' + localFilename);
 
 		const profileAvatarFrameImageDownloadOptions = {
 			method: 'GET',
@@ -250,7 +251,7 @@ async function parseMiniProfileJSON(json, steamDocument) {
 
 		const profileAvatarFrameImageFilepath = await downloadFileFromURL(profileAvatarFrameImageDownloadOptions, 'steamProfileAvatarFrame', '.png');
 		await uploadLocalFileToBucket(profileAvatarFrameImageFilepath, MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_PNG, 'image/png');
-		
+
 		// await uploadExternalFileToBucket(json['avatar_frame'], MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_PNG, 'image/png');
 
 		const tmpDir = os.tmpdir();
@@ -261,9 +262,9 @@ async function parseMiniProfileJSON(json, steamDocument) {
 		// await mkdirp(tempLocalDir)
 
 		// await downloadFileFromURL(json['avatar_frame'], tempLocalFile);
-		
+
 		let mp4Conversion = ffmpeg(profileAvatarFrameImageFilepath).setFfmpegPath(ffmpegPath).toFormat('mp4').noAudio().outputOptions(['-pix_fmt yuv420p', '-movflags +faststart']).output(mp4OutputLocalFile);
-		await promisifyCommand(mp4Conversion);    
+		await promisifyCommand(mp4Conversion);
 
 		// let webmConversion1 = ffmpeg(tempLocalFile).setFfmpegPath(ffmpegPath).toFormat('webm').outputOptions(['-c:v libvpx-vp9', '-pix_fmt yuv420p']).output(webmOutputLocalFile);
 		// await promisifyCommand(webmConversion1);
@@ -271,8 +272,8 @@ async function parseMiniProfileJSON(json, steamDocument) {
 		let webmConversion2 = ffmpeg(mp4OutputLocalFile).setFfmpegPath(ffmpegPath).toFormat('webm').outputOptions(['-vf chromakey=0x000000:0.01:0.2', '-c:v libvpx', '-vcodec vp8', '-pix_fmt yuva420p', '-metadata:s:v:0 alpha_mode="1"', '-auto-alt-ref 0']).output(webmOutputLocalFile);
 		await promisifyCommand(webmConversion2);
 
-		await uploadLocalFileToBucket(webmOutputLocalFile, MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_WEBM,'video/webm');
-		await uploadLocalFileToBucket(mp4OutputLocalFile, MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_MP4,'video/mp4');
+		await uploadLocalFileToBucket(webmOutputLocalFile, MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_WEBM, 'video/webm');
+		await uploadLocalFileToBucket(mp4OutputLocalFile, MINI_PROFILE_AVATAR_FRAME_BUCKET_PATH_MP4, 'video/mp4');
 
 		jsonToReturn['avatarFrameID'] = currentAvatarFrameID;
 	}
@@ -305,8 +306,8 @@ async function parseMiniProfileJSON(json, steamDocument) {
 // }
 
 async function parseOwnedGamesJSON(json, appID) {
-	for(var i = 0; i < json['response']['game_count']; i++) {
-		if(json['response']['games'][i].appid === appID) {
+	for (var i = 0; i < json['response']['game_count']; i++) {
+		if (json['response']['games'][i].appid === appID) {
 			await uploadExternalFileToBucket(generateGameAppImageURL(appID, json['response']['games'][i].img_icon_url), GAME_ICON_IMAGE_BUCKET_PATH, 'image/jpeg');
 			// await uploadExternalFileToBucket(generateGameAppImageURL(appID, json['response']['games'][i].img_logo_url), GAME_LOGO_IMAGE_BUCKET_PATH, 'image/jpeg');
 			// console.log(JSON.stringify(json['response']['games'][i]));
@@ -321,17 +322,17 @@ async function parseOwnedGamesJSON(json, appID) {
 }
 
 function parsePlayerAchievementsJSON(json) {
-	if(json === {} || json['playerstats'] === undefined || json['playerstats']['achievements'] === undefined) return {};
+	if (json === {} || json['playerstats'] === undefined || json['playerstats']['achievements'] === undefined) return {};
 	return json['playerstats']['achievements'];
 }
 
 function parseGetUserStatsForGameJSON(json) {
-	if(json === {} || json['playerstats'] === undefined || json['playerstats']['stats'] === undefined) return {};
+	if (json === {} || json['playerstats'] === undefined || json['playerstats']['stats'] === undefined) return {};
 	return json['playerstats']['stats'];
 }
 
 function parseSchemaForGameForLanguageJSON(json) {
-	if(json === {} || json['game'] === {} || json['game']['availableGameStats'] === undefined) return {};
+	if (json === {} || json['game'] === {} || json['game']['availableGameStats'] === undefined) return {};
 
 	return {
 		'achievements': json['game']['availableGameStats']['achievements'],
@@ -340,7 +341,7 @@ function parseSchemaForGameForLanguageJSON(json) {
 }
 
 async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievementsJSON) {
-	if(schemasForGameJSON['english'] === undefined || schemasForGameJSON['english'] === {} || (schemasForGameJSON['english']['stats'] === undefined && schemasForGameJSON['english']['achievements'] === undefined)) return { 'numberOfAchievements': 0, 'numberOfAchievementsAchieved': 0 };
+	if (schemasForGameJSON['english'] === undefined || schemasForGameJSON['english'] === {} || (schemasForGameJSON['english']['stats'] === undefined && schemasForGameJSON['english']['achievements'] === undefined)) return { 'numberOfAchievements': 0, 'numberOfAchievementsAchieved': 0 };
 
 	// var promises = [];
 
@@ -372,7 +373,7 @@ async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievement
 	// 			var name = schemasForGameJSON[language]['stats'][schemaStatIndex]['displayName'];
 
 	// 			if(name === undefined) name = "";
-							
+
 	// 			promises.push(db.collection('data').doc('steam').collection('stats').doc(schemasForGameJSON[language]['stats'][schemaStatIndex]['name']).collection('name').doc(language).set({ 'name': name }));
 	// 		}
 	// 	}
@@ -381,11 +382,11 @@ async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievement
 	var numberOfAchievements = 0;
 	var numberOfAchievementsAchieved = 0;
 
-	if(schemasForGameJSON['english']['achievements'] !== undefined) {
+	if (schemasForGameJSON['english']['achievements'] !== undefined) {
 		numberOfAchievements = schemasForGameJSON['english']['achievements'].length;
 
-		for(var playerAchievementIndex = 0; playerAchievementIndex < achievementsJSON.length; playerAchievementIndex++) {
-			if(achievementsJSON[playerAchievementIndex]['achieved'] === 1) numberOfAchievementsAchieved++;
+		for (var playerAchievementIndex = 0; playerAchievementIndex < achievementsJSON.length; playerAchievementIndex++) {
+			if (achievementsJSON[playerAchievementIndex]['achieved'] === 1) numberOfAchievementsAchieved++;
 		}
 
 		// var achievmentDocumentPromises = [];
@@ -418,7 +419,7 @@ async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievement
 		// 	const parsedAchievementsJSONKey = Object.keys(parsedAchievementsJSON)[parsedAchievementIndex];
 		// 	promises.push(db.collection('data').doc('steam').collection('achievements').doc(parsedAchievementsJSON[parsedAchievementsJSONKey]['id']).set(parsedAchievementsJSON[parsedAchievementsJSONKey]));
 		// }
-		
+
 		// for(var languageIndex = 0; languageIndex < LANGUAGE_URL_PARAM_VALUES.length; languageIndex++) {
 		// 	const language = LANGUAGE_URL_PARAM_VALUES[languageIndex];		
 		// 	for(var schemaAchievementIndex = 0; schemaAchievementIndex < schemasForGameJSON[language]['achievements'].length; schemaAchievementIndex++) {
@@ -429,7 +430,7 @@ async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievement
 		// 		if(description === undefined) description = "";
 
 		// 		const achievmentID = schemasForGameJSON[language]['achievements'][schemaAchievementIndex]['name'];
-							
+
 		// 		promises.push(db.collection('data').doc('steam').collection('achievements').doc(achievmentID).collection('name').doc(language).set({ 'name': name }));
 		// 		promises.push(db.collection('data').doc('steam').collection('achievements').doc(achievmentID).collection('descriptions').doc(language).set({'description': description }));
 		// 	}
@@ -444,14 +445,22 @@ async function parseSchemaForGameJSON(schemasForGameJSON, statsJSON, achievement
 	};
 }
 
-async function parseAppDetailsJSON(json, appID, language) { 
+async function parseAppDetailsJSON(json, appID, language) {
 	// await uploadExternalFileToBucket(json[appID.toString()]['data']['background'], GAME_STORE_BACKGROUND_IMAGE_BUCKET_PATH, 'image/jpeg');
 	await uploadExternalFileToBucket(generateAppLibraryImageURL(appID), GAME_LIBRARY_IMAGE_BUCKET_PATH, 'image/jpeg');
 
-
+	// Steam's appdetails API no longer exposes direct mp4/webm URLs in `movies[i]`
+	// (fields are now dash_av1 / dash_h264 / hls_h264 manifests), but the legacy
+	// per-video MP4 is still served at steamcdn-a under the movie id.
+	const movies = json[appID.toString()]?.['data']?.['movies'];
+	if (!movies || !movies.length) {
+		console.warn(`[steam] no movies for appID ${appID}; skipping trailer upload`);
+		return;
+	}
+	const movieID = movies[0]['id'];
 	const gameStoreVideoDownloadOptions = {
 		method: 'GET',
-		uri: json[appID.toString()]['data']['movies'][0]['mp4']['480'],
+		uri: `https://steamcdn-a.akamaihd.net/steam/apps/${movieID}/movie480.mp4`,
 	};
 
 	const gameStoreVideoLocalFilepath = await downloadFileFromURL(gameStoreVideoDownloadOptions, 'steamGameStoreVideo', '.mp4');

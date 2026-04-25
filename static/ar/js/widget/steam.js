@@ -1,12 +1,13 @@
 class SteamWidget extends BaseWidget {
 	dataDocumentID = 'steam';
+	updateIntervalMS = 60000; // 1 min — hours played / current game updates periodically
 	data;
 
 	logoImageURL = this.staticAssetBaseURL + 'ar/img/steam/logo.svg';
-	
+
 	profileImageBucketPath = 'ar/images/steam/profileImage.jpg';
 	profileBackgroundVideoBucketPath = 'ar/videos/steam/profileBackground.mp4'
-	profileAvatarFrameVideoBucketPath ='ar/videos/steam/avatarFrame.mp4';
+	profileAvatarFrameVideoBucketPath = 'ar/videos/steam/avatarFrame.mp4';
 
 	gameLibraryImageBucketPath = 'ar/images/steam/gameLibraryImage.jpg';
 	gameStoreVideoBucketPath = 'ar/videos/steam/gameStoreVideo.mp4';
@@ -19,11 +20,11 @@ class SteamWidget extends BaseWidget {
 	}
 
 	async generateAFrameHTML() {
-		const profileImageURL = await this.storage.ref(this.profileImageBucketPath).getDownloadURL();
-		const profileBackgroundVideoURL = await this.storage.ref(this.profileBackgroundVideoBucketPath).getDownloadURL();
-		const profileAvatarFrameVideoURL = await this.storage.ref(this.profileAvatarFrameVideoBucketPath).getDownloadURL();
-		const gameLibraryImageURL = await this.storage.ref(this.gameLibraryImageBucketPath).getDownloadURL();
-		const gameStoreVideoURL = await this.storage.ref(this.gameStoreVideoBucketPath).getDownloadURL();
+		const profileImageURL = await this.getCachedDownloadURL(this.profileImageBucketPath);
+		const profileBackgroundVideoURL = await this.getCachedDownloadURL(this.profileBackgroundVideoBucketPath);
+		const profileAvatarFrameVideoURL = await this.getCachedDownloadURL(this.profileAvatarFrameVideoBucketPath);
+		const gameLibraryImageURL = await this.getCachedDownloadURL(this.gameLibraryImageBucketPath, this.data.appID);
+		const gameStoreVideoURL = await this.getCachedDownloadURL(this.gameStoreVideoBucketPath, this.data.appID);
 
 		$('<a-entity/>', {
 			id: this.dataDocumentID + 'Widget',
@@ -33,12 +34,12 @@ class SteamWidget extends BaseWidget {
 
 		$('#' + this.dataDocumentID + 'Widget').attr('position', (this.xPositionModifier * 1) + ' 0 ' + (this.zPositionModifier * 0));
 
-		if(this.data['isPlaying']) {
+		if (this.data['isPlaying']) {
 			$('<a-entity/>', {
 				id: this.dataDocumentID + 'WidgetBody',
 				rotation: '0 0 0',
 				scale: '0.833984375 1 1',
-			}).appendTo('#businessCardMarker');
+			}).appendTo('#' + this.dataDocumentID + 'Widget');
 
 			$('#' + this.dataDocumentID + 'WidgetBody').attr('position', '0.0830078125 0 0.001');
 
@@ -93,7 +94,7 @@ class SteamWidget extends BaseWidget {
 				npot: 'true',
 				depthTest: true,
 				'anti-tear': ''
-			}).appendTo('#' + this.dataDocumentID + 'WidgetBody');	
+			}).appendTo('#' + this.dataDocumentID + 'WidgetBody');
 
 			$('#' + this.dataDocumentID + 'WidgetLogo').attr('position', '0.375 0 0.0001');
 		} else {
@@ -170,11 +171,43 @@ class SteamWidget extends BaseWidget {
 				npot: 'true',
 				depthTest: true,
 				'anti-tear': ''
-			}).appendTo('#' + this.dataDocumentID + 'WidgetBody');	
+			}).appendTo('#' + this.dataDocumentID + 'WidgetBody');
 
 			$('#' + this.dataDocumentID + 'WidgetLogo').attr('position', '0.375 0 0.0001');
 		}
+	}
 
-		$('#scene').removeClass('not-ready');
+	async applyUpdate(oldData, newData) {
+		// Structural changes (playing state, different game, different user,
+		// different avatar) need a full rebuild — they swap images/videos, not
+		// just text. Bail out so the base class does the teardown.
+		if(oldData.isPlaying !== newData.isPlaying) return false;
+		if(oldData.appID !== newData.appID) return false;
+		if(oldData.personaName !== newData.personaName) return false;
+		if(oldData.profileURL !== newData.profileURL) return false;
+
+		const bodyID = '#' + this.dataDocumentID + 'WidgetBody';
+
+		if(newData.isPlaying) {
+			if(oldData.gameHoursPlayed !== newData.gameHoursPlayed) {
+				$('#' + this.dataDocumentID + 'WidgetGameHoursPlayedText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetGameHoursPlayedText', bodyID, newData.gameHoursPlayed, 14, '#90ba3c', 4, 'Montserrat', 300, 18, false, '#00FF0000', 16, -11, 272, 386, 128, 1, true);
+			}
+			if(oldData.gameAchievements !== newData.gameAchievements) {
+				$('#' + this.dataDocumentID + 'WidgetGameAchievementsText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetGameAchievementsText', bodyID, newData.gameAchievements, 14, '#90ba3c', 4, 'Montserrat', 300, 18, false, '#00FF0000', 16, -11, 272, 386, 128, 1, true);
+			}
+			if(oldData.gameName !== newData.gameName) {
+				$('#' + this.dataDocumentID + 'WidgetGameNameText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetGameNameText', bodyID, newData.gameName, 22, '#90ba3c', 0, 'Montserrat', 300, 28, false, '#FF000000', 16, 14, 272, 386, 128, 1, true);
+			}
+		} else {
+			if(oldData.onlineState !== newData.onlineState) {
+				$('#' + this.dataDocumentID + 'WidgetOnlineStateText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetOnlineStateText', bodyID, this.OnlineState[newData.onlineState], 16, '#bababa', 0, 'Montserrat', 300, 38.8667, false, '#0FF00000', 18, -21.76, 272, 384, 128, 1);
+			}
+		}
+
+		return true;
 	}
 }

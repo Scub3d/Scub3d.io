@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hikes — Prototype</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/www/css/hikes.css" />
+</head>
+
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                    class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+            <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                    class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+            <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                    class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+            <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                    class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+            <a href="hikes.html" class="active text"><span class="englishText">HIKES</span><span
+                    class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+            <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                    class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+            <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+        </div>
+        <button class="nav-toggle js-nav-toggle">[MENU]</button>
+    </nav>
+
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+        <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
+
+    <script>
+        (function () {
+            var m = document.cookie.match(/language=(\w+)/);
+            var lang = (m && (m[1] === 'japanese' || m[1] === 'english')) ? m[1] : 'english';
+            var sel = 'span.' + lang + 'Text';
+            document.querySelectorAll('.site-nav .text, .nav-overlay .text').forEach(function (el) {
+                var src = el.querySelector(sel);
+                var dst = el.querySelector('span.displayText');
+                if (src && dst && !dst.textContent) {
+                    dst.textContent = src.textContent;
+                    el.classList.add(lang);
+                }
+            });
+        })();
+    </script>
+
+    <main id="content" class="state-raw">
+        <span class="raw-tag">&lt;page::hikes&gt;</span>
+
+        <!-- Terrain viewer panel (left side) -->
+        <div class="terrain-panel">
+            <div class="terrain-header">
+                <span class="terrain-title" id="terrainTitle">
+                    <span class="bracket-label text"><span class="englishText">[HIKES]</span><span
+                            class="japaneseText">[ハイキング]</span><span class="displayText">[HIKES]</span></span>
+                </span>
+                <span class="bracket-label text" id="hikeCount"><span class="englishText">[-- TRAILS]</span><span
+                        class="japaneseText">[-- トレイル]</span><span class="displayText">[-- TRAILS]</span></span>
+            </div>
+
+            <!-- Mapbox terrain viewport -->
+            <div class="terrain-viewport" id="terrainViewport"></div>
+
+            <!-- Hike details (below the map) -->
+            <div class="hike-details" id="hikeDetails">
+                <div class="hike-detail-name" id="hikeDetailName"></div>
+                <div class="hike-detail-grid" id="hikeDetailGrid"></div>
+                <div class="hike-detail-links" id="hikeDetailLinks"></div>
+            </div>
+
+            <!-- Hike list -->
+            <div class="hike-list" id="hikeList"></div>
+        </div>
+    </main>
+
+    <!-- Full-screen globe (right side) -->
+    <div id="globe-container"></div>
+    <div id="globe-label" class="globe-label"></div>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js" defer></script>
+    <script src="../../static/www/js/common.js" defer></script>
+    <script src="../../static/www/data/hikes_data.js" defer></script>
+    <script src="../../static/www/js/hikes.js" defer></script>
+    <script src="../../static/ar/js/three/three.min.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod0.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod1.js" defer></script>
+    <script src="../../static/www/data/globe/borders.js" defer></script>
+    <script src="../../static/www/data/globe/ocean.js" defer></script>
+    <script src="../../static/www/data/globe/mask.js" defer></script>
+    <script src="../../static/www/js/hikes_globe.js" defer></script>
+
+</body>
+
+</html>

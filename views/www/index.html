@@ -1,39 +1,131 @@
-{% block css %}
-<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/index.css"  media="screen,projection"/>
-{% end %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-About me
-{% end %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scub3d</title>
 
-{% block navbarTitle %}
-<span class="englishText">About me</span><span class="japaneseText">私について</span><span class="displayText"></span>
-{% end %}
+    <!-- Fonts from Google CDN (prototype only — will self-host in production) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
 
-{% block content %}
-<header>
-	<div class="spenser">
-		<canvas class="avatar hide-on-small-only" id="myCanvas" width="250px" height="250px"></canvas>
-		<img class="avatar hide-on-med-and-up show-on-small" src="//static.scub3d.io/www/img/index/me.jpg">
+    <link rel="stylesheet" href="../../static/www/css/index.css" />
+</head>
 
-		<h2>
-			<div id="name" class="text"><span class="englishText">Spenser Solys</span><span class="japaneseText">スペンサー ソリス</span><span class="displayText"></span></div>
-		</h2>
-		<div class="socials">
-			<a class="twitter" href="https://twitter.com/scub3d" target="_blank">Twitter</a>
-			<a class="linkedin" href="https://linkedin.com/in/scub3d" target="_blank">LinkedIn</a>
-			<a class="github" href="https://github.com/scub3d" target="_blank">GitHub</a>
-			<a class="devpost" href="https://devpost.com/scub3d" target="_blank">Devpost</a>
-			<a class="sketchfab" href="https://sketchfab.com/scub3d" target="_blank">SketchFab</a>
-		</div>
-	
-		<h2>
-			<div id="title" class="text"><span class="englishText">Hi. My name is Spenser and I am a Senior Software Engineer at Store Nº8 / Walmart in Seattle. I have over 9 years of experience creating VR and AR applications. I am skilled in both OOP and ECS design patterns and have extensive experience rapidly prototyping.</span><span class="japaneseText">こんにちは。 私の名前はスペンサーです。シアトルでStore Nº8 / Walmartのシニア ソフトウェア エンジニアです。 VRおよびARアプリケーションの作成に9年以上の経験があります。 OOPとECSの両方の設計パターンに熟練しており、迅速なプロトタイピングの豊富な経験があります。</span><span class="displayText"></span></div>
-		</h2>
-	</div>
-</header>
-{% end %}
+<body>
 
-{% block js %}
-<script type="text/javascript" src="//static.scub3d.io/www/js/glitched-img.js"></script>
-{% end %}
+    <!-- WebGL Particle Field -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="active text"><span class="englishText">HOME</span><span
+                    class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+            <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                    class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+            <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                    class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+            <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                    class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+            <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                    class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+            <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                    class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+            <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+        </div>
+        <button class="nav-toggle js-nav-toggle">[MENU]</button>
+    </nav>
+
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+        <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
+
+    <!-- Pre-paint nav text fill: avoids the brief empty-nav flash on
+         page load (especially on script-heavy pages like /hikes). Must
+         run synchronously before paint, before the deferred init scripts. -->
+    <script>
+        (function () {
+            var m = document.cookie.match(/language=(\w+)/);
+            var lang = (m && (m[1] === 'japanese' || m[1] === 'english')) ? m[1] : 'english';
+            var sel = 'span.' + lang + 'Text';
+            document.querySelectorAll('.site-nav .text, .nav-overlay .text').forEach(function (el) {
+                var src = el.querySelector(sel);
+                var dst = el.querySelector('span.displayText');
+                if (src && dst && !dst.textContent) {
+                    dst.textContent = src.textContent;
+                    el.classList.add(lang);
+                }
+            });
+        })();
+    </script>
+
+    <!-- Main content wrapper — starts in raw state -->
+    <main id="content" class="state-raw">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-text">
+                <span class="raw-tag">&lt;section::about&gt;</span>
+
+                <span class="raw-tag">&lt;h1&gt;</span>
+                <h1 class="hero-name">
+                    <span class="hero-name-prefix text" id="makingPrefix"><span class="englishText">Spenser is
+                            making</span><span class="japaneseText">スペンサーが作っている</span><span
+                            class="displayText"></span></span>
+                    <a href="//minesweeper.scub3d.io/" class="hero-name-project text" id="makingProject"><span class="englishText">3D
+                            Minesweeper</span><span class="japaneseText">3Dマインスイーパー</span><span
+                            class="displayText"></span></a><span class="raw-cursor"></span>
+                </h1>
+
+                <span class="raw-tag">&lt;cta&gt;</span>
+                <div class="hero-cta">
+                    <a href="//minesweeper.scub3d.io/" class="text"><span class="englishText">[ ./play ↗ ]</span><span class="japaneseText">[ ./プレイ ↗ ]</span><span class="displayText"></span></a>
+                </div>
+
+                <span class="raw-tag">&lt;meta&gt;</span>
+                <div class="hero-age">
+                    <span class="hero-age-prefix text"><span class="englishText">I'm </span><span class="japaneseText">私は</span><span class="displayText"></span></span><span id="ageTicker"></span>
+                </div>
+
+                <span class="raw-tag">&lt;links&gt;</span>
+                <div class="hero-socials">
+                    <a href="https://instagram.com/scub3d" target="_blank">[Insta]</a>
+                    <a href="https://github.com/scub3d" target="_blank">[GitHub]</a>
+                </div>
+                <span class="raw-tag">&lt;/section&gt;</span>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <span class="footer-coordinates text"><span class="englishText">47.6062&#176; N, 122.3321&#176; W //
+                    Seattle, WA</span><span class="japaneseText">47.6062&#176; N, 122.3321&#176; W //
+                    シアトル、ワシントン州</span><span class="displayText">47.6062&#176; N, 122.3321&#176; W //
+                    Seattle, WA</span></span>
+        </footer>
+    </main>
+
+    <script src="../../static/www/js/common.js" defer></script>
+    <script src="../../static/www/js/index.js" defer></script>
+
+</body>
+</html>

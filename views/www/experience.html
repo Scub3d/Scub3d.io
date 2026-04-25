@@ -1,307 +1,372 @@
-{% block css %}
-<link type="text/css" rel="stylesheet" href="//static.scub3d.io/www/css/experience.css" media="screen,projection"/>
-{% end %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Experience
-{% end %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience — Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../static/www/css/experience.css" />
+</head>
 
-{% block navbarTitle %}
-<span class="englishText">Experience</span><span class="japaneseText">職歴</span><span class="displayText"></span>
-{% end %}
+<body>
 
-{% block content %}
-<section id="cd-timeline" class="cd-container">
-	<div id="nasa_2017" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">NASA: Goddard Space Flight Center</span><span class="japaneseText">NASA：ゴダード宇宙飛行センター</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">AR/VR Intern</span><span class="japaneseText">AR/VR インターン</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">June 2017 - Aug 2017</span><span class="japaneseText">6月2017年 - 8月2017年</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Utilized Unity and C# to make enhancements to a virtual reality project which allowed scientists to assemble CubeSats from a database of vendor parts</span><span class="japaneseText">UnityとC＃を利用して、科学者がベンダー部品のデータベースからCubeSatを組み立てることができるバーチャルリアリティプロジェクトを強化しました</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Automated the process of importing and converting 3D models by writing a Python script to convert the vendor files to a unique format and a smaller total size</span><span class="japaneseText">ベンダーファイルを一意の形式と小さい合計サイズに変換するPythonスクリプトを作成することにより、3Dモデルのインポートと変換のプロセスを自動化しました</span><span class="displayText"></span>
-			</div>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">Unity</span><span class="japaneseText">ユニティ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C#</span><span class="japaneseText">C#</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Blender</span><span class="japaneseText">ブレンダー</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Python</span><span class="japaneseText">パイソン</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Photon</span><span class="japaneseText">フォトン</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                    class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+            <a href="experience.html" class="active text"><span class="englishText">EXPERIENCE</span><span
+                    class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+            <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                    class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+            <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                    class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+            <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                    class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+            <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                    class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+            <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+        </div>
+        <button class="nav-toggle js-nav-toggle">[MENU]</button>
+    </nav>
 
-	<div id="dverse" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">DVERSE</span><span class="japaneseText">DVERSE</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">Unity Intern</span><span class="japaneseText">ユニティインターン</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">May 2018 - July 2018</span><span class="japaneseText">5月2018年 - 7月2018年</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Upgraded the user interface and the core functionality of VR applications</span><span class="japaneseText">ユーザーインターフェースとVRアプリケーションのコア機能をアップグレードしました</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Created plugins for Blender and SketchUp that allowed real-time sync with Unity</span><span class="japaneseText">Unityとのリアルタイム同期を可能にするBlenderとSketchUpのプラグインを作成しました</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Communicated with co-workers every day in both Japanese and English</span><span class="japaneseText">毎日、同僚と一緒に日本語と英語で伝える</span><span class="displayText"></span>
-			</div>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">Unity</span><span class="japaneseText">ユニティ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C#</span><span class="japaneseText">C#</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Blender</span><span class="japaneseText">ブレンダー</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Python</span><span class="japaneseText">パイソン</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">SketchUp</span><span class="japaneseText">スケッチアップ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Ruby</span><span class="japaneseText">ルビー</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close js-nav-close">[CLOSE]</button>
+        <a href="index.html" class="text"><span class="englishText">HOME</span><span
+                class="japaneseText">ホーム</span><span class="displayText">HOME</span></a>
+        <a href="experience.html" class="text"><span class="englishText">EXPERIENCE</span><span
+                class="japaneseText">職歴</span><span class="displayText">EXPERIENCE</span></a>
+        <a href="hackathons.html" class="text"><span class="englishText">HACKATHONS</span><span
+                class="japaneseText">ハッカソン</span><span class="displayText">HACKATHONS</span></a>
+        <a href="projects.html" class="text"><span class="englishText">PROJECTS</span><span
+                class="japaneseText">プロジェクト</span><span class="displayText">PROJECTS</span></a>
+        <a href="hikes.html" class="text"><span class="englishText">HIKES</span><span
+                class="japaneseText">ハイキング</span><span class="displayText">HIKES</span></a>
+        <a href="//static.scub3d.io/www/downloads/SpenserSolys_Resume_2026.pdf" target="_blank" class="text"><span class="englishText">RESUME &#8599;</span><span
+                class="japaneseText">履歴書 &#8599;</span><span class="displayText">RESUME &#8599;</span></a>
+        <a href="#" class="js-translate">[<span class="nav-lang-label">JP</span>]</a>
+    </div>
 
-	<div id="unity" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">Unity Technologies</span><span class="japaneseText">ユニティテクノロジーズ</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">Student Ambassador</span><span class="japaneseText">学生大使</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">Sept 2018 - Dec 2019</span><span class="japaneseText">9月2018年 - 12月2019年</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Hosted and supported Unity and Game Jam events across multiple campuses</span><span class="japaneseText">複数のキャンパスでUnityおよびGameJamイベントをホストおよびサポートしました</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Staffed booths and tables at GDC 2019 for Unity and demoed new products and technologies to attendees</span><span class="japaneseText">UnityのGDC2019のブースとテーブルにスタッフを配置し、参加者に新製品と新技術のデモを行いました</span><span class="displayText"></span>
-			</div>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">Unity</span><span class="japaneseText">ユニティ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C#</span><span class="japaneseText">C#</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
+    <script>
+        (function () {
+            var m = document.cookie.match(/language=(\w+)/);
+            var lang = (m && (m[1] === 'japanese' || m[1] === 'english')) ? m[1] : 'english';
+            var sel = 'span.' + lang + 'Text';
+            document.querySelectorAll('.site-nav .text, .nav-overlay .text').forEach(function (el) {
+                var src = el.querySelector(sel);
+                var dst = el.querySelector('span.displayText');
+                if (src && dst && !dst.textContent) {
+                    dst.textContent = src.textContent;
+                    el.classList.add(lang);
+                }
+            });
+        })();
+    </script>
 
-	<div id="nasa_2019" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">NASA: Goddard Space Flight Center</span><span class="japaneseText">NASA：ゴダード宇宙飛行センター</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">AR/VR Intern</span><span class="japaneseText">AR/VR インターン</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">June 2019 - Aug 2019</span><span class="japaneseText">6月2019年 - 8月2019年</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Developed a program that converts reflectance data from the Lunar Reconnaissance Orbiter into Unity Terrain Meshes</span><span class="japaneseText">月偵察オービターからの反射率データを Unity 地形メッシュに変換するプログラムを開発しました</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Designed modular software that allows users to construct 3D models while in VR</span><span class="japaneseText">ユーザーが VR 内で 3D モデルを構築できるように設計されたモジュラー ソフトウェア</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Presented organization projects to multiple teams across several NASA campuses</span><span class="japaneseText">複数の NASA キャンパスにわたる複数のチームに組織プロジェクトを提示</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Mentored high-school interns by teaching them Unity & Unreal Engine 4</span><span class="japaneseText">UnityとUnreal Engine 4を教えることで、高校のインターンを指導しました</span><span class="displayText"></span>
-			</div>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">Unity</span><span class="japaneseText">ユニティ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C#</span><span class="japaneseText">C#</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Blender</span><span class="japaneseText">ブレンダー</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Python</span><span class="japaneseText">パイソン</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">UE4</span><span class="japaneseText">フォトン</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C++</span><span class="japaneseText">C++</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
+    <main id="content" class="state-raw">
+        <div class="page-header">
+            <span class="raw-tag">&lt;page::experience&gt;</span>
+            <span class="bracket-label text"><span class="englishText">[EXPERIENCE]</span><span
+                    class="japaneseText">[職歴]</span><span class="displayText">[EXPERIENCE]</span></span>
+        </div>
 
-	<div class="cd-timeline-block">
-		<div class="cd-timeline-img cd-location"></div> 
-		<div class="cd-timeline-content">
-			<h5 class="text center">
-				<span class="englishText">Graduated University</span><span class="japaneseText">卒業した大学</span><span class="displayText"></span>
-			</h5>
+        <div class="timeline">
+            <!-- 01 Store No8 / Walmart (most recent) -->
+            <div class="timeline-entry" data-lat="47.67" data-lng="-122.12" data-location="Redmond, WA"
+                data-media-key="archer">
+                <span class="timeline-ordinal">01</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">Store N&#186;8 — Walmart</span><span
+                            class="japaneseText">Store N&#186;8 — Walmart</span><span class="displayText">Store N&#186;8 — Walmart</span></div>
+                    <div class="timeline-card-role text"><span class="englishText">Senior Software Engineer</span><span
+                            class="japaneseText">シニアソフトウェアエンジニア</span><span class="displayText">Senior Software Engineer</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">July 2021 - April 2024</span><span
+                            class="japaneseText">7月2021年から4月2024年まで</span><span class="displayText">July 2021 - April 2024</span></div>
 
-			<p class="text center">
-				<span class="englishText">BS Computer Science</span><span class="japaneseText">コンピュータサイエンス学士</span><span class="displayText"></span>
-			</p>
-			<p class="text center">
-				<span class="englishText">December 2019</span><span class="japaneseText">2019年12月</span><span class="displayText"></span>
-			</p>
-		</div> 
-	</div>
+                    <div class="timeline-project">
+                        <div class="timeline-project-title text"><span class="englishText">&bull; Enterprise AR
+                                application for
+                                the Apple Vision Pro</span><span class="japaneseText">&bull; Apple Vision Pro 用のエンタープライズ
+                                AR
+                                アプリケーション</span><span class="displayText">&bull; Enterprise AR
+                                application for
+                                the Apple Vision Pro</span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Led development of a
+                                feature to generate Planogram PDFs that align with industry standard formats using
+                                Swift, Firestore, and Firebase Cloud Functions</span><span class="japaneseText">-
+                                Swift、Firestore、Firebase Cloud
+                                Functionsを使用して、業界標準フォーマットに準拠したプラノグラムPDFを生成する機能の開発をリードしました</span><span
+                                class="displayText"></span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Collaborated with design
+                                lead to implement fundamental navigational UI</span><span class="japaneseText">-
+                                デザインリードと協力して基本的なナビゲーションUIを実装しました</span><span class="displayText">- Collaborated with design
+                                lead to implement fundamental navigational UI</span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Project was demoed to
+                                senior leadership at Walmart and Apple including Apple CEO Tim Cook</span><span
+                                class="japaneseText">- WalmartとAppleの上級リーダーシップ（Apple
+                                CEOティム・クックを含む）にプロジェクトをデモしました</span><span class="displayText">- Project was demoed to
+                                senior leadership at Walmart and Apple including Apple CEO Tim Cook</span></div>
+                    </div>
 
-	<div id="amazon" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">Amazon</span><span class="japaneseText">Amazon</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">SDE</span><span class="japaneseText">ソフトウェア開発エンジニア</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">July 2020 - June 2021</span><span class="japaneseText">7月2020年 - 6月2021年</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Programmed scripts to automate workflows that helped external customers resolve their issues with the Title Team’s services</span><span class="japaneseText">外部顧客がタイトル チームのサービスに関する問題を解決するのに役立つワークフローを自動化するプログラムされたスクリプト</span><span class="displayText"></span>
-			</div>
-			<div class="text description">
-				<span class="englishText">Resolved weekly tickets to fix bugs and implement new features</span><span class="japaneseText">バグを修正し、新機能を実装するための毎週のチケットを解決しました</span><span class="displayText"></span>
-			</div>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">AWS</span><span class="japaneseText">AWS</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Java</span><span class="japaneseText">ジャワ</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Bash</span><span class="japaneseText">Bashスクリプト</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
+                    <div class="timeline-project">
+                        <div class="timeline-project-title text"><span class="englishText">&bull; Lead Engineer of an
+                                In-aisle
+                                filtering prototype for retail shoppers</span><span class="japaneseText">&bull;
+                                小売買い物客向けの店内通路フィルタリングプロトタイプのリードエンジニア</span><span class="displayText">&bull; Lead Engineer of an
+                                In-aisle
+                                filtering prototype for retail shoppers</span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Created a system to save,
+                                load, and adjust product locations across aisles inside any Walmart</span><span
+                                class="japaneseText">- 任意のWalmart店舗内の通路にわたって商品位置を保存、読み込み、調整するシステムを作成しました</span><span
+                                class="displayText"></span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Performed UATs in a
+                                Walmart Supercenter with over 50 external participants</span><span
+                                class="japaneseText">- 50名以上の外部参加者とともにWalmart Supercenterでユーザー受け入れテストを実施しました</span><span
+                                class="displayText"></span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Project was showcased at
+                                Walmart’s CES 2024 exhibit</span><span class="japaneseText">- WalmartのCES
+                                2024展示でプロジェクトが紹介されました</span><span class="displayText">- Project was showcased at
+                                Walmart’s CES 2024 exhibit</span></div>
+                    </div>
 
-	<div id="archer" class="cd-timeline-block scrollspy">
-		<div class="cd-timeline-img cd-picture"></div>
-		<div class="cd-timeline-content">
-			<div class="text center title">
-				<span class="englishText">Store Nº8 - Walmart</span><span class="japaneseText">Store Nº8 - Walmart</span><span class="displayText"></span>
-			</div>
-			<div class="timeline-content-info title_date">
-				<span class="timeline-content-info-title">
-					<i class="work"></i>
-					<div class="text occupation">
-						<span class="englishText">Senior Software Engineer</span><span class="japaneseText">シニアソフトウェアエンジニア</span><span class="displayText"></span>
-					</div>
-				</span>
-				<span class="timeline-content-info-date">
-					<i class="calendar"></i>
-					<div class="text date">
-						<span class="englishText">July 2021 - Present</span><span class="japaneseText">7月2021年から今まで</span><span class="displayText"></span>
-					</div>
-				</span>
-			</div>
-			<dl>
-				<dt class="text project_title english">
-					<span class="englishText">Enterprise AR application for the Apple Vision Pro</span><span class="japaneseText">Apple Vision Pro 用のエンタープライズ AR アプリケーション</span><span class="displayText"></span>
-				</dt>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Led development of a feature to generate Planogram PDFs that align with industry standard formats using Swift, Firestore, and Firebase Cloud Functions</span><span class="japaneseText">- Swift、Firestore、Firebase Cloud Functions を使用して、業界標準フォーマットに準拠した棚割 PDF を生成する機能の開発を主導しました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Implemented a novel multi-threaded approach to modify component data using RealityKit</span><span class="japaneseText">- RealityKit を使用してコンポーネント データを変更するための新しいマルチスレッド アプローチを実装しました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Collaborated with senior designers to implement fundamental navigation UI using SwiftUI</span><span class="japaneseText">- 上級デザイナーと協力して、SwiftUI を使用して基本的なナビゲーション UI を実装しました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Prototype was demoed to senior leadership at Walmart and Apple including Apple CEO Tim Cook</span><span class="japaneseText">- プロトタイプは、Apple CEO の Tim Cook を含む Walmart と Apple の両方の上級幹部にデモされました</span><span class="displayText"></span>
-				</dd>
-				<dt class="text project_title english">
-					<span class="englishText">In-aisle filtering application for retail shoppers</span><span class="japaneseText">小売店の買い物客向けの通路内フィルタリング アプリケーション</span><span class="displayText"></span>
-				</dt>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Created a system to save, load, and adjust product locations across aisles inside all Walmarts</span><span class="japaneseText">- ウォルマート内の通路全体で商品の位置を保存、読み込み、調整するシステムを作成しました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Lead engineer for demos to Walmart Inc. CEO, Walmart US. CEO, and senior Walmart leadership</span><span class="japaneseText">- Led engineering during demos to Walmart Inc. CEO, Walmart US. CEO, and Senior Walmart Leadership</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Project was showcased at Walmart’s CES 2024 exhibit</span><span class="japaneseText">プロジェクトはウォルマートの CES 2024 展示会で紹介されました</span><span class="displayText"></span>
-				</dd>
-				<dt class="text project_title english">
-					<span class="englishText">Common product platform for in-store AR applications</span><span class="japaneseText">店内ARアプリケーションの共通商品プラットフォーム</span><span class="displayText"></span>
-				</dt>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Created Asset Loading and Point of Interest services using Unity’s Addressables Asset System which allowed for the asynchronous loading/unloading of any asset type at runtime</span><span class="japaneseText">Unity の Addressables Asset System を使用してアセット ロードおよびポイント オブ インタレスト サービスを作成し、実行時にあらゆるアセット タイプの非同期ロード/アンロードを可能にしました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Integrated large scale Digital Twins for Walmart Supercenters</span><span class="japaneseText">ウォルマート スーパーセンター向けに大規模なデジタル ツインを統合しました</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Experimented with various authentication systems for Unity on the Magic Leap 2</span><span class="japaneseText">Magic Leap 2 で Unity のさまざまな認証システムを実験しました</span><span class="displayText"></span>
-				</dd>
-				<dt class="text project_title english">
-					<span class="englishText">Consumer in-store retail shopping application</span><span class="japaneseText">消費者向け店舗内小売ショッピング アプリケーション</span><span class="displayText"></span>
-				</dt>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Led development on major features: shopping list, shopping cart, and 3D character state machines</span><span class="japaneseText">主要機能の開発を主導: ショッピング リスト、ショッピング カート、3D キャラクター ステート マシン</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Optimized on-shelf filtering across thousands of products for attributes such as price, rating, nutritional content, etc.</span><span class="japaneseText">価格、評価、栄養成分などの属性について、数千の製品にわたる最適化された店頭フィルタリング</span><span class="displayText"></span>
-				</dd>
-				<dd class="text project_bulletpoint english">
-					<span class="englishText">- Project was demoed to Walmart Inc. CEO, Walmart US CEO, and senior Walmart leadership</span><span class="japaneseText">プロジェクトは、ウォルマート社 CEO、ウォルマート US CEO、およびウォルマート上級幹部にデモされました</span><span class="displayText"></span>
-				</dd>
-			</dl>
-			<ul class="content-skills">
-				<li class="text skill"><span class="englishText">Unity</span><span class="japaneseText">Unity</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">C#</span><span class="japaneseText">C#</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Swift</span><span class="japaneseText">Swift</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">RealityKit</span><span class="japaneseText">RealityKit</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Firebase</span><span class="japaneseText">Firebase</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Apple Vision Pro</span><span class="japaneseText">Apple Vision Pro</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">Magic Leap 2</span><span class="japaneseText">Magic Leap 2</span><span class="displayText"></span></li>
-				<li class="text skill"><span class="englishText">HoloLens 2</span><span class="japaneseText">HoloLens 2</span><span class="displayText"></span></li>
-			</ul>
-		</div>
-	</div>
-</section>
-{% end %}
+                    <div class="timeline-project">
+                        <div class="timeline-project-title text"><span class="englishText">&bull; AR Prototyping
+                                Framework</span><span class="japaneseText">&bull; ARプロトタイピングフレームワーク</span><span
+                                class="displayText"></span>
+                        </div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Created Asset Loading and
+                                Point of Interest services using Unity’s Addressables Asset System which allowed for the
+                                asynchronous loading/unloading of any asset type at runtime</span><span
+                                class="japaneseText">- UnityのAddressables Asset Systemを使用してアセットローディングおよびPoint of
+                                Interestサービスを作成し、実行時に任意のアセットタイプの非同期ロード/アンロードを可能にしました</span><span
+                                class="displayText"></span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Integrated large scale
+                                Digital Twins for Walmart Supercenters</span><span class="japaneseText">- Walmart
+                                Supercenter向けの大規模デジタルツインを統合しました</span><span class="displayText">- Integrated large scale
+                                Digital Twins for Walmart Supercenters</span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Experimented with various
+                                authentication systems for Unity on the Magic Leap 2</span><span class="japaneseText">-
+                                Magic Leap 2上のUnity向けにさまざまな認証システムを実験しました</span><span class="displayText">- Experimented with various
+                                authentication systems for Unity on the Magic Leap 2</span></div>
+                    </div>
 
-{% block js %}
-<!-- Ignore me? --> 
-{% end %}
+                    <div class="timeline-project">
+                        <div class="timeline-project-title text"><span class="englishText">&bull; Consumer in-store
+                                retail
+                                shopping application</span><span class="japaneseText">&bull;
+                                消費者向け店内小売ショッピングアプリケーション</span><span class="displayText">&bull; Consumer in-store
+                                retail
+                                shopping application</span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Led development on major
+                                features: shopping list, shopping cart, and 3D character integrations</span><span
+                                class="japaneseText">- 主要機能の開発をリード：ショッピングリスト、ショッピングカート、3Dキャラクター統合</span><span
+                                class="displayText"></span></div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Optimized on-shelf
+                                filtering across thousands of products for attributes such as price, rating, nutritional
+                                content, etc.</span><span class="japaneseText">-
+                                価格、評価、栄養成分などの属性について、数千の商品にわたる棚上フィルタリングを最適化しました</span><span class="displayText">- Optimized on-shelf
+                                filtering across thousands of products for attributes such as price, rating, nutritional
+                                content, etc.</span>
+                        </div>
+                        <div class="timeline-project-bullet text"><span class="englishText">- Demoed interactive
+                                prototypes to Walmart Inc. CEO, Walmart US CEO, and senior Walmart
+                                leadership</span><span class="japaneseText">- Walmart Inc. CEO、Walmart US
+                                CEO、およびWalmart上級リーダーシップにインタラクティブなプロトタイプをデモしました</span><span class="displayText">- Demoed interactive
+                                prototypes to Walmart Inc. CEO, Walmart US CEO, and senior Walmart
+                                leadership</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card-skills">Apple Vision Pro | Magic Leap 2 | HoloLens 2 | Unity | C# | Swift
+                        | RealityKit | Firebase</div>
+                </div>
+            </div>
+
+            <!-- 02 Amazon -->
+            <div class="timeline-entry" data-lat="47.61" data-lng="-122.33" data-location="Seattle, WA">
+                <span class="timeline-ordinal">02</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">Amazon</span><span
+                            class="japaneseText">Amazon</span><span class="displayText">Amazon</span></div>
+                    <div class="timeline-card-role text"><span class="englishText">SDE</span><span
+                            class="japaneseText">ソフトウェア開発エンジニア</span><span class="displayText">SDE</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">July 2020 - June 2021</span><span
+                            class="japaneseText">7月2020年 - 6月2021年</span><span class="displayText">July 2020 - June 2021</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Worked directly with vendors
+                            to
+                            resolve issues with the Title Team’s services</span><span class="japaneseText">&bull;
+                            ベンダーと直接連携し、タイトルチームのサービスに関する問題を解決しました</span><span class="displayText">&bull; Worked directly with vendors
+                            to
+                            resolve issues with the Title Team’s services</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Programmed scripts to automate
+                            workflows that modified production databases</span><span class="japaneseText">&bull;
+                            本番データベースを変更するワークフローを自動化するスクリプトをプログラムしました</span><span class="displayText">&bull; Programmed scripts to automate
+                            workflows that modified production databases</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Helped the company combat
+                            manipulative listings by modifying the scoring algorithm</span><span
+                            class="japaneseText">スコアリングアルゴリズムを修正することで、不正なリスティングへの対策を支援しました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-skills">AWS | Java | Bash</div>
+                </div>
+            </div>
+
+            <!-- Graduation milestone -->
+            <div class="timeline-entry" data-lat="42.67" data-lng="-83.22" data-location="Rochester, MI">
+                <div class="timeline-dot"></div>
+                <div class="timeline-milestone">
+                    <div class="timeline-milestone-text text"><span class="englishText">Graduated University</span><span
+                            class="japaneseText">卒業した大学</span><span class="displayText">Graduated University</span></div>
+                    <div class="timeline-milestone-detail text"><span class="englishText">BS Computer Science — December
+                            2019</span><span class="japaneseText">コンピュータサイエンス学士 — 2019年12月</span><span
+                            class="displayText"></span></div>
+                </div>
+            </div>
+
+            <!-- 03 NASA 2019 -->
+            <div class="timeline-entry" data-lat="38.99" data-lng="-76.85" data-location="Greenbelt, MD"
+                data-media-key="nasa-2019">
+                <span class="timeline-ordinal">03</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">NASA: Goddard Space Flight
+                            Center</span><span class="japaneseText">NASA：ゴダード宇宙飛行センター</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-role text"><span class="englishText">AR/VR Intern</span><span
+                            class="japaneseText">AR/VR インターン</span><span class="displayText">AR/VR Intern</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">June 2019 - Aug 2019</span><span
+                            class="japaneseText">6月2019年 - 8月2019年</span><span class="displayText">June 2019 - Aug 2019</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Developed a program that
+                            converts reflectance data from NASA’s Lunar Reconnaissance Orbiter into Unity Terrain Meshes
+                            allowing users to navigate the surface of the moon</span><span class="japaneseText">&bull;
+                            NASAの月偵察衛星の反射率データをUnity Terrain Meshesに変換するプログラムを開発し、ユーザーが月面を探索できるようにしました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Designed modular software that
+                            allows users to 3D model while inside any VR application</span><span
+                            class="japaneseText">&bull; 任意のVRアプリケーション内で3Dモデリングを可能にするモジュラーソフトウェアを設計しました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Presented organization
+                            projects
+                            to multiple teams across several NASA campuses</span><span class="japaneseText">&bull;
+                            複数のNASAキャンパスにわたる複数のチームに組織のプロジェクトを発表しました</span><span class="displayText">&bull; Presented organization
+                            projects
+                            to multiple teams across several NASA campuses</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Mentored high-school interns
+                            by
+                            teaching them Unity and Unreal Engine</span><span class="japaneseText">&bull; UnityとUnreal
+                            Engineを教えることで高校生のインターンを指導しました</span><span class="displayText">&bull; Mentored high-school interns
+                            by
+                            teaching them Unity and Unreal Engine</span></div>
+                    <div class="timeline-card-skills">Unity | C# | Blender | Python | UE4 | C++</div>
+                </div>
+            </div>
+
+            <!-- 04 Unity -->
+            <div class="timeline-entry" data-lat="37.77" data-lng="-122.42" data-location="San Francisco, CA"
+                data-media-key="unity">
+                <span class="timeline-ordinal">04</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">Unity Technologies</span><span
+                            class="japaneseText">ユニティテクノロジーズ</span><span class="displayText">Unity Technologies</span></div>
+                    <div class="timeline-card-role text"><span class="englishText">&bull; Student Ambassador</span><span
+                            class="japaneseText">学生大使</span><span class="displayText">&bull; Student Ambassador</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">&bull; Sept 2018 - Dec
+                            2019</span><span class="japaneseText">9月2018年 - 12月2019年</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Hosted and supported Unity and
+                            GameJam events across multiple college campuses</span><span class="japaneseText">&bull;
+                            複数のキャンパスでUnityおよびGameJamイベントをホストおよびサポートしました</span><span class="displayText">&bull; Hosted and supported Unity and
+                            GameJam events across multiple college campuses</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Staffed booths and tables at
+                            GDC 2019 for Unity and demoed new products and technologies to attendees</span><span
+                            class="japaneseText">&bull; UnityのGDC2019のブースとテーブルにスタッフを配置し、参加者に新製品と新技術のデモを行いました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-skills">Unity | C#</div>
+                </div>
+            </div>
+
+            <!-- 05 DVERSE -->
+            <div class="timeline-entry" data-lat="35.68" data-lng="139.65" data-location="Tokyo, JP"
+                data-media-key="dverse">
+                <span class="timeline-ordinal">05</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">DVERSE</span><span
+                            class="japaneseText">DVERSE</span><span class="displayText">DVERSE</span></div>
+                    <div class="timeline-card-role text"><span class="englishText">Unity Intern</span><span
+                            class="japaneseText">ユニティインターン</span><span class="displayText">Unity Intern</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">May 2018 - July 2018</span><span
+                            class="japaneseText">5月2018年 - 7月2018年</span><span class="displayText">May 2018 - July 2018</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Upgraded the user interface
+                            and
+                            the core functionality of VR applications</span><span class="japaneseText">&bull;
+                            ユーザーインターフェースとVRアプリケーションのコア機能をアップグレードしました</span><span class="displayText">&bull; Upgraded the user interface
+                            and
+                            the core functionality of VR applications</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Created plugins for Blender
+                            and
+                            SketchUp that allowed real-time sync with Unity</span><span class="japaneseText">&bull;
+                            Unityとのリアルタイム同期を可能にするBlenderとSketchUpのプラグインを作成しました</span><span class="displayText">&bull; Created plugins for Blender
+                            and
+                            SketchUp that allowed real-time sync with Unity</span>
+                    </div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Communicated with co-workers
+                            every day in both Japanese and English</span><span class="japaneseText">&bull;
+                            毎日、同僚と一緒に日本語と英語で伝える</span><span class="displayText">&bull; Communicated with co-workers
+                            every day in both Japanese and English</span></div>
+                    <div class="timeline-card-skills">Unity | C# | Blender | Python | SketchUp | Ruby</div>
+                </div>
+            </div>
+
+            <!-- 06 NASA 2017 -->
+            <div class="timeline-entry" data-lat="38.99" data-lng="-76.85" data-location="Greenbelt, MD"
+                data-media-key="nasa-2017">
+                <span class="timeline-ordinal">06</span>
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-card-title text"><span class="englishText">NASA: Goddard Space Flight
+                            Center</span><span class="japaneseText">NASA：ゴダード宇宙飛行センター</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-role text"><span class="englishText">AR/VR Intern</span><span
+                            class="japaneseText">AR/VR インターン</span><span class="displayText">AR/VR Intern</span></div>
+                    <div class="timeline-card-date text"><span class="englishText">June 2017 - Aug 2017</span><span
+                            class="japaneseText">6月2017年 - 8月2017年</span><span class="displayText">June 2017 - Aug 2017</span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Utilized Unity and C# to make
+                            enhancements to a virtual reality project which allowed scientists to assemble CubeSats from
+                            a database of vendor parts</span><span class="japaneseText">&bull;
+                            UnityとC＃を利用して、科学者がベンダー部品のデータベースからCubeSatを組み立てることができるバーチャルリアリティプロジェクトを強化しました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-desc text"><span class="englishText">&bull; Automated the process of
+                            importing and converting 3D models by writing a Python script to convert the vendor files to
+                            a unique format and a smaller total size</span><span class="japaneseText">&bull;
+                            ベンダーファイルを一意の形式と小さい合計サイズに変換するPythonスクリプトを作成することにより、3Dモデルのインポートと変換のプロセスを自動化しました</span><span
+                            class="displayText"></span></div>
+                    <div class="timeline-card-skills">Unity | C# | Blender | Python | Photon</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Full-screen globe -->
+    <div id="globe-container"></div>
+    <div id="globe-label" class="globe-label"></div>
+
+    <script src="../../static/www/js/common.js" defer></script>
+    <script src="../../static/www/js/experience.js" defer></script>
+    <script src="../../static/ar/js/three/three.min.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod0.js" defer></script>
+    <script src="../../static/www/data/globe/coast_lod1.js" defer></script>
+    <script src="../../static/www/data/globe/borders.js" defer></script>
+    <script src="../../static/www/data/globe/ocean.js" defer></script>
+    <script src="../../static/www/data/globe/mask.js" defer></script>
+    <script src="../../static/www/js/experience_globe.js" defer></script>
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 class HuluWidget extends BaseWidget {
 	dataDocumentID = 'hulu';
+	updateIntervalMS = 60000; // 1 min — cap to keep fresh within typical session length
 	data;
 
 	logoImageURL = this.staticAssetBaseURL + 'ar/img/hulu/logo.svg';
@@ -13,8 +14,8 @@ class HuluWidget extends BaseWidget {
 	}
 
 	async generateAFrameHTML() {
-		const showImageURL = await this.storage.ref(this.showImageBucketPath).getDownloadURL();
-		const showFrameURL = await this.storage.ref(this.showFrameBucketPath).getDownloadURL();
+		const showImageURL = await this.getCachedDownloadURL(this.showImageBucketPath, this.data.eab);
+		const showFrameURL = await this.getCachedDownloadURL(this.showFrameBucketPath, this.data.eab);
 
 		$('<a-entity/>', {
 			id: this.dataDocumentID + 'Widget',
@@ -81,5 +82,33 @@ class HuluWidget extends BaseWidget {
 		}).appendTo('#' + this.dataDocumentID + 'WidgetBody');
 
 		$('#' + this.dataDocumentID + 'WidgetLogo').attr('position', '0.3859857482185273 0 0.001');
+	}
+
+	async applyUpdate(oldData, newData) {
+		// eab is the episode identifier + image version key — change = new image set → full rebuild.
+		if(oldData.eab !== newData.eab) return false;
+		if(oldData.showURL !== newData.showURL) return false;
+		if(oldData.isMovie !== newData.isMovie) return false;
+
+		// Same episode, different text (rare edit case). Patch text entities.
+		const bodyID = '#' + this.dataDocumentID + 'WidgetBody';
+
+		if(newData.isMovie) {
+			if(oldData.movieTitle !== newData.movieTitle) {
+				$('#' + this.dataDocumentID + 'WidgetMovieTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetMovieTitleText', bodyID, newData.movieTitle, 30, '#1ce783', 0, 'Montserrat', 300, 35, false, '#FF000000', 16, 17, 315, 421, 128, 1, true);
+			}
+		} else {
+			if(oldData.seriesTitle !== newData.seriesTitle) {
+				$('#' + this.dataDocumentID + 'WidgetSeriesTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetSeriesTitleText', bodyID, newData.seriesTitle, 28, '#1ce783', 0, 'Montserrat', 300, 32.4, false, '#FF000000', 16, 14, 315, 421, 128, 1, true);
+			}
+			if(oldData.episodeTitle !== newData.episodeTitle) {
+				$('#' + this.dataDocumentID + 'WidgetEpisodeTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetEpisodeTitleText', bodyID, newData.episodeTitle, 20, '#1ce783', 0, 'Montserrat', 300, 24.7, false, '#00FF0000', 16, -12, 315, 421, 128, 1, true);
+			}
+		}
+
+		return true;
 	}
 }

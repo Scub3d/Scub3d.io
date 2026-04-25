@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Minesweeper</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;700&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/minesweeper/css/minesweeper.css" />
+</head>
+
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="active text"><span class="displayText">HOME</span></a>
+            <a href="presskit.html" class="text"><span class="displayText">PRESSKIT</span></a>
+            <a href="privacy-policy.html" class="text"><span class="displayText">PRIVACY</span></a>
+            <a href="//scub3d.io" class="nav-back text"><span class="displayText">&#8617; SCUB3D.IO</span></a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-tag">&lt;game::minesweeper3d&gt;</div>
+                <h1 class="hero-title">3D <span class="accent">MINE</span>SWEEPER</h1>
+                <p class="hero-tagline">
+                    Minesweeper, in true 3D. Cells fill a volumetric grid &mdash; mines hide
+                    above, below, in front, behind. Sweep <em>through</em>, not just across.
+                </p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item"><span>Engine</span><strong>Unity DOTS</strong></div>
+                    <div class="hero-meta-item"><span>Platform</span><strong>iOS · Android · Steam · Quest</strong>
+                    </div>
+                    <div class="hero-meta-item"><span>Release</span><strong>2026</strong></div>
+                </div>
+                <div class="cta-row">
+                    <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener" class="cta cta-primary">[ Join
+                        Discord &#8599; ]</a>
+                    <a href="presskit.html" class="cta">[ Presskit &#8599; ]</a>
+                    <a href="#trailer" class="cta">[ Trailer ]</a>
+                </div>
+                <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener" class="beta-callout">
+                    <span class="dot"></span>
+                    Beta testing now &middot; iOS &amp; Android
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-canvas-stage" id="heroVisual"></div>
+                <div class="hero-canvas-label" id="heroVisualLabel">[ LOADING ]</div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- FEATURES -->
+        <section class="section">
+            <div class="bracket-label">[ FEATURES ]</div>
+            <h2 class="section-title">Built for thinking in 3D</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <div class="feature-title">True 3D</div>
+                    <div class="feature-desc">Cells fill a volumetric grid &mdash; not a board wrapped
+                        on a sphere. Mines can be anywhere in the volume: above, below, behind.</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <div class="feature-title">Face-Adjacent Only</div>
+                    <div class="feature-desc">Numbers count mines in cells that share a <em>face</em>
+                        &mdash; never the edges or corners. For cubes that means 6 neighbors instead of 26. A deliberate
+                        departure from classic Minesweeper that makes the game enoyable in 3D (and takes a couple
+                        boards to internalize).</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <div class="feature-title">20+ Cell Shapes</div>
+                    <div class="feature-desc">Cubes, octahedra, dodecahedra, icosahedra, and more.
+                        Each shape changes how cells connect &mdash; and how mines hide. <em>Mobile:
+                            5&ndash;10 shapes; full set on Steam &amp; Quest.</em></div>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <div class="feature-title">10 Themes</div>
+                    <div class="feature-desc">Ten visual themes, including a color-blind palette.
+                        Pick what feels right for the run.</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">05</div>
+                    <div class="feature-title">Free on Mobile, Forever</div>
+                    <div class="feature-desc">No ads. No in-app purchases. Free on iOS and Android
+                        for life. The Steam &amp; Quest builds are paid &mdash; that's where larger
+                        grids and the full shape set live.</div>
+                </div>
+                <!-- <div class="feature">
+                    <div class="feature-num">06</div>
+                    <div class="feature-title">Daily Challenge</div>
+                    <div class="feature-desc"><em>Coming after launch:</em> one seed per day, same
+                        for everyone. Win streaks, global ranking.</div>
+                </div> -->
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SHAPE CATALOG -->
+        <section class="section" id="shapes">
+            <div class="bracket-label">[ SHAPES ]</div>
+            <h2 class="section-title">Change the shape, change the puzzle</h2>
+            <p style="color: var(--text-secondary); max-width: 60ch; margin-bottom: var(--space-8);">
+                Swap the cube for a hexagonal prism and every number on the
+                board means something new. Each shape carries its own face count,
+                its own neighbors, its own rhythm. Full catalog on Steam &amp;
+                Quest; mobile ships with a curated set.
+            </p>
+            <div class="shape-chips">
+                <span class="shape-chip">Cube</span>
+                <span class="shape-chip">Triangular Prism</span>
+                <span class="shape-chip">Hexagonal Prism</span>
+                <span class="shape-chip">Truncated Octahedron</span>
+                <span class="shape-chip">Elongated Rhombic Dodecahedron</span>
+                <span class="shape-chip">Prismatoid</span>
+                <span class="shape-chip">Rectangular Cuboid</span>
+                <span class="shape-chip">Trapezo Rhombic Dodecahedron</span>
+                <span class="shape-chip">Gyrobifastigium</span>
+                <span class="shape-chip">Convex Elongated Gyrobifastigium</span>
+                <span class="shape-chip">Concave Elongated Gyrobifastigium</span>
+                <span class="shape-chip">Triakis Truncated Tetrahedron</span>
+                <span class="shape-chip">Octokaideca Plesiohedron</span>
+                <span class="shape-chip">Ten of Diamonds Decahedron</span>
+                <span class="shape-chip">Bisymmetric Hendecahedron</span>
+                <span class="shape-chip">Elongated Square Bipyramid</span>
+                <span class="shape-chip">Sphenoid Hendecahedron</span>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- TRAILER PLACEHOLDER -->
+        <section class="section" id="trailer">
+            <div class="bracket-label">[ TRAILER ]</div>
+            <h2 class="section-title">See it in motion</h2>
+            <div class="screenshot" style="aspect-ratio: 16/9; max-width: 900px; margin: 0 auto;">
+                <div
+                    style="display:flex; align-items:center; justify-content:center; height:100%; color:var(--text-tertiary); font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:0.2em;">
+                    [ TRAILER · COMING SOON ]
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- STORES / BETA -->
+        <section class="section" id="stores">
+            <div class="bracket-label">[ AVAILABLE ON ]</div>
+            <h2 class="section-title" id="beta">Get in early</h2>
+            <p style="color: var(--text-secondary); max-width: 60ch; margin-bottom: var(--space-8);">
+                The mobile build is in <strong style="color: var(--accent-safe);">closed beta on iOS
+                    (TestFlight) and Android (Google Play)</strong>. Jump in the
+                <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener"
+                    style="color: var(--accent-primary);">Discord</a>
+                to grab a beta slot, follow development, or just hang out with the community.
+                Steam &amp; Meta Quest builds wishlist later this year.
+            </p>
+            <div class="stores">
+                <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener" class="store-badge">
+                    <span class="store-platform">iOS · TestFlight</span>
+                    <span class="store-name">App Store</span>
+                    <span class="store-status store-status-free">[ BETA NOW · FREE ]</span>
+                </a>
+                <a href="https://discord.gg/4nkgFJXdA" target="_blank" rel="noopener" class="store-badge">
+                    <span class="store-platform">Android · Closed Beta</span>
+                    <span class="store-name">Google Play</span>
+                    <span class="store-status store-status-free">[ BETA NOW · FREE ]</span>
+                </a>
+                <a href="#" class="store-badge">
+                    <span class="store-platform">PC · Mac</span>
+                    <span class="store-name">Steam</span>
+                    <span class="store-status">[ PAID · TBD 2026 ]</span>
+                </a>
+                <a href="#" class="store-badge">
+                    <span class="store-platform">VR</span>
+                    <span class="store-name">Meta Quest</span>
+                    <span class="store-status">[ PAID · TBD 2026 ]</span>
+                </a>
+            </div>
+            <p
+                style="text-align:center; margin-top: var(--space-8); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-tertiary); letter-spacing: 0.1em;">
+                [ MOBILE = FREE FOREVER &middot; NO ADS &middot; NO IAP ]
+            </p>
+        </section>
+
+        <footer class="site-footer">
+            &#169; <span id="footerYear"></span> Spenser Solys &middot;
+            <a href="presskit.html">Presskit</a> &middot;
+            <a href="privacy-policy.html">Privacy</a> &middot;
+            <a href="//scub3d.io">scub3d.io</a>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+    </script>
+    <script src="../../static/ar/js/three/three.min.js" defer></script>
+    <script src="../../static/minesweeper/js/minesweeper_hero.js" defer></script>
+
+</body>
+
+</html>

@@ -27,6 +27,6 @@ class SteamData extends Data {
 	}
 
 	Equals(other) {
-		return this.personaName === other.personaName && this.profileURL === other.profileURL && this.onlineState === other.onlineState && this.isPlaying === other.isPlaying && this.appID === other.appID && this.gameName === other.gameName && this.gameHoursPlayed === other.gameHoursPlayed && this.gameAchievements === other.gameAchievementss;
+		return this.personaName === other.personaName && this.profileURL === other.profileURL && this.onlineState === other.onlineState && this.isPlaying === other.isPlaying && this.appID === other.appID && this.gameName === other.gameName && this.gameHoursPlayed === other.gameHoursPlayed && this.gameAchievements === other.gameAchievements;
 	}
 }

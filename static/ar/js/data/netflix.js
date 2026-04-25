@@ -41,8 +41,8 @@ class NetflixData extends Data {
 	}
 
 	Equals(other) {
-		return this.isMovie === other.isMovie && this.showURL === other.showURL && this.timestamp === other.timestamp && 
-				this.movieTitle === other.movieTitle && this.seriesTitle === other.seriesTitle && 
+		return this.isMovie === other.isMovie && this.showURL === other.showURL &&
+				this.movieTitle === other.movieTitle && this.seriesTitle === other.seriesTitle &&
 				this.episodeTitle === other.episodeTitle && this.progress === other.progress && this.duration === other.duration;
 	}
 }

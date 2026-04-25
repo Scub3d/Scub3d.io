@@ -1,5 +1,6 @@
 class NetflixWidget extends BaseWidget {
 	dataDocumentID = 'netflix';
+	updateIntervalMS = 60000; // 1 min — cap to keep fresh within typical session length
 	data;
 
 	logoImageURL = this.staticAssetBaseURL + 'ar/img/netflix/logo.svg';
@@ -14,9 +15,9 @@ class NetflixWidget extends BaseWidget {
 	}
 
 	async generateAFrameHTML() {
-		const profileImageURL = await this.storage.ref(this.profileImageBucketPath).getDownloadURL();
-		const showBoxArtImageURL = await this.storage.ref(this.showBoxArtImageBucketPath).getDownloadURL();
-		const showImageURL = await this.storage.ref(this.showImageBucketPath).getDownloadURL();
+		const profileImageURL = await this.getCachedDownloadURL(this.profileImageBucketPath);
+		const showBoxArtImageURL = await this.getCachedDownloadURL(this.showBoxArtImageBucketPath, this.data.showURL);
+		const showImageURL = await this.getCachedDownloadURL(this.showImageBucketPath, this.data.showURL);
 
 		$('<a-entity/>', {
 			id: this.dataDocumentID + 'Widget',
@@ -74,5 +75,38 @@ class NetflixWidget extends BaseWidget {
 
 		generateAFrameProgressBar(this.dataDocumentID, '#' + this.dataDocumentID + 'WidgetBody', this.data.progress, this.data.duration, (229.0 / 255.0) + ' ' + (9.0 / 255.0) + ' ' + (20.0 / 255.0), true, false, 128.0, 421.0);
 		generateAFrameAlternatingLogo(this.dataDocumentID + 'WidgetLogo', '#' + this.dataDocumentID + 'WidgetBody', '0.3859857482185273 0 0.001', '0 0 0', '0.1140142517814727 0.375 1', this.logoImageURL, profileImageURL);
+	}
+
+	async applyUpdate(oldData, newData) {
+		// Identity change = different show = new images + new collider URL → full rebuild.
+		if(oldData.showURL !== newData.showURL) return false;
+		// Movie ↔ series switch creates different text entity shapes → full rebuild.
+		if(oldData.isMovie !== newData.isMovie) return false;
+
+		const bodyID = '#' + this.dataDocumentID + 'WidgetBody';
+
+		if(newData.isMovie) {
+			if(oldData.movieTitle !== newData.movieTitle) {
+				$('#' + this.dataDocumentID + 'WidgetMovieTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetMovieTitleText', bodyID, newData.movieTitle, 30, '#F5F5F1', 0, 'Montserrat', 300, 35, false, '#FF000000', 16, 0, 315, 421, 128, 1, true);
+			}
+		} else {
+			if(oldData.seriesTitle !== newData.seriesTitle) {
+				$('#' + this.dataDocumentID + 'WidgetSeriesTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetSeriesTitleText', bodyID, newData.seriesTitle, 28, '#F5F5F1', 0, 'Montserrat', 300, 32.4, false, '#FF000000', 16, 14, 315, 421, 128, 1, true);
+			}
+			if(oldData.episodeTitle !== newData.episodeTitle) {
+				$('#' + this.dataDocumentID + 'WidgetEpisodeTitleText').remove();
+				generateAFrameTextEntity(this.dataDocumentID + 'WidgetEpisodeTitleText', bodyID, newData.episodeTitle, 20, '#F5F5F1', 0, 'Montserrat', 300, 24.7, false, '#00FF0000', 16, -12, 315, 421, 128, 1, true);
+			}
+		}
+
+		if(oldData.progress !== newData.progress || oldData.duration !== newData.duration) {
+			if(newData.duration > 0) {
+				setShaderUniform(this.dataDocumentID + 'WidgetProgressBar', 'xPercent', newData.progress / newData.duration);
+			}
+		}
+
+		return true;
 	}
 }

@@ -17,7 +17,7 @@ module.exports = {
 			return gresponse;
 		}).catch(error => console.log('Error. Unable to defeat captcha. Message: ' + error));
 	},
-	defeatRecaptchaV3: async function(domain, sitekey) {
+	defeatRecaptchaV3: async function(domain, sitekey, action) {
 		const authDocument = await db.collection('auth').doc('anticaptcha').get();
 
 		if(!authDocument.exists) {
@@ -28,7 +28,7 @@ module.exports = {
 
 		anticaptcha.setAPIKey(auth.apiKey);
 
-		return await anticaptcha.solveRecaptchaV3(domain, sitekey, 0.7, '').then(gresponse => {
+		return await anticaptcha.solveRecaptchaV3(domain, sitekey, 0.7, action || '').then(gresponse => {
 			console.log('------------------------------\n\n');
 
 			console.log(gresponse);
