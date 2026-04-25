@@ -37,7 +37,7 @@
     "rgb-hex": "^3.0.0",
     "sharp": "^0.34.0",
     "stream": "^0.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
