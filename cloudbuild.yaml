@@ -4,6 +4,10 @@ steps:
 - name: gcr.io/cloud-builders/gsutil
   args: ["-m", "rsync", "-r", "-c", "-d", "./static", "gs://static.scub3d.io"]
 
+# allow cross-origin reads from the other subdomains (ar/minesweeper/www) and local dev
+- name: gcr.io/cloud-builders/gsutil
+  args: ["cors", "set", "static_cors.json", "gs://static.scub3d.io"]
+
 
 # rsync website html files into the bucket
 - name: gcr.io/cloud-builders/gsutil
@@ -36,6 +40,10 @@ steps:
 - name: "gcr.io/cloud-builders/gsutil"
   args: ["rm", "gs://scub3d.io/projects.html"]
 
+# point the bucket's main page suffix at the extensionless `index` object so `/` serves it
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["web", "set", "-m", "index", "gs://scub3d.io"]
+
 
 # rsync minesweeper subdomain html files into the minesweper bucket
 - name: gcr.io/cloud-builders/gsutil
@@ -56,6 +64,10 @@ steps:
   args: ["-h", "Content-Type:text/html", "cp", "gs://minesweeper.scub3d.io/privacy-policy.html", "gs://minesweeper.scub3d.io/privacy-policy"]
 - name: "gcr.io/cloud-builders/gsutil"
   args: ["rm", "gs://minesweeper.scub3d.io/privacy-policy.html"]
+
+# point the bucket's main page suffix at the extensionless `index` object so `/` serves it
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ["web", "set", "-m", "index", "gs://minesweeper.scub3d.io"]
 
 
 # rsync AR subdomain html files into the bucket (prototypes are standalone, no templating)
