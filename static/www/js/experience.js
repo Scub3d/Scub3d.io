@@ -33,17 +33,17 @@ document.addEventListener('DOMContentLoaded', function () {
         'nasa-2019': {
             title: 'NASA: Goddard Space Flight Center (2019)',
             items: [
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_01.jpg', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_02.jpg', alt: 'NASA 2019 poster' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_03.jpg', alt: 'NASA clean room' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_04.png', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_05.png', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_06.png', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_07.jpg', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_08.jpg', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_09.jpg', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_10.jpg', alt: 'NASA GSFC 2019' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2019/photo_11.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_01.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_02.jpg', alt: 'NASA 2019 poster' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_03.jpg', alt: 'NASA clean room' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_04.png', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_05.png', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_06.png', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_07.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_08.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_09.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_10.jpg', alt: 'NASA GSFC 2019' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2019/photo_11.jpg', alt: 'NASA GSFC 2019' },
                 { type: 'youtube', id: 'ozBC4YsErf8' },
                 { type: 'youtube', id: 'Ja5Xe-CGFD4' },
 
@@ -52,25 +52,25 @@ document.addEventListener('DOMContentLoaded', function () {
         'unity': {
             title: 'Unity Technologies',
             items: [
-                { type: 'image', src: '../../static/www/img/experience/unity/photo_01.jpg', alt: 'Unity Student Ambassador' },
-                { type: 'image', src: '../../static/www/img/experience/unity/photo_02.jpg', alt: 'Unity Student Ambassador headshot' }
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/unity/photo_01.jpg', alt: 'Unity Student Ambassador' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/unity/photo_02.jpg', alt: 'Unity Student Ambassador headshot' }
             ]
         },
         'dverse': {
             title: 'DVERSE',
             items: [
-                { type: 'image', src: '../../static/www/img/experience/dverse.jpg', alt: 'DVERSE internship Tokyo' }
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/dverse.jpg', alt: 'DVERSE internship Tokyo' }
             ]
         },
         'nasa-2017': {
             title: 'NASA: Goddard Space Flight Center (2017)',
             items: [
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_01.jpg', alt: 'NASA GSFC 2017' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_02.jpg', alt: 'NASA GSFC 2017' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_03.jpg', alt: 'NASA GSFC 2017' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_04.png', alt: 'NASA GSFC 2017' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_05.png', alt: 'NASA GSFC 2017' },
-                { type: 'image', src: '../../static/www/img/experience/nasa 2017/photo_06.png', alt: 'NASA GSFC 2017' }
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_01.jpg', alt: 'NASA GSFC 2017' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_02.jpg', alt: 'NASA GSFC 2017' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_03.jpg', alt: 'NASA GSFC 2017' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_04.png', alt: 'NASA GSFC 2017' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_05.png', alt: 'NASA GSFC 2017' },
+                { type: 'image', src: '//static.scub3d.io/www/img/experience/nasa 2017/photo_06.png', alt: 'NASA GSFC 2017' }
             ]
         }
     };

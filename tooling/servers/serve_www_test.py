@@ -39,7 +39,7 @@ VIEWS_DIR = PROJECT_ROOT / "views"
 # //<sub>.scub3d.io/ in www HTML get rewritten to /<sub>/ and routed there.
 CROSS_SUBDOMAINS = ("minesweeper", "ar")
 
-REWRITE = re.compile(rb"(?:https?:)?//static\.scub3d\.io/www/")
+REWRITE = re.compile(rb"(?:https?:)?//static\.scub3d\.io/")
 REWRITE_FUNCTIONS = re.compile(rb"https://us-central1-scub3d\.cloudfunctions\.net/")
 FUNCTIONS_LOCAL_BASE = b"http://localhost:2053/scub3d/us-central1/"
 REWRITE_SUBDOMAINS = [
@@ -52,7 +52,7 @@ mimetypes.add_type("font/woff2", ".woff2")
 
 
 def rewrite(data: bytes) -> bytes:
-    data = REWRITE.sub(b"/static/www/", data)
+    data = REWRITE.sub(b"/static/", data)
     data = REWRITE_FUNCTIONS.sub(FUNCTIONS_LOCAL_BASE, data)
     for pattern, replacement in REWRITE_SUBDOMAINS:
         data = pattern.sub(replacement, data)
@@ -83,10 +83,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if candidate.exists():
                 self._serve_rewritten(candidate, "text/html; charset=utf-8")
                 return
-        # Rewrite JS/JSON under /static/www/ so references inside data files
+        # Rewrite JS/JSON under /static/ so references inside data files
         # also point at the local server. Rewrites are idempotent no-ops when
         # the file contains no external scub3d URLs.
-        if self.path.startswith("/static/www/") and (self.path.endswith(".js") or self.path.endswith(".json")):
+        if self.path.startswith("/static/") and (self.path.endswith(".js") or self.path.endswith(".json")):
             file_path = PROJECT_ROOT.joinpath(*self.path.lstrip("/").split("/"))
             if file_path.exists():
                 content_type = "application/javascript" if self.path.endswith(".js") else "application/json"

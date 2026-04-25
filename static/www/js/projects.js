@@ -4,14 +4,14 @@
 
 // Media paths for lazy loading (mp4 for animations, jpg for stills)
 var PROJECT_MEDIA = [
-    { src: '../../static/www/img/projects/minesweeper.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/business_card.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/saoui.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/jhinxz.jpg', type: 'image' },
-    { src: '../../static/www/img/projects/scub3d.io.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/pysat-2.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/splatter.mp4', type: 'video' },
-    { src: '../../static/www/img/projects/binging_with_babish.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/minesweeper.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/business_card.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/saoui.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/jhinxz.jpg', type: 'image' },
+    { src: '//static.scub3d.io/www/img/projects/scub3d.io.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/pysat-2.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/splatter.mp4', type: 'video' },
+    { src: '//static.scub3d.io/www/img/projects/binging_with_babish.mp4', type: 'video' },
 ];
 
 document.addEventListener('DOMContentLoaded', function() {

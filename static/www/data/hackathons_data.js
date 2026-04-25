@@ -36,14 +36,14 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://devpost.com/software/the-piano' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/photo_01.png', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_01.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_02.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_03.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_04.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_05.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_06.jpg', alt: 'The Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/wildhacks_2014/devpost_07.jpg', alt: 'The Piano' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/photo_01.png', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_01.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_02.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_03.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_04.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_05.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_06.jpg', alt: 'The Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/wildhacks_2014/devpost_07.jpg', alt: 'The Piano' }
         ]
     },
     'hackIllinois_2015': {
@@ -57,11 +57,11 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://devpost.com/software/rockalanche' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2015/photo_01.png', alt: 'Rockalanche' },
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2015/devpost_01.png', alt: 'Rockalanche' },
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2015/devpost_02.jpg', alt: 'Rockalanche' },
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2015/devpost_03.jpg', alt: 'Rockalanche' },
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2015/devpost_04.jpg', alt: 'Rockalanche' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2015/photo_01.png', alt: 'Rockalanche' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2015/devpost_01.png', alt: 'Rockalanche' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2015/devpost_02.jpg', alt: 'Rockalanche' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2015/devpost_03.jpg', alt: 'Rockalanche' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2015/devpost_04.jpg', alt: 'Rockalanche' }
         ]
     },
     'spartahack_2015': {
@@ -77,13 +77,13 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'dhK0XiPUs9E' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/devpost_01.png', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_01.jpg', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_02.jpg', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_03.jpg', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_04.jpg', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_05.jpg', alt: 'Pokemon Rift' },
-            { type: 'image', src: '../../static/www/img/hackathons/spartahack_2015/photo_06.jpg', alt: 'Pokemon Rift' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/devpost_01.png', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_01.jpg', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_02.jpg', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_03.jpg', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_04.jpg', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_05.jpg', alt: 'Pokemon Rift' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/spartahack_2015/photo_06.jpg', alt: 'Pokemon Rift' }
         ]
     },
     'revolutionuc_2015': {
@@ -98,12 +98,12 @@ var HACKATHON_DATA = {
             { label: 'GitHub', url: 'https://github.com/Scub3d/Project-WindWaker' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_01.jpg', alt: 'Project Wind Waker' },
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_02.jpg', alt: 'Project Wind Waker' },
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_03.jpg', alt: 'Project Wind Waker' },
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_04.jpg', alt: 'Project Wind Waker' },
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_05.jpg', alt: 'Project Wind Waker' },
-            { type: 'image', src: '../../static/www/img/hackathons/revolutionuc_2015/photo_06.jpg', alt: 'Project Wind Waker' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_01.jpg', alt: 'Project Wind Waker' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_02.jpg', alt: 'Project Wind Waker' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_03.jpg', alt: 'Project Wind Waker' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_04.jpg', alt: 'Project Wind Waker' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_05.jpg', alt: 'Project Wind Waker' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/revolutionuc_2015/photo_06.jpg', alt: 'Project Wind Waker' }
         ]
     },
     'khe_2015': {
@@ -118,8 +118,8 @@ var HACKATHON_DATA = {
             { label: 'GitHub', url: 'https://github.com/Scub3d/Project-PAC-MAN' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/khe_2015/photo_01.jpg', alt: 'Project Pac-Man' },
-            { type: 'image', src: '../../static/www/img/hackathons/khe_2015/photo_02.jpg', alt: 'Project Pac-Man' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/khe_2015/photo_01.jpg', alt: 'Project Pac-Man' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/khe_2015/photo_02.jpg', alt: 'Project Pac-Man' }
         ]
     },
     'boilermake_2015': {
@@ -134,7 +134,7 @@ var HACKATHON_DATA = {
             { label: 'GitHub', url: 'https://github.com/heymarion/iAssassins' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/boilermake_2015/devpost_01.jpg', alt: 'iAssassins' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/boilermake_2015/devpost_01.jpg', alt: 'iAssassins' }
         ]
     },
     'junction_2015': {
@@ -149,11 +149,11 @@ var HACKATHON_DATA = {
             { label: 'GitHub', url: 'https://github.com/Scub3d/Aerohacks' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/junction_2015/devpost_01.jpg', alt: 'VR So Fly' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction_2015/devpost_02.jpg', alt: 'VR So Fly' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction_2015/devpost_03.jpg', alt: 'VR So Fly' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction_2015/devpost_04.jpg', alt: 'VR So Fly' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction_2015/devpost_05.jpg', alt: 'VR So Fly' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction_2015/devpost_01.jpg', alt: 'VR So Fly' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction_2015/devpost_02.jpg', alt: 'VR So Fly' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction_2015/devpost_03.jpg', alt: 'VR So Fly' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction_2015/devpost_04.jpg', alt: 'VR So Fly' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction_2015/devpost_05.jpg', alt: 'VR So Fly' }
         ]
     },
     'fashion-tech-hacks': {
@@ -191,8 +191,8 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://devpost.com/software/achieve-mobile-app' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2016/devpost_01.png', alt: 'Achieve! Mobile App' },
-            { type: 'image', src: '../../static/www/img/hackathons/hackIllinois_2016/devpost_02.png', alt: 'Achieve! Mobile App' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2016/devpost_01.png', alt: 'Achieve! Mobile App' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hackIllinois_2016/devpost_02.png', alt: 'Achieve! Mobile App' }
         ]
     },
     'spartahack_2016': {
@@ -237,12 +237,12 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'EniKlZ0lMXg' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_01.png', alt: 'Low Poly Safari' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_02.png', alt: 'Low Poly Safari' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_03.jpg', alt: 'Low Poly Safari' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_04.png', alt: 'Low Poly Safari' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_05.png', alt: 'Low Poly Safari' },
-            { type: 'image', src: '../../static/www/img/hackathons/global-archiact-jam/devpost_06.png', alt: 'Low Poly Safari' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_01.png', alt: 'Low Poly Safari' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_02.png', alt: 'Low Poly Safari' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_03.jpg', alt: 'Low Poly Safari' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_04.png', alt: 'Low Poly Safari' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_05.png', alt: 'Low Poly Safari' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/global-archiact-jam/devpost_06.png', alt: 'Low Poly Safari' }
         ]
     },
     'makers-against-drought': {
@@ -257,9 +257,9 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'fK5ksaOk-Dw' },
-            { type: 'image', src: '../../static/www/img/hackathons/makers-against-drought/devpost_01.png', alt: 'Wtr' },
-            { type: 'image', src: '../../static/www/img/hackathons/makers-against-drought/devpost_02.png', alt: 'Wtr' },
-            { type: 'image', src: '../../static/www/img/hackathons/makers-against-drought/devpost_03.png', alt: 'Wtr' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/makers-against-drought/devpost_01.png', alt: 'Wtr' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/makers-against-drought/devpost_02.png', alt: 'Wtr' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/makers-against-drought/devpost_03.png', alt: 'Wtr' }
         ]
     },
     'junction-asia_2016': {
@@ -274,7 +274,7 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'afjs78h8fo0' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction-asia_2016/photo_01.jpg', alt: 'Salt and Pepper' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction-asia_2016/photo_01.jpg', alt: 'Salt and Pepper' }
         ]
     },
     'mlh_prime_2016': {
@@ -290,16 +290,16 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'OCI2aNPGFn4' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/devpost_01.jpg', alt: 'Project Sluggers' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/devpost_02.jpg', alt: 'Project Sluggers' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_01.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_02.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_03.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_04.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_05.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_06.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_07.jpg', alt: 'MLH Prime 2016' },
-            { type: 'image', src: '../../static/www/img/hackathons/mlh_prime_2016/photo_08.jpg', alt: 'MLH Prime 2016' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/devpost_01.jpg', alt: 'Project Sluggers' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/devpost_02.jpg', alt: 'Project Sluggers' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_01.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_02.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_03.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_04.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_05.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_06.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_07.jpg', alt: 'MLH Prime 2016' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mlh_prime_2016/photo_08.jpg', alt: 'MLH Prime 2016' }
         ]
     },
     'htn_2016': {
@@ -315,12 +315,12 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'K31ZpTEOQCE' },
-            { type: 'video', src: '../../static/www/img/hackathons/htn_2016/video_01.mp4', alt: 'Project Open Heart demo' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2016/devpost_01.png', alt: 'Project Open Heart' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2016/photo_01.jpg', alt: 'Project Open Heart' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2016/photo_02.jpg', alt: 'Project Open Heart' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2016/photo_03.jpg', alt: 'Project Open Heart' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2016/photo_04.jpg', alt: 'Project Open Heart' }
+            { type: 'video', src: '//static.scub3d.io/www/img/hackathons/htn_2016/video_01.mp4', alt: 'Project Open Heart demo' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2016/devpost_01.png', alt: 'Project Open Heart' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2016/photo_01.jpg', alt: 'Project Open Heart' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2016/photo_02.jpg', alt: 'Project Open Heart' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2016/photo_03.jpg', alt: 'Project Open Heart' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2016/photo_04.jpg', alt: 'Project Open Heart' }
         ]
     },
     'mhacks8_2016': {
@@ -336,7 +336,7 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'LsAxZgyd6Dg' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacks8_2016/photo_01.jpg', alt: 'Project Tennis' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacks8_2016/photo_01.jpg', alt: 'Project Tennis' }
         ]
     },
     'spartahack_2017': {
@@ -379,10 +379,10 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'g6eeZtE9ASw' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction-tokyo_2017/photo_01.jpg', alt: 'Project Vendio' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction-tokyo_2017/photo_02.jpg', alt: 'Project Vendio' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction-tokyo_2017/photo_03.jpg', alt: 'Project Vendio' },
-            { type: 'image', src: '../../static/www/img/hackathons/junction-tokyo_2017/photo_04.jpg', alt: 'Project Vendio' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction-tokyo_2017/photo_01.jpg', alt: 'Project Vendio' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction-tokyo_2017/photo_02.jpg', alt: 'Project Vendio' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction-tokyo_2017/photo_03.jpg', alt: 'Project Vendio' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/junction-tokyo_2017/photo_04.jpg', alt: 'Project Vendio' }
         ]
     },
     'hack-cincy_2017': {
@@ -396,8 +396,8 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://devpost.com/software/unwearable' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/hack-cincy_2017/photo_01.jpg', alt: 'Unwearable' },
-            { type: 'image', src: '../../static/www/img/hackathons/hack-cincy_2017/photo_02.jpg', alt: 'Unwearable' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hack-cincy_2017/photo_01.jpg', alt: 'Unwearable' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/hack-cincy_2017/photo_02.jpg', alt: 'Unwearable' }
         ]
     },
     'htn_2017': {
@@ -412,8 +412,8 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'B0t1KIPdys0' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2017/photo_01.jpg', alt: 'Deep Reality' },
-            { type: 'image', src: '../../static/www/img/hackathons/htn_2017/photo_02.jpg', alt: 'Deep Reality' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2017/photo_01.jpg', alt: 'Deep Reality' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/htn_2017/photo_02.jpg', alt: 'Deep Reality' }
         ]
     },
     'mhacksx_2017': {
@@ -427,10 +427,10 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://devpost.com/software/swagoverflow' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/mhacksx_2017/devpost_01.png', alt: 'Sticker Overflow' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacksx_2017/devpost_02.png', alt: 'Sticker Overflow' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacksx_2017/devpost_03.png', alt: 'Sticker Overflow' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacksx_2017/devpost_04.png', alt: 'Sticker Overflow' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacksx_2017/devpost_01.png', alt: 'Sticker Overflow' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacksx_2017/devpost_02.png', alt: 'Sticker Overflow' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacksx_2017/devpost_03.png', alt: 'Sticker Overflow' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacksx_2017/devpost_04.png', alt: 'Sticker Overflow' }
         ]
     },
     'spartahack_2018': {
@@ -496,8 +496,8 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'yEXqeT6hroA' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacks11_2018/photo_01.jpg', alt: 'VR Piano' },
-            { type: 'image', src: '../../static/www/img/hackathons/mhacks11_2018/photo_02.jpg', alt: 'VR Piano' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacks11_2018/photo_01.jpg', alt: 'VR Piano' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/mhacks11_2018/photo_02.jpg', alt: 'VR Piano' }
         ]
     },
     'riot_games_hackathon': {
@@ -517,22 +517,22 @@ var HACKATHON_DATA = {
             { label: 'Riot Instagram Story', url: 'https://www.instagram.com/stories/highlights/17998515211004878/' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_07.png', alt: 'League AR app screenshot - AR match replay with champion models' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_07.png', alt: 'League AR app screenshot - AR match replay with champion models' },
             {
                 type: 'grid', items: [
-                    { src: '../../static/www/video/league_ar_insta_1.mp4' },
-                    { src: '../../static/www/video/league_ar_insta_2.mp4' },
-                    { src: '../../static/www/video/league_ar_insta_3.mp4' },
-                    { src: '../../static/www/video/league_ar_insta_4.mp4' }
+                    { src: '//static.scub3d.io/www/video/league_ar_insta_1.mp4' },
+                    { src: '//static.scub3d.io/www/video/league_ar_insta_2.mp4' },
+                    { src: '//static.scub3d.io/www/video/league_ar_insta_3.mp4' },
+                    { src: '//static.scub3d.io/www/video/league_ar_insta_4.mp4' }
                 ], alt: 'League AR Instagram clips'
             },
-            { type: 'video', src: '../../static/www/img/hackathons/riot_games_hackathon/video_01.mp4', alt: 'League AR demo video' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_04.jpg', alt: 'AR app demo on projector during presentation' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_03.jpg', alt: 'Team photo' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_01.jpg', alt: 'Welcome to the Riot Games Hackathon Science Fair' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_02.jpg', alt: 'Hacking room at Riot HQ' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_05.jpg', alt: '2018 Riot Games Hackathon group photo' },
-            { type: 'image', src: '../../static/www/img/hackathons/riot_games_hackathon/photo_06.jpg', alt: 'At the Riot Games sign' }
+            { type: 'video', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/video_01.mp4', alt: 'League AR demo video' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_04.jpg', alt: 'AR app demo on projector during presentation' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_03.jpg', alt: 'Team photo' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_01.jpg', alt: 'Welcome to the Riot Games Hackathon Science Fair' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_02.jpg', alt: 'Hacking room at Riot HQ' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_05.jpg', alt: '2018 Riot Games Hackathon group photo' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_games_hackathon/photo_06.jpg', alt: 'At the Riot Games sign' }
         ]
     },
     'spartahack_v_2019': {
@@ -559,7 +559,7 @@ var HACKATHON_DATA = {
             { label: 'GitHub', url: 'https://github.com/supergrecko/LeagueVoice' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/riot_api_challenge_2019/splash.png', alt: 'League Voice application' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/riot_api_challenge_2019/splash.png', alt: 'League Voice application' }
         ]
     },
     'brickhack_v_2019': {
@@ -574,8 +574,8 @@ var HACKATHON_DATA = {
         ],
         media: [
             { type: 'youtube', id: 'k-7wxQpFYcI' },
-            { type: 'image', src: '../../static/www/img/hackathons/brickhack_v_2019/photo_01.jpg', alt: 'Babel AR' },
-            { type: 'image', src: '../../static/www/img/hackathons/brickhack_v_2019/photo_02.jpg', alt: 'Babel AR' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/brickhack_v_2019/photo_01.jpg', alt: 'Babel AR' },
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/brickhack_v_2019/photo_02.jpg', alt: 'Babel AR' }
         ]
     },
     'grizzhacks-4': {
@@ -589,7 +589,7 @@ var HACKATHON_DATA = {
             { label: 'Devpost', url: 'https://grizzhacks-4.devpost.com/' }
         ],
         media: [
-            { type: 'image', src: '../../static/www/img/hackathons/grizzhacks-4/photo_01.jpg', alt: 'GrizzHacks 4' }
+            { type: 'image', src: '//static.scub3d.io/www/img/hackathons/grizzhacks-4/photo_01.jpg', alt: 'GrizzHacks 4' }
         ]
     },
     'hack-quarantine-2020': {

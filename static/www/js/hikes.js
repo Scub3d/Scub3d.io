@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Initialize Mapbox ---
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic2N1YjNkIiwiYSI6ImNsN3BudXVsNTJuazk0MG9mdnBoejM0aWkifQ.UDXSIh11mtNj2h-hY6GQHg';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2N1YjNkIiwiYSI6ImNtb2R6MjhlcTA4Y2Eyb3BzMDd4bW9tdTMifQ.wdRErnofKt0363zchWoBQg';
 
     // --- Slow orbit ---
     var orbitActive = false;
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (trailCache[id]) { cb(); return; }
         if (loadingTrails[id]) { loadingTrails[id].push(cb); return; }
         loadingTrails[id] = [cb];
-        var url = '../../static/www/data/trails/' + id + '.json';
+        var url = '//static.scub3d.io/www/data/trails/' + id + '.json';
         fetch(url).then(function (r) { return r.json(); }).then(function (data) {
             trailCache[id] = data;
             var cbs = loadingTrails[id];

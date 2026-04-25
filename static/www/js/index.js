@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', resize);
 
     /* ---- OBJ Loader: fetch and parse .obj files at runtime ---- */
-    var OBJ_DIR = '../../static/www/models/';
+    var OBJ_DIR = '//static.scub3d.io/www/models/';
     var OBJ_FILES = [
         'Cube.obj',
         'ElongatedDodecahedron.obj',
