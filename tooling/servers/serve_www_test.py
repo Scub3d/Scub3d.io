@@ -68,17 +68,24 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if self.path in ("/", ""):
             self._serve_rewritten(WWW_DIR / "index.html", "text/html; charset=utf-8")
             return
-        # Top-level /<page>.html → views/www/<page>.html (so nav hrefs resolve)
-        if re.fullmatch(r"/[\w-]+\.html", self.path):
-            candidate = WWW_DIR / self.path.lstrip("/")
+        # Top-level /<page> or /<page>.html → views/www/<page>.html
+        # (matches production where the cloudbuild copies pages to extensionless URLs)
+        page_match = re.fullmatch(r"/([\w-]+)(?:\.html)?", self.path)
+        if page_match:
+            candidate = WWW_DIR / (page_match.group(1) + ".html")
             if candidate.exists():
                 self._serve_rewritten(candidate, "text/html; charset=utf-8")
                 return
         # Cross-subdomain routing: /<sub>/ → views/<sub>/index.html,
-        # /<sub>/<page>.html → views/<sub>/<page>.html
-        sub_match = re.fullmatch(r"/(" + "|".join(CROSS_SUBDOMAINS) + r")/([\w-]+\.html)?", self.path)
+        # /<sub>/<page> or /<sub>/<page>.html → views/<sub>/<page>.html
+        # (matches production where the cloudbuild copies pages to extensionless URLs)
+        sub_match = re.fullmatch(
+            r"/(" + "|".join(CROSS_SUBDOMAINS) + r")/(?:([\w-]+)(?:\.html)?)?",
+            self.path,
+        )
         if sub_match:
-            sub, page = sub_match.group(1), sub_match.group(2) or "index.html"
+            sub = sub_match.group(1)
+            page = (sub_match.group(2) or "index") + ".html"
             candidate = VIEWS_DIR / sub / page
             if candidate.exists():
                 self._serve_rewritten(candidate, "text/html; charset=utf-8")
