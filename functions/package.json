@@ -28,7 +28,7 @@
     "ffprobe-static": "^3.1.0",
     "firebase-admin": "^11.1.0",
     "firebase-functions": "^3.24.1",
-    "firebase-tools": "^15.15.0",
+    "firebase-tools": "^15.22.4",
     "fluent-ffmpeg": "^2.1.2",
     "node-stream-zip": "^1.13.3",
     "path": "^0.12.7",
@@ -40,7 +40,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "eslint": "^5.12.0",
+    "eslint": "^10.6.0",
     "eslint-plugin-promise": "^4.0.1",
     "firebase-functions-test": "^0.2.0"
   },
